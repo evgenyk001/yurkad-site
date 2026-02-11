@@ -1,32 +1,19 @@
-/* -------------------- АНИМАЦИЯ ПОЯВЛЕНИЯ -------------------- */
-
-const fadeBlocks = document.querySelectorAll('.fade-in-up');
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-        }
-    });
-}, { threshold: 0.2 });
-
-fadeBlocks.forEach(block => observer.observe(block));
-
-
 /* -------------------- APPLE-СТИЛЬ КАРУСЕЛЬ (БЕСКОНЕЧНАЯ) -------------------- */
 
 const carousel = document.querySelector('.carousel');
-const cards = document.querySelectorAll('.service-card');
-const btnLeft = document.querySelector('.carousel-btn.left');
-const btnRight = document.querySelector('.carousel-btn.right');
+let cards = Array.from(document.querySelectorAll('.service-card'));
 
-let index = Math.floor(cards.length / 2); // центр по умолчанию
+// 🔥 Клонируем карточки для бесконечного loop
+const clonesBefore = cards.map(card => card.cloneNode(true));
+const clonesAfter = cards.map(card => card.cloneNode(true));
 
-function normalizeIndex(i) {
-    if (i < 0) return cards.length - 1;
-    if (i >= cards.length) return 0;
-    return i;
-}
+clonesBefore.forEach(clone => carousel.prepend(clone));
+clonesAfter.forEach(clone => carousel.append(clone));
+
+// Обновляем массив карточек
+cards = Array.from(document.querySelectorAll('.service-card'));
+
+let index = Math.floor(cards.length / 2); // центр
 
 function updateCarousel() {
     cards.forEach((card, i) => {
@@ -35,16 +22,21 @@ function updateCarousel() {
         const offset = i - index;
 
         if (offset === 0) {
+            // Активная
             card.classList.add('active');
-            card.style.transform = "scale(1.15) rotateY(0deg)";
+            card.style.transform = "scale(1.2) rotateY(0deg)";
             card.style.opacity = "1";
+            card.style.filter = "blur(0px)";
         } else {
+            // Боковые
             const scale = 1 - Math.abs(offset) * 0.15;
-            const rotate = offset > 0 ? -25 : 25;
-            const opacity = 1 - Math.abs(offset) * 0.25;
+            const rotate = offset > 0 ? -35 : 35;
+            const opacity = 1 - Math.abs(offset) * 0.3;
+            const blur = Math.abs(offset) * 2.5;
 
             card.style.transform = `scale(${scale}) rotateY(${rotate}deg)`;
             card.style.opacity = opacity;
+            card.style.filter = `blur(${blur}px)`;
         }
     });
 
@@ -54,22 +46,23 @@ function updateCarousel() {
         left: index * cardWidth - (carousel.offsetWidth / 2) + (cardWidth / 2),
         behavior: "smooth"
     });
+
+    // 🔥 Автопрыжок в центр массива (loop)
+    if (index < cards.length * 0.25) {
+        index += cards.length / 3;
+    }
+    if (index > cards.length * 0.75) {
+        index -= cards.length / 3;
+    }
 }
 
-btnLeft.addEventListener('click', () => {
-    index = normalizeIndex(index - 1);
-    updateCarousel();
-});
-
-btnRight.addEventListener('click', () => {
-    index = normalizeIndex(index + 1);
-    updateCarousel();
-});
+function normalizeIndex(i) {
+    return i;
+}
 
 updateCarousel();
 
-
-/* -------------------- СВАЙП ДЛЯ МОБИЛЬНЫХ -------------------- */
+/* -------------------- СВАЙП -------------------- */
 
 let startX = 0;
 
@@ -81,26 +74,12 @@ carousel.addEventListener('touchend', e => {
     const endX = e.changedTouches[0].clientX;
 
     if (endX < startX - 50) {
-        index = normalizeIndex(index + 1);
+        index++;
         updateCarousel();
     }
 
     if (endX > startX + 50) {
-        index = normalizeIndex(index - 1);
+        index--;
         updateCarousel();
     }
-});
-
-
-/* -------------------- ПАРАЛЛАКС ФЕМИДЫ -------------------- */
-
-const femida = document.querySelector('.femida-wrapper');
-
-document.addEventListener('mousemove', e => {
-    if (!femida) return;
-
-    const x = (window.innerWidth / 2 - e.clientX) / 40;
-    const y = (window.innerHeight / 2 - e.clientY) / 40;
-
-    femida.style.transform = `translate(${x}px, ${y}px)`;
 });
