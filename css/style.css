@@ -158,18 +158,19 @@ html {
     perspective: 1400px;
 }
 
+/* 🔥 ГЛАВНЫЙ ФИКС КАРУСЕЛИ */
 .carousel {
     display: flex;
     gap: 40px;
     width: 100%;
-    max-width: 100%; /* фикс растягивания */
-    overflow-x: scroll !important; /* фикс карусели */
+    overflow-x: hidden !important; /* убираем полосу скролла */
     overflow-y: visible;
     padding-top: 60px;
     padding-bottom: 60px;
     scroll-behavior: smooth;
 }
 
+/* Карточки */
 .service-card {
     min-width: 300px;
     background: #2E2D26;
@@ -178,7 +179,7 @@ html {
     border: 1px solid #4A483E;
     text-align: center;
     transition: 0.5s ease;
-    transform: scale(0.75) rotateY(25deg);
+    transform: scale(0.75) rotateY(25deg); /* наклон как Apple */
     opacity: 0.45;
     box-shadow: 0 0 0 transparent;
     transform-origin: center center;
