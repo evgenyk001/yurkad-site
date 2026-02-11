@@ -1,4 +1,6 @@
-/* -------------------- АНИМАЦИИ ПОЯВЛЕНИЯ -------------------- */
+/* -------------------- АНИМАЦИЯ ПОЯВЛЕНИЯ -------------------- */
+
+const fadeBlocks = document.querySelectorAll('.fade-in-up');
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -6,89 +8,92 @@ const observer = new IntersectionObserver(entries => {
             entry.target.classList.add('show');
         }
     });
-}, {
-    threshold: 0.2
-});
+}, { threshold: 0.2 });
 
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+fadeBlocks.forEach(block => observer.observe(block));
 
 
-/* -------------------- ПОВЕДЕНИЕ ХЕДЕРА ПРИ СКРОЛЛЕ -------------------- */
-
-let lastScroll = 0;
-const header = document.querySelector('.header');
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > lastScroll && currentScroll > 80) {
-        header.style.opacity = "0";
-        header.style.transform = "translateY(-20px)";
-    } else {
-        header.style.opacity = "1";
-        header.style.transform = "translateY(0)";
-    }
-
-    lastScroll = currentScroll;
-});
-
-
-/* -------------------- ПАРАЛЛАКС ФЕМИДЫ -------------------- */
-
-const femida = document.querySelector('.hero-image img');
-
-window.addEventListener('mousemove', (e) => {
-    const x = (window.innerWidth / 2 - e.clientX) / 40;
-    const y = (window.innerHeight / 2 - e.clientY) / 40;
-
-    femida.style.transform = `translate(${x}px, ${y}px)`;
-});
-
-
-/* -------------------- ПЛАВНЫЙ СКРОЛЛ ПО ЯКОРЯМ -------------------- */
-
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const blockID = this.getAttribute('href').substring(1);
-        document.getElementById(blockID).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
-
-
-/* -------------------- КАРУСЕЛЬ УСЛУГ -------------------- */
+/* -------------------- APPLE-СТИЛЬ КАРУСЕЛЬ -------------------- */
 
 const carousel = document.querySelector('.carousel');
 const cards = document.querySelectorAll('.service-card');
 const btnLeft = document.querySelector('.carousel-btn.left');
 const btnRight = document.querySelector('.carousel-btn.right');
 
-let index = 0;
+let index = Math.floor(cards.length / 2); // центр по умолчанию
 
-function updateActiveCard() {
+function updateCarousel() {
     cards.forEach((card, i) => {
         card.classList.remove('active');
-        if (i === index) card.classList.add('active');
+
+        const offset = i - index;
+
+        if (offset === 0) {
+            card.classList.add('active');
+            card.style.transform = "scale(1.15) rotateY(0deg)";
+            card.style.opacity = "1";
+        } else {
+            const scale = 1 - Math.abs(offset) * 0.15;
+            const rotate = offset > 0 ? -25 : 25;
+            const opacity = 1 - Math.abs(offset) * 0.25;
+
+            card.style.transform = `scale(${scale}) rotateY(${rotate}deg)`;
+            card.style.opacity = opacity;
+        }
     });
 
     const cardWidth = cards[0].offsetWidth + 40;
-
     carousel.scrollTo({
-        left: index * cardWidth - (carousel.offsetWidth / 2 - cardWidth / 2),
+        left: index * cardWidth - (carousel.offsetWidth / 2) + (cardWidth / 2),
         behavior: "smooth"
     });
 }
 
-btnRight.addEventListener('click', () => {
-    index = (index + 1) % cards.length;
-    updateActiveCard();
-});
-
 btnLeft.addEventListener('click', () => {
-    index = (index - 1 + cards.length) % cards.length;
-    updateActiveCard();
+    index = Math.max(0, index - 1);
+    updateCarousel();
 });
 
-updateActiveCard();
+btnRight.addEventListener('click', () => {
+    index = Math.min(cards.length - 1, index + 1);
+    updateCarousel();
+});
+
+updateCarousel();
+
+
+/* -------------------- СВАЙП ДЛЯ МОБИЛЬНЫХ -------------------- */
+
+let startX = 0;
+
+carousel.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+});
+
+carousel.addEventListener('touchend', e => {
+    const endX = e.changedTouches[0].clientX;
+
+    if (endX < startX - 50) {
+        index = Math.min(cards.length - 1, index + 1);
+        updateCarousel();
+    }
+
+    if (endX > startX + 50) {
+        index = Math.max(0, index - 1);
+        updateCarousel();
+    }
+});
+
+
+/* -------------------- ПАРАЛЛАКС ФЕМИДЫ -------------------- */
+
+const femida = document.querySelector('.femida-wrapper');
+
+document.addEventListener('mousemove', e => {
+    if (!femida) return;
+
+    const x = (window.innerWidth / 2 - e.clientX) / 40;
+    const y = (window.innerHeight / 2 - e.clientY) / 40;
+
+    femida.style.transform = `translate(${x}px, ${y}px)`;
+});
