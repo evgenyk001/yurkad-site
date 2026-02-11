@@ -153,28 +153,15 @@ html {
     position: relative;
     display: flex;
     align-items: center;
-    overflow: visible;
-    perspective: 1600px;
-    pointer-events: none; /* 🔥 чтобы стрелки не перекрывали карусель */
 }
 
-/* Карусель — скролл + скрытая полоса */
 .carousel {
     display: flex;
     gap: 40px;
+    overflow: hidden;
     width: 100%;
-    overflow-x: scroll;
-    overflow-y: visible;
-    padding: 80px 0;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    pointer-events: auto; /* 🔥 карусель снова кликабельна */
+    perspective: 1200px;
 }
-.carousel::-webkit-scrollbar {
-    display: none;
-}
-
-/* -------------------- КАРТОЧКИ -------------------- */
 
 .service-card {
     min-width: 300px;
@@ -186,9 +173,14 @@ html {
     transition: 0.5s ease;
     transform: scale(0.75) rotateY(25deg);
     opacity: 0.45;
-    filter: blur(2px);
     box-shadow: 0 0 0 transparent;
-    transform-style: preserve-3d;
+}
+
+.service-card.active {
+    transform: scale(1.15) rotateY(0deg);
+    opacity: 1;
+    border-color: #9E937E;
+    box-shadow: 0 0 35px rgba(158,147,126,0.35);
 }
 
 .service-card h3 {
@@ -203,23 +195,7 @@ html {
     line-height: 1.5;
 }
 
-/* Активная карточка */
-.service-card.active {
-    transform: scale(1.2) rotateY(0deg);
-    opacity: 1;
-    filter: blur(0);
-    border-color: #9E937E;
-    box-shadow: 0 0 35px rgba(158,147,126,0.35);
-    z-index: 5;
-}
-
-/* -------------------- СТРЕЛКИ -------------------- */
-
 .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 20;
     background: none;
     border: none;
     color: #9E937E;
@@ -227,15 +203,6 @@ html {
     cursor: pointer;
     padding: 10px;
     transition: 0.3s;
-    pointer-events: auto; /* 🔥 кнопки кликабельны */
-}
-
-.carousel-btn.left {
-    left: -60px; /* 🔥 вынес за пределы карусели */
-}
-
-.carousel-btn.right {
-    right: -60px; /* 🔥 вынес за пределы карусели */
 }
 
 .carousel-btn:hover {
@@ -370,9 +337,5 @@ html {
 
     .why-grid {
         grid-template-columns: 1fr;
-    }
-
-    .carousel-btn {
-        display: none;
     }
 }
