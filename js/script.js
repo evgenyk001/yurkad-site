@@ -13,7 +13,7 @@ const observer = new IntersectionObserver(entries => {
 fadeBlocks.forEach(block => observer.observe(block));
 
 
-/* -------------------- APPLE-СТИЛЬ КАРУСЕЛЬ -------------------- */
+/* -------------------- APPLE-СТИЛЬ КАРУСЕЛЬ (БЕСКОНЕЧНАЯ) -------------------- */
 
 const carousel = document.querySelector('.carousel');
 const cards = document.querySelectorAll('.service-card');
@@ -22,6 +22,12 @@ const btnRight = document.querySelector('.carousel-btn.right');
 
 let index = Math.floor(cards.length / 2); // центр по умолчанию
 
+function normalizeIndex(i) {
+    if (i < 0) return cards.length - 1;
+    if (i >= cards.length) return 0;
+    return i;
+}
+
 function updateCarousel() {
     cards.forEach((card, i) => {
         card.classList.remove('active');
@@ -29,12 +35,10 @@ function updateCarousel() {
         const offset = i - index;
 
         if (offset === 0) {
-            // центральная карточка
             card.classList.add('active');
             card.style.transform = "scale(1.15) rotateY(0deg)";
             card.style.opacity = "1";
         } else {
-            // боковые карточки
             const scale = 1 - Math.abs(offset) * 0.15;
             const rotate = offset > 0 ? -25 : 25;
             const opacity = 1 - Math.abs(offset) * 0.25;
@@ -44,28 +48,24 @@ function updateCarousel() {
         }
     });
 
-    // центрирование через scrollTo
-    const cardWidth = cards[0].offsetWidth + 40; // ширина + gap
-    const targetScroll =
-        index * cardWidth - (carousel.offsetWidth / 2) + (cardWidth / 2);
+    const cardWidth = cards[0].offsetWidth + 40;
 
     carousel.scrollTo({
-        left: targetScroll,
+        left: index * cardWidth - (carousel.offsetWidth / 2) + (cardWidth / 2),
         behavior: "smooth"
     });
 }
 
 btnLeft.addEventListener('click', () => {
-    index = Math.max(0, index - 1);
+    index = normalizeIndex(index - 1);
     updateCarousel();
 });
 
 btnRight.addEventListener('click', () => {
-    index = Math.min(cards.length - 1, index + 1);
+    index = normalizeIndex(index + 1);
     updateCarousel();
 });
 
-// первый запуск
 updateCarousel();
 
 
@@ -81,12 +81,12 @@ carousel.addEventListener('touchend', e => {
     const endX = e.changedTouches[0].clientX;
 
     if (endX < startX - 50) {
-        index = Math.min(cards.length - 1, index + 1);
+        index = normalizeIndex(index + 1);
         updateCarousel();
     }
 
     if (endX > startX + 50) {
-        index = Math.max(0, index - 1);
+        index = normalizeIndex(index - 1);
         updateCarousel();
     }
 });
