@@ -42,7 +42,8 @@ function updateCarousel() {
         }
     });
 
-    if (!isDragging) {  // 🔥 автоцентрирование работает ТОЛЬКО если не тянем
+    // 🔥 НЕ автоцентрируем, пока пользователь двигает
+    if (!isDragging) {
         const cardWidth = cards[0].offsetWidth + 40;
 
         carousel.scrollTo({
@@ -95,20 +96,29 @@ carousel.addEventListener('mousedown', e => {
     carousel.style.cursor = "grabbing";
 });
 
-carousel.addEventListener('mouseup', () => {
-    isMouseDown = false;
-    isDragging = false;
-    carousel.style.cursor = "grab";
-    updateCarousel();
+// 🔥 Чтобы не залипало, если мышь вышла за пределы
+window.addEventListener('mouseup', () => {
+    if (isMouseDown) {
+        isMouseDown = false;
+        isDragging = false;
+        carousel.style.cursor = "grab";
+        updateCarousel();
+    }
 });
 
 carousel.addEventListener('mouseleave', () => {
-    isMouseDown = false;
-    isDragging = false;
+    if (isMouseDown) {
+        isMouseDown = false;
+        isDragging = false;
+        carousel.style.cursor = "grab";
+        updateCarousel();
+    }
 });
 
 carousel.addEventListener('mousemove', e => {
     if (!isMouseDown) return;
+
+    isDragging = true; // 🔥 ВАЖНО — иначе scrollTo() перебивает drag
 
     e.preventDefault();
     const x = e.pageX - carousel.offsetLeft;
@@ -131,5 +141,5 @@ carousel.addEventListener('wheel', e => {
     window._wheelTimeout = setTimeout(() => {
         isDragging = false;
         updateCarousel();
-    }, 150);
+    }, 200);
 });
