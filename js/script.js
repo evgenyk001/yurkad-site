@@ -14,8 +14,13 @@ clonesAfter.forEach(clone => carousel.append(clone));
 cards = Array.from(document.querySelectorAll('.service-card'));
 
 let index = Math.floor(cards.length / 2); // центр
+let isDragging = false; // 🔥 чтобы свайп не сбивался автоцентрированием
 
 function updateCarousel() {
+
+    // 🔥 Если пользователь свайпает — НЕ автоцентрируем
+    if (isDragging) return;
+
     cards.forEach((card, i) => {
         card.classList.remove('active');
 
@@ -68,6 +73,7 @@ let startX = 0;
 
 carousel.addEventListener('touchstart', e => {
     startX = e.touches[0].clientX;
+    isDragging = true; // 🔥 блокируем автоцентрирование
 });
 
 carousel.addEventListener('touchend', e => {
@@ -75,11 +81,12 @@ carousel.addEventListener('touchend', e => {
 
     if (endX < startX - 50) {
         index++;
-        updateCarousel();
     }
 
     if (endX > startX + 50) {
         index--;
-        updateCarousel();
     }
+
+    isDragging = false; // 🔥 возвращаем автоцентрирование
+    updateCarousel();
 });
