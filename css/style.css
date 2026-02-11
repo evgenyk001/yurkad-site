@@ -1,18 +1,24 @@
+/* -------------------- БАЗА -------------------- */
+
 body {
     background: #35342B;
     color: #FFFFFF;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Arial", sans-serif;
 }
 
-/* Контейнер */
+html {
+    scroll-behavior: smooth;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Шапка */
+/* -------------------- ШАПКА -------------------- */
+
 .header {
     padding: 20px 0;
 }
@@ -21,20 +27,31 @@ body {
     width: 160px;
 }
 
-/* Первый экран */
+/* -------------------- ПЕРВЫЙ ЭКРАН -------------------- */
+
 .hero {
-    padding: 120px 20px;
-    text-align: center;
+    padding: 140px 0;
+    background: linear-gradient(180deg, #35342B 0%, #2E2D26 100%);
+}
+
+.hero-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-content {
+    max-width: 600px;
 }
 
 .hero h1 {
-    font-size: 36px;
+    font-size: 48px;
     margin-bottom: 20px;
-    color: #FFFFFF;
+    line-height: 1.2;
 }
 
 .subtitle {
-    font-size: 20px;
+    font-size: 22px;
     color: #D6D6D6;
     margin-bottom: 40px;
 }
@@ -47,38 +64,75 @@ body {
     text-decoration: none;
     font-weight: bold;
     border-radius: 4px;
+    transition: 0.3s;
 }
 
-/* --- БЛОК УСЛУГ --- */
+.btn:hover {
+    box-shadow: 0 0 15px #9E937E;
+    transform: translateY(-3px);
+}
+
+.hero-image img {
+    width: 420px;
+    opacity: 0.25;
+    filter: drop-shadow(0 0 20px #9E937E55);
+}
+
+/* -------------------- АНИМАЦИИ -------------------- */
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.8s ease;
+}
+
+.fade-up.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* -------------------- УСЛУГИ -------------------- */
 
 .services {
     padding: 80px 0;
-    color: #FFFFFF;
 }
 
 .services h2 {
     text-align: center;
     font-size: 32px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+.services-scroll {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+}
+
+.services-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.services-scroll::-webkit-scrollbar-thumb {
+    background: #9E937E;
+    border-radius: 10px;
 }
 
 .service-card {
+    min-width: 260px;
     background: #2E2D26;
     padding: 25px;
     border-radius: 8px;
     border: 1px solid #4A483E;
+    scroll-snap-align: start;
     transition: 0.3s;
 }
 
 .service-card:hover {
+    transform: translateY(-6px) scale(1.03);
     border-color: #9E937E;
-    transform: translateY(-4px);
 }
 
 .service-card h3 {
@@ -91,4 +145,116 @@ body {
 .service-card p {
     margin: 0;
     color: #D6D6D6;
+}
+
+/* -------------------- О КОМПАНИИ -------------------- */
+
+.about {
+    padding: 80px 0;
+}
+
+.about-flex {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-text {
+    max-width: 600px;
+}
+
+.about h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 18px;
+    color: #D6D6D6;
+    line-height: 1.6;
+}
+
+.about-features {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+.feature {
+    background: #2E2D26;
+    padding: 15px 20px;
+    border-radius: 6px;
+    border: 1px solid #4A483E;
+    color: #9E937E;
+    font-weight: bold;
+}
+
+.about-image img {
+    width: 380px;
+    opacity: 0.3;
+}
+
+/* -------------------- ПОЧЕМУ МЫ -------------------- */
+
+.why {
+    padding: 80px 0;
+}
+
+.why h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.why-card {
+    background: #2E2D26;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #4A483E;
+    text-align: center;
+    font-size: 18px;
+    color: #D6D6D6;
+    transition: 0.3s;
+}
+
+.why-card:hover {
+    border-color: #9E937E;
+    transform: translateY(-4px);
+}
+
+/* -------------------- КОНТАКТЫ -------------------- */
+
+.contacts {
+    padding: 80px 0;
+}
+
+.contacts h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.contacts-grid {
+    display: grid;
+    gap: 20px;
+    font-size: 20px;
+}
+
+.contact-item strong {
+    color: #9E937E;
+}
+
+/* -------------------- ФУТЕР -------------------- */
+
+.footer {
+    padding: 30px 0;
+    text-align: center;
+    color: #D6D6D6;
+    border-top: 1px solid #4A483E;
 }
