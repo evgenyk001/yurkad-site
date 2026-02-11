@@ -5,14 +5,23 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* Контейнер */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Шапка */
 .header {
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .logo {
     width: 160px;
 }
 
+/* Первый экран */
 .hero {
     padding: 120px 20px;
     text-align: center;
@@ -38,4 +47,48 @@ body {
     text-decoration: none;
     font-weight: bold;
     border-radius: 4px;
+}
+
+/* --- БЛОК УСЛУГ --- */
+
+.services {
+    padding: 80px 0;
+    color: #FFFFFF;
+}
+
+.services h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 50px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: #2E2D26;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #4A483E;
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    border-color: #9E937E;
+    transform: translateY(-4px);
+}
+
+.service-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 20px;
+    color: #9E937E;
+}
+
+.service-card p {
+    margin: 0;
+    color: #D6D6D6;
 }
