@@ -5,6 +5,7 @@ body {
     color: #FFFFFF;
     margin: 0;
     font-family: "Arial", sans-serif;
+    overflow-x: hidden;
 }
 
 html {
@@ -17,19 +18,37 @@ html {
     padding: 0 20px;
 }
 
+/* -------------------- ГЛОБАЛЬНЫЕ АНИМАЦИИ -------------------- */
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp .9s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* -------------------- ШАПКА -------------------- */
 
 .header {
     padding: 20px 0;
     position: sticky;
     top: 0;
-    background: #35342B;
+    background: rgba(53, 52, 43, 0.9);
+    backdrop-filter: blur(10px);
     z-index: 100;
     transition: 0.3s;
+    border-bottom: 1px solid rgba(158,147,126,0.15);
 }
 
 .logo {
     width: 160px;
+    filter: drop-shadow(0 0 8px rgba(158,147,126,0.25));
 }
 
 /* -------------------- ПЕРВЫЙ ЭКРАН -------------------- */
@@ -45,67 +64,89 @@ html {
     justify-content: space-between;
 }
 
-.hero-content {
-    max-width: 600px;
-}
-
-.hero h1 {
-    font-size: 48px;
+.hero-title {
+    font-size: 52px;
     margin-bottom: 20px;
     line-height: 1.2;
+    color: #FFFFFF;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-.subtitle {
+.hero-subtitle {
     font-size: 22px;
     color: #D6D6D6;
     margin-bottom: 40px;
+    line-height: 1.5;
 }
 
-.btn {
+/* -------------------- ПРЕМИАЛЬНАЯ КНОПКА -------------------- */
+
+.premium-btn {
+    position: relative;
     display: inline-block;
-    padding: 15px 30px;
+    padding: 16px 34px;
     background: #9E937E;
     color: #35342B;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
     text-decoration: none;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: 0.3s;
+    overflow: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
-.btn:hover {
-    box-shadow: 0 0 15px #9E937E;
-    transform: translateY(-3px);
+.premium-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
 }
 
-.hero-image img {
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 120%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.45) 50%,
+        transparent 100%
+    );
+    transform: skewX(-20deg);
+    transition: left .8s ease;
+}
+
+.premium-btn:hover .btn-glow {
+    left: 120%;
+}
+
+/* -------------------- ФЕМИДА -------------------- */
+
+.femida-wrapper {
     width: 420px;
-    opacity: 0.25;
-    filter: drop-shadow(0 0 20px #9E937E55);
+    opacity: 0.9;
+    filter: drop-shadow(0 0 25px rgba(158,147,126,0.35));
+    animation: femidaFloat 6s ease-in-out infinite;
 }
 
-/* -------------------- АНИМАЦИИ -------------------- */
-
-.fade-up {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: 0.8s ease;
+@keyframes femidaFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0); }
 }
 
-.fade-up.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* -------------------- КАРУСЕЛЬ УСЛУГ -------------------- */
+/* -------------------- КАРУСЕЛЬ УСЛУГ (APPLE STYLE) -------------------- */
 
 .services-carousel {
-    padding: 100px 0;
+    padding: 120px 0;
 }
 
 .services-carousel h2 {
     text-align: center;
-    font-size: 36px;
-    margin-bottom: 50px;
+    font-size: 40px;
+    margin-bottom: 60px;
+    color: #FFFFFF;
 }
 
 .carousel-wrapper {
@@ -118,44 +159,47 @@ html {
     display: flex;
     gap: 40px;
     overflow: hidden;
-    scroll-behavior: smooth;
     width: 100%;
+    perspective: 1200px;
 }
 
 .service-card {
     min-width: 300px;
     background: #2E2D26;
     padding: 30px;
-    border-radius: 12px;
+    border-radius: 14px;
     border: 1px solid #4A483E;
     text-align: center;
-    transition: 0.4s ease;
-    transform: scale(0.85);
-    opacity: 0.6;
+    transition: 0.5s ease;
+    transform: scale(0.75) rotateY(25deg);
+    opacity: 0.45;
+    box-shadow: 0 0 0 transparent;
 }
 
 .service-card.active {
-    transform: scale(1.15);
+    transform: scale(1.15) rotateY(0deg);
     opacity: 1;
     border-color: #9E937E;
-    box-shadow: 0 0 25px #9E937E33;
+    box-shadow: 0 0 35px rgba(158,147,126,0.35);
 }
 
 .service-card h3 {
     color: #9E937E;
     margin: 15px 0;
+    font-size: 22px;
 }
 
 .service-card p {
     color: #D6D6D6;
     font-size: 16px;
+    line-height: 1.5;
 }
 
 .carousel-btn {
     background: none;
     border: none;
     color: #9E937E;
-    font-size: 40px;
+    font-size: 48px;
     cursor: pointer;
     padding: 10px;
     transition: 0.3s;
@@ -168,28 +212,24 @@ html {
 /* -------------------- О КОМПАНИИ -------------------- */
 
 .about {
-    padding: 100px 0;
+    padding: 120px 0;
 }
 
 .about-flex {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 60px;
 }
 
-.about-text {
-    max-width: 600px;
-}
-
-.about h2 {
-    font-size: 32px;
+.about-text h2 {
+    font-size: 36px;
     margin-bottom: 20px;
 }
 
-.about p {
-    font-size: 18px;
+.about-text p {
+    font-size: 20px;
     color: #D6D6D6;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .about-features {
@@ -200,68 +240,67 @@ html {
 
 .feature {
     background: #2E2D26;
-    padding: 15px 20px;
-    border-radius: 6px;
+    padding: 18px 24px;
+    border-radius: 8px;
     border: 1px solid #4A483E;
     color: #9E937E;
     font-weight: bold;
-}
-
-.about-image img {
-    width: 380px;
-    opacity: 0.3;
+    font-size: 18px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.25);
 }
 
 /* -------------------- ПОЧЕМУ МЫ -------------------- */
 
 .why {
-    padding: 100px 0;
+    padding: 120px 0;
 }
 
 .why h2 {
     text-align: center;
-    font-size: 32px;
-    margin-bottom: 40px;
+    font-size: 36px;
+    margin-bottom: 50px;
 }
 
 .why-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
 }
 
 .why-card {
     background: #2E2D26;
-    padding: 25px;
-    border-radius: 8px;
+    padding: 30px;
+    border-radius: 10px;
     border: 1px solid #4A483E;
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     color: #D6D6D6;
     transition: 0.3s;
+    box-shadow: 0 0 0 transparent;
 }
 
 .why-card:hover {
     border-color: #9E937E;
-    transform: translateY(-4px);
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px rgba(158,147,126,0.25);
 }
 
 /* -------------------- КОНТАКТЫ -------------------- */
 
 .contacts {
-    padding: 100px 0;
+    padding: 120px 0;
 }
 
 .contacts h2 {
     text-align: center;
-    font-size: 32px;
+    font-size: 36px;
     margin-bottom: 40px;
 }
 
 .contacts-grid {
     display: grid;
     gap: 20px;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .contact-item strong {
@@ -271,10 +310,11 @@ html {
 /* -------------------- ФУТЕР -------------------- */
 
 .footer {
-    padding: 30px 0;
+    padding: 40px 0;
     text-align: center;
     color: #D6D6D6;
     border-top: 1px solid #4A483E;
+    font-size: 16px;
 }
 
 /* -------------------- АДАПТИВ -------------------- */
@@ -285,7 +325,7 @@ html {
         text-align: center;
     }
 
-    .hero-image img {
+    .femida-wrapper {
         width: 300px;
         margin-top: 30px;
     }
@@ -295,7 +335,7 @@ html {
         text-align: center;
     }
 
-    .about-image img {
-        width: 300px;
+    .why-grid {
+        grid-template-columns: 1fr;
     }
 }
