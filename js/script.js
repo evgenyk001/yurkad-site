@@ -14,11 +14,11 @@ clonesAfter.forEach(clone => carousel.append(clone));
 cards = Array.from(document.querySelectorAll('.service-card'));
 
 let index = Math.floor(cards.length / 2); // центр
-let isDragging = false; // 🔥 чтобы свайп не сбивался автоцентрированием
+let isDragging = false; // 🔥 чтобы автоцентрирование не мешало скроллу/drag
 
 function updateCarousel() {
 
-    // 🔥 Если пользователь свайпает — НЕ автоцентрируем
+    // 🔥 Если пользователь тянет мышью или скроллит — НЕ автоцентрируем
     if (isDragging) return;
 
     cards.forEach((card, i) => {
@@ -67,7 +67,7 @@ function normalizeIndex(i) {
 
 updateCarousel();
 
-/* -------------------- СВАЙП -------------------- */
+/* -------------------- СВАЙП (МОБИЛКА) -------------------- */
 
 let startX = 0;
 
@@ -79,14 +79,62 @@ carousel.addEventListener('touchstart', e => {
 carousel.addEventListener('touchend', e => {
     const endX = e.changedTouches[0].clientX;
 
-    if (endX < startX - 50) {
-        index++;
-    }
-
-    if (endX > startX + 50) {
-        index--;
-    }
+    if (endX < startX - 50) index++;
+    if (endX > startX + 50) index--;
 
     isDragging = false; // 🔥 возвращаем автоцентрирование
     updateCarousel();
+});
+
+/* -------------------- DRAG ДЛЯ ПК -------------------- */
+
+let isMouseDown = false;
+let startMouseX = 0;
+let scrollStart = 0;
+
+carousel.addEventListener('mousedown', e => {
+    isMouseDown = true;
+    isDragging = true; // 🔥 блокируем автоцентрирование
+    startMouseX = e.pageX - carousel.offsetLeft;
+    scrollStart = carousel.scrollLeft;
+    carousel.style.cursor = "grabbing";
+});
+
+carousel.addEventListener('mouseup', () => {
+    isMouseDown = false;
+    isDragging = false; // 🔥 возвращаем автоцентрирование
+    carousel.style.cursor = "grab";
+    updateCarousel();
+});
+
+carousel.addEventListener('mouseleave', () => {
+    isMouseDown = false;
+    isDragging = false;
+});
+
+carousel.addEventListener('mousemove', e => {
+    if (!isMouseDown) return;
+
+    e.preventDefault();
+    const x = e.pageX - carousel.offsetLeft;
+    const walk = (x - startMouseX) * 1.5;
+
+    carousel.scrollLeft = scrollStart - walk;
+});
+
+/* -------------------- SHIFT + WHEEL (ПК) -------------------- */
+
+carousel.addEventListener('wheel', e => {
+    if (!e.shiftKey) return; // только при Shift
+
+    e.preventDefault();
+    isDragging = true; // 🔥 блокируем автоцентрирование
+
+    carousel.scrollLeft += e.deltaY;
+
+    clearTimeout(window._wheelTimeout);
+    window._wheelTimeout = setTimeout(() => {
+        isDragging = false;
+        updateCarousel();
+    }, 150);
 });
