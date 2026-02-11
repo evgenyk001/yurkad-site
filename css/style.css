@@ -140,7 +140,7 @@ html {
 
 .services-carousel {
     padding: 120px 0;
-    overflow: visible !important;
+    overflow: visible;
 }
 
 .services-carousel h2 {
@@ -154,17 +154,19 @@ html {
     position: relative;
     display: flex;
     align-items: center;
-    overflow: visible !important;
+    overflow: visible;
     perspective: 1400px;
 }
 
 .carousel {
     display: flex;
     gap: 40px;
-    overflow: visible !important;
+    overflow-x: scroll;      /* ← ВОТ ЭТО ГЛАВНОЕ */
+    overflow-y: visible;
     width: 100%;
-    padding-top: 60px;
+    padding-top: 60px;       /* чтобы активная карточка не обрезалась */
     padding-bottom: 60px;
+    scroll-behavior: smooth;
 }
 
 .service-card {
