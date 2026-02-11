@@ -1,78 +1,181 @@
-<section class="services-carousel fade-up">
-    <div class="container">
-        <h2>Наши услуги</h2>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>ЮрКад — юридические услуги в Артёме</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-        <div class="carousel-wrapper">
-            <button class="carousel-btn left">‹</button>
+<body>
 
-            <div class="carousel">
-                <div class="service-card">
-                    <div class="icon">
-                        <!-- Весы -->
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9E937E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 3v18"/>
-                            <path d="M5 10h14"/>
-                            <path d="M7 10l-3 6h6l-3-6z"/>
-                            <path d="M17 10l-3 6h6l-3-6z"/>
-                        </svg>
+    <!-- ШАПКА -->
+    <header class="header">
+        <div class="container">
+            <img src="assets/logo.png" alt="ЮрКад" class="logo">
+        </div>
+    </header>
+
+    <!-- ПЕРВЫЙ ЭКРАН -->
+    <section class="hero fade-up">
+        <div class="container hero-flex">
+            <div class="hero-content">
+                <h1>Юридические услуги в Артёме</h1>
+                <p class="subtitle">
+                    Профессиональная защита интересов в судах, арбитражах, семейных, жилищных и административных делах.
+                </p>
+                <a href="#contacts" class="btn">Получить консультацию</a>
+            </div>
+
+            <div class="hero-image fade-up">
+                <img src="assets/femida.png" alt="Фемида">
+            </div>
+        </div>
+    </section>
+
+    <!-- УСЛУГИ — КАРУСЕЛЬ -->
+    <section class="services-carousel fade-up">
+        <div class="container">
+            <h2>Наши услуги</h2>
+
+            <div class="carousel-wrapper">
+                <button class="carousel-btn left">‹</button>
+
+                <div class="carousel">
+
+                    <!-- 1 -->
+                    <div class="service-card">
+                        <div class="icon">
+                            <!-- Весы -->
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9E937E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3v18"/>
+                                <path d="M5 10h14"/>
+                                <path d="M7 10l-3 6h6l-3-6z"/>
+                                <path d="M17 10l-3 6h6l-3-6z"/>
+                            </svg>
+                        </div>
+                        <h3>Арбитражные споры</h3>
+                        <p>Представительство в арбитражных судах, договорные споры, взыскание задолженности.</p>
                     </div>
-                    <h3>Арбитражные споры</h3>
-                    <p>Представительство в арбитражных судах, договорные споры, взыскание задолженности.</p>
+
+                    <!-- 2 -->
+                    <div class="service-card">
+                        <div class="icon">
+                            <!-- Семья -->
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9E937E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="9" cy="7" r="3"/>
+                                <circle cx="17" cy="7" r="3"/>
+                                <path d="M2 21v-2a4 4 0 0 1 4-4h4"/>
+                                <path d="M22 21v-2a4 4 0 0 0-4-4h-4"/>
+                            </svg>
+                        </div>
+                        <h3>Семейные споры</h3>
+                        <p>Развод, алименты, раздел имущества, определение места жительства детей.</p>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="service-card">
+                        <div class="icon">
+                            <!-- Дом -->
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9E937E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 10l9-7 9 7"/>
+                                <path d="M5 10v10h14V10"/>
+                                <path d="M9 21V14h6v7"/>
+                            </svg>
+                        </div>
+                        <h3>Жилищные споры</h3>
+                        <p>Выселение, признание права собственности, споры с застройщиками.</p>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="service-card">
+                        <div class="icon">
+                            <!-- Земля -->
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9E937E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 21l9-18 9 18H3z"/>
+                                <path d="M3 21h18"/>
+                            </svg>
+                        </div>
+                        <h3>Земельное право</h3>
+                        <p>Оформление участков, амнистии, помощь льготным категориям граждан.</p>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="service-card">
+                        <div class="icon">
+                            <!-- Документ -->
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9E937E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <path d="M14 2v6h6"/>
+                            </svg>
+                        </div>
+                        <h3>Представительство в судах</h3>
+                        <p>Полное сопровождение, подготовка документов, защита интересов.</p>
+                    </div>
+
                 </div>
 
-                <div class="service-card">
-                    <div class="icon">
-                        <!-- Семья -->
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9E937E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="9" cy="7" r="3"/>
-                            <circle cx="17" cy="7" r="3"/>
-                            <path d="M2 21v-2a4 4 0 0 1 4-4h4"/>
-                            <path d="M22 21v-2a4 4 0 0 0-4-4h-4"/>
-                        </svg>
-                    </div>
-                    <h3>Семейные споры</h3>
-                    <p>Развод, алименты, раздел имущества, определение места жительства детей.</p>
-                </div>
+                <button class="carousel-btn right">›</button>
+            </div>
+        </div>
+    </section>
 
-                <div class="service-card">
-                    <div class="icon">
-                        <!-- Дом -->
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9E937E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 10l9-7 9 7"/>
-                            <path d="M5 10v10h14V10"/>
-                            <path d="M9 21V14h6v7"/>
-                        </svg>
-                    </div>
-                    <h3>Жилищные споры</h3>
-                    <p>Выселение, признание права собственности, споры с застройщиками.</p>
-                </div>
+    <!-- О КОМПАНИИ -->
+    <section class="about fade-up">
+        <div class="container about-flex">
+            <div class="about-text">
+                <h2>О компании</h2>
+                <p>
+                    ЮрКад — юридическая компания, оказывающая профессиональную помощь в решении сложных правовых вопросов.
+                    Мы работаем официально, строго соблюдаем конфиденциальность и сопровождаем клиентов на всех этапах.
+                </p>
 
-                <div class="service-card">
-                    <div class="icon">
-                        <!-- Земля -->
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9E937E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 21l9-18 9 18H3z"/>
-                            <path d="M3 21h18"/>
-                        </svg>
-                    </div>
-                    <h3>Земельное право</h3>
-                    <p>Оформление участков, амнистии, помощь льготным категориям граждан.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="icon">
-                        <!-- Документ -->
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9E937E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <path d="M14 2v6h6"/>
-                        </svg>
-                    </div>
-                    <h3>Представительство в судах</h3>
-                    <p>Полное сопровождение, подготовка документов, защита интересов.</p>
+                <div class="about-features">
+                    <div class="feature">10+ лет опыта</div>
+                    <div class="feature">Конфиденциальность</div>
+                    <div class="feature">Индивидуальный подход</div>
                 </div>
             </div>
 
-            <button class="carousel-btn right">›</button>
+            <div class="about-image">
+                <img src="assets/justice.png" alt="Юридическая тематика">
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- ПОЧЕМУ МЫ -->
+    <section class="why fade-up">
+        <div class="container">
+            <h2>Почему выбирают нас</h2>
+
+            <div class="why-grid">
+                <div class="why-card">Официальная работа</div>
+                <div class="why-card">Высокий процент выигранных дел</div>
+                <div class="why-card">Прозрачные условия</div>
+                <div class="why-card">Поддержка 24/7</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section id="contacts" class="contacts fade-up">
+        <div class="container">
+            <h2>Контакты</h2>
+
+            <div class="contacts-grid">
+                <div class="contact-item"><strong>Телефон:</strong> +7 (914) 344 45 13</div>
+                <div class="contact-item"><strong>Email:</strong> jurist.2023@bk.ru</div>
+                <div class="contact-item"><strong>Адрес:</strong> г. Артём, площадь Ленина 3, офис 2,3</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФУТЕР -->
+    <footer class="footer">
+        <div class="container">
+            <p>© ЮрКад, 2024. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
