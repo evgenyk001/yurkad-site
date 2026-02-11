@@ -153,8 +153,9 @@ html {
     position: relative;
     display: flex;
     align-items: center;
-    overflow: visible; /* важно для 3D */
-    perspective: 1600px; /* глубина */
+    overflow: visible;
+    perspective: 1600px;
+    pointer-events: none; /* 🔥 чтобы стрелки не перекрывали карусель */
 }
 
 /* Карусель — скролл + скрытая полоса */
@@ -167,6 +168,7 @@ html {
     padding: 80px 0;
     scroll-behavior: smooth;
     scrollbar-width: none;
+    pointer-events: auto; /* 🔥 карусель снова кликабельна */
 }
 .carousel::-webkit-scrollbar {
     display: none;
@@ -186,7 +188,7 @@ html {
     opacity: 0.45;
     filter: blur(2px);
     box-shadow: 0 0 0 transparent;
-    transform-style: preserve-3d; /* важно */
+    transform-style: preserve-3d;
 }
 
 .service-card h3 {
@@ -211,8 +213,13 @@ html {
     z-index: 5;
 }
 
-/* Стрелки */
+/* -------------------- СТРЕЛКИ -------------------- */
+
 .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
     background: none;
     border: none;
     color: #9E937E;
@@ -220,6 +227,15 @@ html {
     cursor: pointer;
     padding: 10px;
     transition: 0.3s;
+    pointer-events: auto; /* 🔥 кнопки кликабельны */
+}
+
+.carousel-btn.left {
+    left: -60px; /* 🔥 вынес за пределы карусели */
+}
+
+.carousel-btn.right {
+    right: -60px; /* 🔥 вынес за пределы карусели */
 }
 
 .carousel-btn:hover {
@@ -356,7 +372,6 @@ html {
         grid-template-columns: 1fr;
     }
 
-    /* На телефоне стрелки скрываем */
     .carousel-btn {
         display: none;
     }
