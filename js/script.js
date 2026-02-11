@@ -14,12 +14,9 @@ clonesAfter.forEach(clone => carousel.append(clone));
 cards = Array.from(document.querySelectorAll('.service-card'));
 
 let index = Math.floor(cards.length / 2); // центр
-let isDragging = false; // 🔥 чтобы автоцентрирование не мешало скроллу/drag
+let isDragging = false; // 🔥 блокируем автоцентрирование только ВО ВРЕМЯ drag/scroll
 
 function updateCarousel() {
-
-    // 🔥 Если пользователь тянет мышью или скроллит — НЕ автоцентрируем
-    if (isDragging) return;
 
     cards.forEach((card, i) => {
         card.classList.remove('active');
@@ -45,12 +42,14 @@ function updateCarousel() {
         }
     });
 
-    const cardWidth = cards[0].offsetWidth + 40;
+    if (!isDragging) {  // 🔥 автоцентрирование работает ТОЛЬКО если не тянем
+        const cardWidth = cards[0].offsetWidth + 40;
 
-    carousel.scrollTo({
-        left: index * cardWidth - (carousel.offsetWidth / 2) + (cardWidth / 2),
-        behavior: "smooth"
-    });
+        carousel.scrollTo({
+            left: index * cardWidth - (carousel.offsetWidth / 2) + (cardWidth / 2),
+            behavior: "smooth"
+        });
+    }
 
     // 🔥 Автопрыжок в центр массива (loop)
     if (index < cards.length * 0.25) {
@@ -61,10 +60,6 @@ function updateCarousel() {
     }
 }
 
-function normalizeIndex(i) {
-    return i;
-}
-
 updateCarousel();
 
 /* -------------------- СВАЙП (МОБИЛКА) -------------------- */
@@ -73,7 +68,7 @@ let startX = 0;
 
 carousel.addEventListener('touchstart', e => {
     startX = e.touches[0].clientX;
-    isDragging = true; // 🔥 блокируем автоцентрирование
+    isDragging = true;
 });
 
 carousel.addEventListener('touchend', e => {
@@ -82,7 +77,7 @@ carousel.addEventListener('touchend', e => {
     if (endX < startX - 50) index++;
     if (endX > startX + 50) index--;
 
-    isDragging = false; // 🔥 возвращаем автоцентрирование
+    isDragging = false;
     updateCarousel();
 });
 
@@ -94,7 +89,7 @@ let scrollStart = 0;
 
 carousel.addEventListener('mousedown', e => {
     isMouseDown = true;
-    isDragging = true; // 🔥 блокируем автоцентрирование
+    isDragging = true;
     startMouseX = e.pageX - carousel.offsetLeft;
     scrollStart = carousel.scrollLeft;
     carousel.style.cursor = "grabbing";
@@ -102,7 +97,7 @@ carousel.addEventListener('mousedown', e => {
 
 carousel.addEventListener('mouseup', () => {
     isMouseDown = false;
-    isDragging = false; // 🔥 возвращаем автоцентрирование
+    isDragging = false;
     carousel.style.cursor = "grab";
     updateCarousel();
 });
@@ -125,10 +120,10 @@ carousel.addEventListener('mousemove', e => {
 /* -------------------- SHIFT + WHEEL (ПК) -------------------- */
 
 carousel.addEventListener('wheel', e => {
-    if (!e.shiftKey) return; // только при Shift
+    if (!e.shiftKey) return;
 
     e.preventDefault();
-    isDragging = true; // 🔥 блокируем автоцентрирование
+    isDragging = true;
 
     carousel.scrollLeft += e.deltaY;
 
