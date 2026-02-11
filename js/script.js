@@ -26,26 +26,24 @@ function updateCarousel() {
     cards.forEach((card, i) => {
         card.classList.remove('active');
 
-        const offset = i - index;
+        const offset = i - index; // позиция относительно центра
+        const baseShift = 260;    // расстояние между карточками
 
         if (offset === 0) {
+            // центральная карточка
             card.classList.add('active');
-            card.style.transform = "scale(1.15) rotateY(0deg)";
+            card.style.transform = `translateX(0px) scale(1.15) rotateY(0deg)`;
             card.style.opacity = "1";
         } else {
+            // боковые карточки
+            const shift = offset * baseShift;
             const scale = 1 - Math.abs(offset) * 0.15;
             const rotate = offset > 0 ? -25 : 25;
             const opacity = 1 - Math.abs(offset) * 0.25;
 
-            card.style.transform = `scale(${scale}) rotateY(${rotate}deg)`;
+            card.style.transform = `translateX(${shift}px) scale(${scale}) rotateY(${rotate}deg)`;
             card.style.opacity = opacity;
         }
-    });
-
-    const cardWidth = cards[0].offsetWidth + 40;
-    carousel.scrollTo({
-        left: index * cardWidth - (carousel.offsetWidth / 2) + (cardWidth / 2),
-        behavior: "smooth"
     });
 }
 
@@ -95,5 +93,6 @@ document.addEventListener('mousemove', e => {
     const x = (window.innerWidth / 2 - e.clientX) / 40;
     const y = (window.innerHeight / 2 - e.clientY) / 40;
 
+    // сохраняем scale/rotate из CSS-анимации
     femida.style.transform = `translate(${x}px, ${y}px)`;
 });
