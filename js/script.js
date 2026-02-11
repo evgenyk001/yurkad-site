@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 /* -------------------- APPLE-СТИЛЬ КАРУСЕЛЬ (БЕСКОНЕЧНАЯ) -------------------- */
 
 const carousel = document.querySelector('.carousel');
@@ -143,3 +145,5 @@ carousel.addEventListener('wheel', e => {
         updateCarousel();
     }, 200);
 });
+
+}); // ← ВОТ ЭТО РЕШАЕТ ВСЁ
