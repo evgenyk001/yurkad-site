@@ -5,7 +5,7 @@ body {
     color: #FFFFFF;
     margin: 0;
     font-family: "Arial", sans-serif;
-    overflow-x: hidden; /* фикс уезда сайта */
+    overflow-x: hidden;
 }
 
 html {
@@ -42,13 +42,11 @@ html {
     background: rgba(53, 52, 43, 0.9);
     backdrop-filter: blur(10px);
     z-index: 100;
-    transition: 0.3s;
     border-bottom: 1px solid rgba(158,147,126,0.15);
 }
 
 .logo {
     width: 160px;
-    filter: drop-shadow(0 0 8px rgba(158,147,126,0.25));
 }
 
 /* -------------------- ПЕРВЫЙ ЭКРАН -------------------- */
@@ -64,79 +62,7 @@ html {
     justify-content: space-between;
 }
 
-.hero-title {
-    font-size: 52px;
-    margin-bottom: 20px;
-    line-height: 1.2;
-    color: #FFFFFF;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.4);
-}
-
-.hero-subtitle {
-    font-size: 22px;
-    color: #D6D6D6;
-    margin-bottom: 40px;
-    line-height: 1.5;
-}
-
-/* -------------------- ПРЕМИАЛЬНАЯ КНОПКА -------------------- */
-
-.premium-btn {
-    position: relative;
-    display: inline-block;
-    padding: 16px 34px;
-    background: #9E937E;
-    color: #35342B;
-    font-size: 18px;
-    font-weight: 600;
-    border-radius: 8px;
-    text-decoration: none;
-    overflow: hidden;
-    transition: transform .3s ease, box-shadow .3s ease;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-}
-
-.premium-btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
-}
-
-.btn-glow {
-    position: absolute;
-    top: 0;
-    left: -120%;
-    width: 120%;
-    height: 100%;
-    background: linear-gradient(
-        120deg,
-        transparent 0%,
-        rgba(255,255,255,0.45) 50%,
-        transparent 100%
-    );
-    transform: skewX(-20deg);
-    transition: left .8s ease;
-}
-
-.premium-btn:hover .btn-glow {
-    left: 120%;
-}
-
-/* -------------------- ФЕМИДА -------------------- */
-
-.femida-wrapper {
-    width: 420px;
-    opacity: 0.9;
-    filter: drop-shadow(0 0 25px rgba(158,147,126,0.35));
-    animation: femidaFloat 6s ease-in-out infinite;
-}
-
-@keyframes femidaFloat {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-    100% { transform: translateY(0); }
-}
-
-/* -------------------- КАРУСЕЛЬ УСЛУГ -------------------- */
+/* -------------------- КАРУСЕЛЬ -------------------- */
 
 .services-carousel {
     padding: 120px 0;
@@ -158,16 +84,21 @@ html {
     perspective: 1400px;
 }
 
-/* 🔥 ГЛАВНЫЙ ФИКС КАРУСЕЛИ */
+/* 🔥 ГЛАВНЫЙ ФИКС — scroll включён, полоса скрыта */
 .carousel {
     display: flex;
     gap: 40px;
     width: 100%;
-    overflow-x: hidden !important; /* убираем полосу скролла */
+    overflow-x: scroll;
     overflow-y: visible;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding: 60px 0;
     scroll-behavior: smooth;
+
+    /* скрываем полосу */
+    scrollbar-width: none;
+}
+.carousel::-webkit-scrollbar {
+    display: none;
 }
 
 /* Карточки */
@@ -179,10 +110,11 @@ html {
     border: 1px solid #4A483E;
     text-align: center;
     transition: 0.5s ease;
-    transform: scale(0.75) rotateY(25deg); /* наклон как Apple */
+
+    /* Apple эффект */
+    transform: scale(0.75) rotateY(25deg);
     opacity: 0.45;
-    box-shadow: 0 0 0 transparent;
-    transform-origin: center center;
+    transform-origin: center;
 }
 
 .service-card.active {
@@ -204,6 +136,7 @@ html {
     line-height: 1.5;
 }
 
+/* Кнопки */
 .carousel-btn {
     background: none;
     border: none;
@@ -285,7 +218,6 @@ html {
     font-size: 20px;
     color: #D6D6D6;
     transition: 0.3s;
-    box-shadow: 0 0 0 transparent;
 }
 
 .why-card:hover {
