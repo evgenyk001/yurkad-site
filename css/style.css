@@ -21,6 +21,11 @@ html {
 
 .header {
     padding: 20px 0;
+    position: sticky;
+    top: 0;
+    background: #35342B;
+    z-index: 100;
+    transition: 0.3s;
 }
 
 .logo {
@@ -91,66 +96,79 @@ html {
     transform: translateY(0);
 }
 
-/* -------------------- УСЛУГИ -------------------- */
+/* -------------------- КАРУСЕЛЬ УСЛУГ -------------------- */
 
-.services {
-    padding: 80px 0;
+.services-carousel {
+    padding: 100px 0;
 }
 
-.services h2 {
+.services-carousel h2 {
     text-align: center;
-    font-size: 32px;
-    margin-bottom: 40px;
+    font-size: 36px;
+    margin-bottom: 50px;
 }
 
-.services-scroll {
+.carousel-wrapper {
+    position: relative;
     display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding-bottom: 10px;
-    scroll-snap-type: x mandatory;
+    align-items: center;
 }
 
-.services-scroll::-webkit-scrollbar {
-    height: 6px;
-}
-
-.services-scroll::-webkit-scrollbar-thumb {
-    background: #9E937E;
-    border-radius: 10px;
+.carousel {
+    display: flex;
+    gap: 40px;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    width: 100%;
 }
 
 .service-card {
-    min-width: 260px;
+    min-width: 300px;
     background: #2E2D26;
-    padding: 25px;
-    border-radius: 8px;
+    padding: 30px;
+    border-radius: 12px;
     border: 1px solid #4A483E;
-    scroll-snap-align: start;
-    transition: 0.3s;
+    text-align: center;
+    transition: 0.4s ease;
+    transform: scale(0.85);
+    opacity: 0.6;
 }
 
-.service-card:hover {
-    transform: translateY(-6px) scale(1.03);
+.service-card.active {
+    transform: scale(1.15);
+    opacity: 1;
     border-color: #9E937E;
+    box-shadow: 0 0 25px #9E937E33;
 }
 
 .service-card h3 {
-    margin-top: 0;
-    margin-bottom: 12px;
-    font-size: 20px;
     color: #9E937E;
+    margin: 15px 0;
 }
 
 .service-card p {
-    margin: 0;
     color: #D6D6D6;
+    font-size: 16px;
+}
+
+.carousel-btn {
+    background: none;
+    border: none;
+    color: #9E937E;
+    font-size: 40px;
+    cursor: pointer;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+.carousel-btn:hover {
+    color: #ffffff;
 }
 
 /* -------------------- О КОМПАНИИ -------------------- */
 
 .about {
-    padding: 80px 0;
+    padding: 100px 0;
 }
 
 .about-flex {
@@ -197,7 +215,7 @@ html {
 /* -------------------- ПОЧЕМУ МЫ -------------------- */
 
 .why {
-    padding: 80px 0;
+    padding: 100px 0;
 }
 
 .why h2 {
@@ -231,7 +249,7 @@ html {
 /* -------------------- КОНТАКТЫ -------------------- */
 
 .contacts {
-    padding: 80px 0;
+    padding: 100px 0;
 }
 
 .contacts h2 {
@@ -257,4 +275,27 @@ html {
     text-align: center;
     color: #D6D6D6;
     border-top: 1px solid #4A483E;
+}
+
+/* -------------------- АДАПТИВ -------------------- */
+
+@media (max-width: 900px) {
+    .hero-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-image img {
+        width: 300px;
+        margin-top: 30px;
+    }
+
+    .about-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image img {
+        width: 300px;
+    }
 }
