@@ -140,6 +140,7 @@ html {
 
 .services-carousel {
     padding: 120px 0;
+    overflow: visible !important;
 }
 
 .services-carousel h2 {
@@ -153,14 +154,17 @@ html {
     position: relative;
     display: flex;
     align-items: center;
+    overflow: visible !important;
+    perspective: 1400px;
 }
 
 .carousel {
     display: flex;
     gap: 40px;
-    overflow: hidden;
+    overflow: visible !important;
     width: 100%;
-    perspective: 1200px;
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .service-card {
@@ -174,10 +178,11 @@ html {
     transform: scale(0.75) rotateY(25deg);
     opacity: 0.45;
     box-shadow: 0 0 0 transparent;
+    transform-origin: center center;
 }
 
 .service-card.active {
-    transform: scale(1.15) rotateY(0deg);
+    transform: translateY(-10px) scale(1.15) rotateY(0deg);
     opacity: 1;
     border-color: #9E937E;
     box-shadow: 0 0 35px rgba(158,147,126,0.35);
