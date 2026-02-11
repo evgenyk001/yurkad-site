@@ -1,4 +1,4 @@
-// -------------------- АНИМАЦИИ ПОЯВЛЕНИЯ --------------------
+/* -------------------- АНИМАЦИИ ПОЯВЛЕНИЯ -------------------- */
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -13,7 +13,7 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
 
-// -------------------- ПЛАВНОЕ ПОЯВЛЕНИЕ ХЕДЕРА ПРИ СКРОЛЛЕ --------------------
+/* -------------------- ПОВЕДЕНИЕ ХЕДЕРА ПРИ СКРОЛЛЕ -------------------- */
 
 let lastScroll = 0;
 const header = document.querySelector('.header');
@@ -33,7 +33,7 @@ window.addEventListener('scroll', () => {
 });
 
 
-// -------------------- ЛЁГКИЙ ПАРАЛЛАКС ДЛЯ ФЕМИДЫ --------------------
+/* -------------------- ПАРАЛЛАКС ФЕМИДЫ -------------------- */
 
 const femida = document.querySelector('.hero-image img');
 
@@ -45,7 +45,7 @@ window.addEventListener('mousemove', (e) => {
 });
 
 
-// -------------------- ПЛАВНЫЙ СКРОЛЛ К КОНТАКТАМ --------------------
+/* -------------------- ПЛАВНЫЙ СКРОЛЛ ПО ЯКОРЯМ -------------------- */
 
 document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function(e) {
@@ -56,3 +56,39 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
         });
     });
 });
+
+
+/* -------------------- КАРУСЕЛЬ УСЛУГ -------------------- */
+
+const carousel = document.querySelector('.carousel');
+const cards = document.querySelectorAll('.service-card');
+const btnLeft = document.querySelector('.carousel-btn.left');
+const btnRight = document.querySelector('.carousel-btn.right');
+
+let index = 0;
+
+function updateActiveCard() {
+    cards.forEach((card, i) => {
+        card.classList.remove('active');
+        if (i === index) card.classList.add('active');
+    });
+
+    const cardWidth = cards[0].offsetWidth + 40;
+
+    carousel.scrollTo({
+        left: index * cardWidth - (carousel.offsetWidth / 2 - cardWidth / 2),
+        behavior: "smooth"
+    });
+}
+
+btnRight.addEventListener('click', () => {
+    index = (index + 1) % cards.length;
+    updateActiveCard();
+});
+
+btnLeft.addEventListener('click', () => {
+    index = (index - 1 + cards.length) % cards.length;
+    updateActiveCard();
+});
+
+updateActiveCard();
