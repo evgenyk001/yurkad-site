@@ -5,7 +5,7 @@ body {
     color: #FFFFFF;
     margin: 0;
     font-family: "Arial", sans-serif;
-    overflow-x: hidden;
+    overflow-x: hidden; /* фикс уезда сайта */
 }
 
 html {
@@ -136,7 +136,7 @@ html {
     100% { transform: translateY(0); }
 }
 
-/* -------------------- КАРУСЕЛЬ УСЛУГ (APPLE STYLE) -------------------- */
+/* -------------------- КАРУСЕЛЬ УСЛУГ -------------------- */
 
 .services-carousel {
     padding: 120px 0;
@@ -161,10 +161,11 @@ html {
 .carousel {
     display: flex;
     gap: 40px;
-    overflow-x: scroll;      /* ← ВОТ ЭТО ГЛАВНОЕ */
-    overflow-y: visible;
     width: 100%;
-    padding-top: 60px;       /* чтобы активная карточка не обрезалась */
+    max-width: 100%; /* фикс растягивания */
+    overflow-x: scroll !important; /* фикс карусели */
+    overflow-y: visible;
+    padding-top: 60px;
     padding-bottom: 60px;
     scroll-behavior: smooth;
 }
