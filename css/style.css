@@ -155,7 +155,7 @@ html {
     align-items: center;
     overflow: visible;
     perspective: 1600px;
-    pointer-events: none; /* 🔥 чтобы стрелки не перекрывали карусель */
+    pointer-events: auto;
 }
 
 /* Карусель — скролл + скрытая полоса */
