@@ -4,3 +4,38 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
+
+.header {
+    padding: 20px;
+}
+
+.logo {
+    width: 160px;
+}
+
+.hero {
+    padding: 120px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+}
+
+.subtitle {
+    font-size: 20px;
+    color: #D6D6D6;
+    margin-bottom: 40px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #9E937E;
+    color: #35342B;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+}
