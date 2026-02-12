@@ -1,14 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const carousel = document.querySelector('.carousel');
-    const cards = Array.from(document.querySelectorAll('.service-card'));
-    const btnLeft = document.querySelector('.carousel-btn.left');
-    const btnRight = document.querySelector('.carousel-btn.right');
+    const originalCards = Array.from(document.querySelectorAll('.service-card'));
 
-    // ⭐ СТАВИМ СРЕДНЮЮ КАРТОЧКУ ПО УМОЛЧАНИЮ
-    let index = Math.floor(cards.length / 2);
+    // ⭐ Дублируем карточки для бесконечного кольца
+    const cards = [
+        ...originalCards.map(c => c.cloneNode(true)),
+        ...originalCards,
+        ...originalCards.map(c => c.cloneNode(true))
+    ];
 
-    function updateCarousel() {
+    carousel.innerHTML = "";
+    cards.forEach(c => carousel.appendChild(c));
+
+    const total = cards.length;
+    const originalCount = originalCards.length;
+
+    // ⭐ Начинаем ровно с середины
+    let index = originalCount;
+
+    function updateCarousel(animate = true) {
 
         cards.forEach((card, i) => {
             card.classList.remove('active');
@@ -32,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // ⭐ ИДЕАЛЬНОЕ ЦЕНТРИРОВАНИЕ
         const activeCard = cards[index];
         const carouselRect = carousel.getBoundingClientRect();
         const cardRect = activeCard.getBoundingClientRect();
@@ -44,28 +54,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
         carousel.scrollTo({
             left: scrollLeft,
-            behavior: "smooth"
+            behavior: animate ? "smooth" : "auto"
         });
+
+        // ⭐ Телепортируем, если дошли до края
+        if (index <= originalCount / 2) {
+            index += originalCount;
+            setTimeout(() => updateCarousel(false), 50);
+        }
+
+        if (index >= total - originalCount / 2) {
+            index -= originalCount;
+            setTimeout(() => updateCarousel(false), 50);
+        }
     }
 
-    updateCarousel();
+    updateCarousel(false);
 
-    /* ---------- СТРЕЛКИ ---------- */
-
-    btnRight.addEventListener("click", () => {
+    // ---------- СТРЕЛКИ ----------
+    document.querySelector('.carousel-btn.right').addEventListener("click", () => {
         index++;
-        if (index >= cards.length) index = 0;
         updateCarousel();
     });
 
-    btnLeft.addEventListener("click", () => {
+    document.querySelector('.carousel-btn.left').addEventListener("click", () => {
         index--;
-        if (index < 0) index = cards.length - 1;
         updateCarousel();
     });
 
-    /* ---------- СВАЙП ---------- */
-
+    // ---------- СВАЙП ----------
     let startX = 0;
 
     carousel.addEventListener("touchstart", e => {
@@ -78,14 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (endX < startX - 50) index++;
         if (endX > startX + 50) index--;
 
-        if (index >= cards.length) index = 0;
-        if (index < 0) index = cards.length - 1;
-
         updateCarousel();
     });
 
     window.addEventListener("resize", () => {
-        setTimeout(updateCarousel, 150);
+        setTimeout(() => updateCarousel(false), 150);
     });
 
 });
