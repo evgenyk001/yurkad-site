@@ -130,6 +130,11 @@ html {
     animation: femidaFloat 6s ease-in-out infinite;
 }
 
+.femida-wrapper svg {
+    width: 100%;
+    height: auto;
+}
+
 @keyframes femidaFloat {
     0% { transform: translateY(0); }
     50% { transform: translateY(-12px); }
@@ -149,25 +154,29 @@ html {
     color: #FFFFFF;
 }
 
+/* 🔥 FULL WIDTH WRAPPER */
 .carousel-wrapper {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
     position: relative;
     display: flex;
     align-items: center;
     overflow: visible;
     perspective: 1600px;
-    pointer-events: auto; /* ← исправлено */
+    pointer-events: auto;
 }
 
-/* Карусель — скролл + скрытая полоса */
+/* 🔥 Карусель — ширина по контенту */
 .carousel {
     display: flex;
-    width: 100%;
     overflow-x: scroll;
     overflow-y: visible;
     padding: 80px 0;
     scroll-behavior: smooth;
     scrollbar-width: none;
+    width: max-content;
 }
+
 .carousel::-webkit-scrollbar {
     display: none;
 }
@@ -176,7 +185,7 @@ html {
 
 .service-card {
     min-width: 300px;
-    margin-right: 40px; /* ← заменяет gap */
+    margin-right: 40px;
     background: #2E2D26;
     padding: 30px;
     border-radius: 14px;
@@ -282,6 +291,14 @@ html {
     font-weight: bold;
     font-size: 18px;
     box-shadow: 0 0 15px rgba(0,0,0,0.25);
+}
+
+/* -------------------- SVG МОЛОТОК -------------------- */
+
+.about-svg svg {
+    width: 260px;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(158,147,126,0.25));
 }
 
 /* -------------------- ПОЧЕМУ МЫ -------------------- */
