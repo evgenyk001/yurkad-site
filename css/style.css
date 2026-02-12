@@ -153,16 +153,17 @@ html {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 0 40px;
+    padding: 0 60px;
 }
 
 .carousel {
     display: flex;
     gap: 40px;
-    overflow: hidden;
-    width: 100%;
-    perspective: 1200px;
+    overflow-x: auto;      /* ⭐ нужно для центрирования */
+    overflow-y: visible;
     scroll-behavior: smooth;
+    scrollbar-width: none; /* скрыть скролл */
+    perspective: 1200px;
 }
 
 .service-card {
