@@ -386,7 +386,8 @@ html {
         grid-template-columns: 1fr;
     }
 
-    .carousel-btn {
+    /* стрелки НЕ скрываем */
+    /* .carousel-btn {
         display: none;
-    }
+    } */
 }
