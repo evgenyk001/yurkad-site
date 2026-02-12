@@ -130,11 +130,6 @@ html {
     animation: femidaFloat 6s ease-in-out infinite;
 }
 
-.femida-wrapper svg {
-    width: 100%;
-    height: auto;
-}
-
 @keyframes femidaFloat {
     0% { transform: translateY(0); }
     50% { transform: translateY(-12px); }
@@ -154,52 +149,38 @@ html {
     color: #FFFFFF;
 }
 
-/* 🔥 FULL WIDTH WRAPPER */
 .carousel-wrapper {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
     position: relative;
     display: flex;
     align-items: center;
-    overflow: visible;
-    perspective: 1600px;
-    pointer-events: auto;
-    padding: 0 80px;
 }
 
-/* 🔥 Карусель — ширина по контенту */
 .carousel {
     display: flex;
-    overflow-x: hidden;
-    overflow-y: visible;
-    padding: 80px 0;
-    width: max-content;
+    gap: 40px;
+    overflow: hidden;
+    width: 100%;
+    perspective: 1200px;
 }
-
-.carousel::-webkit-scrollbar {
-    display: none;
-}
-
-/* -------------------- КАРТОЧКИ -------------------- */
 
 .service-card {
-    min-width: 380px;
-    margin-right: 40px;
+    min-width: 300px;
     background: #2E2D26;
     padding: 30px;
     border-radius: 14px;
     border: 1px solid #4A483E;
     text-align: center;
-    transition: transform .45s ease, opacity .45s ease, filter .45s ease;
+    transition: 0.5s ease;
     transform: scale(0.75) rotateY(25deg);
     opacity: 0.45;
-    filter: blur(2px);
     box-shadow: 0 0 0 transparent;
-    transform-style: preserve-3d;
 }
 
-.service-card:last-child {
-    margin-right: 0;
+.service-card.active {
+    transform: scale(1.15) rotateY(0deg);
+    opacity: 1;
+    border-color: #9E937E;
+    box-shadow: 0 0 35px rgba(158,147,126,0.35);
 }
 
 .service-card h3 {
@@ -214,23 +195,7 @@ html {
     line-height: 1.5;
 }
 
-/* Активная карточка */
-.service-card.active {
-    transform: scale(1.2) rotateY(0deg);
-    opacity: 1;
-    filter: blur(0);
-    border-color: #9E937E;
-    box-shadow: 0 0 35px rgba(158,147,126,0.35);
-    z-index: 5;
-}
-
-/* -------------------- СТРЕЛКИ -------------------- */
-
 .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 20;
     background: none;
     border: none;
     color: #9E937E;
@@ -238,14 +203,6 @@ html {
     cursor: pointer;
     padding: 10px;
     transition: 0.3s;
-}
-
-.carousel-btn.left {
-    left: -60px;
-}
-
-.carousel-btn.right {
-    right: -60px;
 }
 
 .carousel-btn:hover {
@@ -290,14 +247,6 @@ html {
     font-weight: bold;
     font-size: 18px;
     box-shadow: 0 0 15px rgba(0,0,0,0.25);
-}
-
-/* -------------------- SVG МОЛОТОК -------------------- */
-
-.about-svg svg {
-    width: 260px;
-    height: auto;
-    filter: drop-shadow(0 0 20px rgba(158,147,126,0.25));
 }
 
 /* -------------------- ПОЧЕМУ МЫ -------------------- */
@@ -371,6 +320,10 @@ html {
 /* -------------------- АДАПТИВ -------------------- */
 
 @media (max-width: 900px) {
+    .hero-flex {
+        flex-direction: column;
+        text-align: center;
+    }
 
     .femida-wrapper {
         width: 300px;
@@ -385,9 +338,4 @@ html {
     .why-grid {
         grid-template-columns: 1fr;
     }
-
-    /* стрелки НЕ скрываем */
-    /* .carousel-btn {
-        display: none;
-    } */
 }
