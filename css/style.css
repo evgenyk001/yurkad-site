@@ -123,8 +123,6 @@ html {
 
 /* -------------------- ФЕМИДА -------------------- */
 
-@media (max-width: 900px) {
-
 .femida-wrapper {
     width: 420px;
     opacity: 0.9;
@@ -372,6 +370,7 @@ html {
 
 /* -------------------- АДАПТИВ -------------------- */
 
+@media (max-width: 900px) {
 
     .femida-wrapper {
         width: 300px;
