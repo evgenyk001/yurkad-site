@@ -173,8 +173,6 @@ html {
     overflow-x: hidden;
     overflow-y: visible;
     padding: 80px 0;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
     width: max-content;
 }
 
