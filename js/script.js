@@ -5,9 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnLeft = document.querySelector('.carousel-btn.left');
     const btnRight = document.querySelector('.carousel-btn.right');
 
-    let index = 0;
-
-    /* ---------- ФУНКЦИЯ ЦЕНТРИРОВАНИЯ ---------- */
+    // ⭐ СТАВИМ СРЕДНЮЮ КАРТОЧКУ ПО УМОЛЧАНИЮ
+    let index = Math.floor(cards.length / 2);
 
     function updateCarousel() {
 
@@ -17,13 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const offset = i - index;
 
             if (offset === 0) {
-                // центральная карточка
                 card.classList.add('active');
                 card.style.transform = "scale(1.2) rotateY(0deg)";
                 card.style.opacity = "1";
                 card.style.filter = "blur(0px)";
             } else {
-                // боковые карточки
                 const scale = 1 - Math.abs(offset) * 0.15;
                 const rotate = offset > 0 ? -35 : 35;
                 const opacity = 1 - Math.abs(offset) * 0.3;
@@ -35,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // ⭐ ИДЕАЛЬНОЕ ЦЕНТРИРОВАНИЕ АКТИВНОЙ КАРТОЧКИ
+        // ⭐ ИДЕАЛЬНОЕ ЦЕНТРИРОВАНИЕ
         const activeCard = cards[index];
         const carouselRect = carousel.getBoundingClientRect();
         const cardRect = activeCard.getBoundingClientRect();
@@ -86,8 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         updateCarousel();
     });
-
-    /* ---------- ПЕРЕРАСЧЁТ ПРИ РЕСАЙЗЕ ---------- */
 
     window.addEventListener("resize", () => {
         setTimeout(updateCarousel, 150);
