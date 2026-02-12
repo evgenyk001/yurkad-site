@@ -7,7 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let index = 0;
 
+    /* ---------- ФУНКЦИЯ ЦЕНТРИРОВАНИЯ ---------- */
+
     function updateCarousel() {
+
         cards.forEach((card, i) => {
             card.classList.remove('active');
 
@@ -32,11 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // центрируем
-        const cardWidth = cards[0].offsetWidth + 40;
+        // ⭐ ИДЕАЛЬНОЕ ЦЕНТРИРОВАНИЕ АКТИВНОЙ КАРТОЧКИ
+        const activeCard = cards[index];
+        const carouselRect = carousel.getBoundingClientRect();
+        const cardRect = activeCard.getBoundingClientRect();
+
+        const scrollLeft =
+            activeCard.offsetLeft
+            - (carouselRect.width / 2)
+            + (cardRect.width / 2);
 
         carousel.scrollTo({
-            left: index * cardWidth - (carousel.offsetWidth / 2) + (cardWidth / 2),
+            left: scrollLeft,
             behavior: "smooth"
         });
     }
@@ -77,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCarousel();
     });
 
-    /* ---------- resize ---------- */
+    /* ---------- ПЕРЕРАСЧЁТ ПРИ РЕСАЙЗЕ ---------- */
 
     window.addEventListener("resize", () => {
         setTimeout(updateCarousel, 150);
