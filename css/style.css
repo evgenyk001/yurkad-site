@@ -164,6 +164,7 @@ html {
     overflow: visible;
     perspective: 1600px;
     pointer-events: auto;
+    padding: 0 80px;
 }
 
 /* 🔥 Карусель — ширина по контенту */
@@ -184,14 +185,14 @@ html {
 /* -------------------- КАРТОЧКИ -------------------- */
 
 .service-card {
-    min-width: 300px;
+    min-width: 380px;
     margin-right: 40px;
     background: #2E2D26;
     padding: 30px;
     border-radius: 14px;
     border: 1px solid #4A483E;
     text-align: center;
-    transition: 0.5s ease;
+    transition: transform .45s ease, opacity .45s ease, filter .45s ease;
     transform: scale(0.75) rotateY(25deg);
     opacity: 0.45;
     filter: blur(2px);
@@ -371,11 +372,6 @@ html {
 
 /* -------------------- АДАПТИВ -------------------- */
 
-@media (max-width: 900px) {
-    .hero-flex {
-        flex-direction: column;
-        text-align: center;
-    }
 
     .femida-wrapper {
         width: 300px;
