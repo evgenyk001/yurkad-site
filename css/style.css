@@ -153,6 +153,7 @@ html {
     position: relative;
     display: flex;
     align-items: center;
+    padding: 0 40px;
 }
 
 .carousel {
@@ -161,6 +162,7 @@ html {
     overflow: hidden;
     width: 100%;
     perspective: 1200px;
+    scroll-behavior: smooth;
 }
 
 .service-card {
