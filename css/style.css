@@ -203,6 +203,11 @@ html {
 }
 
 .carousel-btn {
+    position: absolute;          /* ⭐ фиксируем стрелки */
+    top: 50%;                    /* по вертикали по центру */
+    transform: translateY(-50%); /* выравнивание */
+    z-index: 20;                 /* поверх карточек */
+
     background: none;
     border: none;
     color: #9E937E;
@@ -210,6 +215,14 @@ html {
     cursor: pointer;
     padding: 10px;
     transition: 0.3s;
+}
+
+.carousel-btn.left {
+    left: 20px;   /* ⭐ слева */
+}
+
+.carousel-btn.right {
+    right: 20px;  /* ⭐ справа */
 }
 
 .carousel-btn:hover {
