@@ -65,6 +65,12 @@ function updateCarousel() {
 
 updateCarousel();
 
+/* -------------------- ДОБАВЛЕНО: авто‑центр при resize -------------------- */
+
+window.addEventListener("resize", () => {
+    setTimeout(() => updateCarousel(), 150);
+});
+
 /* -------------------- СВАЙП (МОБИЛКА) -------------------- */
 
 let startX = 0;
@@ -89,6 +95,8 @@ carousel.addEventListener('touchend', e => {
 let isMouseDown = false;
 let startMouseX = 0;
 let scrollStart = 0;
+
+carousel.style.cursor = "grab";
 
 carousel.addEventListener('mousedown', e => {
     isMouseDown = true;
@@ -145,5 +153,12 @@ carousel.addEventListener('wheel', e => {
         updateCarousel();
     }, 200);
 });
+
+/* -------------------- ДОБАВЛЕНО: защита от выхода за границы -------------------- */
+
+setInterval(() => {
+    if (index < 0) index = 0;
+    if (index > cards.length - 1) index = cards.length - 1;
+}, 50);
 
 }); // ← ВОТ ЭТО РЕШАЕТ ВСЁ
