@@ -158,11 +158,9 @@ html {
 .carousel {
     display: flex;
     gap: 40px;
-    overflow-x: scroll;
-    overflow-y: visible;
-    width: max-content;
+    overflow: hidden;
+    width: 100%;
     perspective: 1200px;
-    scroll-behavior: smooth;
 }
 
 .service-card {
