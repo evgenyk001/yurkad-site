@@ -153,14 +153,17 @@ html {
     position: relative;
     display: flex;
     align-items: center;
+    padding: 0 80px;
 }
 
 .carousel {
     display: flex;
     gap: 40px;
-    overflow: hidden;
-    width: 100%;
+    overflow-x: scroll;
+    overflow-y: visible;
+    width: max-content;
     perspective: 1200px;
+    scroll-behavior: smooth;
 }
 
 .service-card {
