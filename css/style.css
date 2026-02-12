@@ -157,16 +157,18 @@ html {
 }
 
 .carousel {
+    position: relative;
     display: flex;
-    gap: 40px;
-    overflow-x: auto;      /* ⭐ нужно для центрирования */
-    overflow-y: visible;
-    scroll-behavior: smooth;
-    scrollbar-width: none; /* скрыть скролл */
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    overflow: visible;
     perspective: 1200px;
 }
 
 .service-card {
+    position: absolute;
+    left: 50%;
     min-width: 300px;
     background: #2E2D26;
     padding: 30px;
@@ -176,7 +178,6 @@ html {
     transition: 0.5s ease;
     transform: scale(0.75) rotateY(25deg);
     opacity: 0.45;
-    box-shadow: 0 0 0 transparent;
 }
 
 .service-card.active {
