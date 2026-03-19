@@ -13,22 +13,22 @@ body {
 }
 
 .container {
-    max-width: 1280px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 30px;
 }
 
-/* ========== ШАПКА С ИКОНКАМИ ========== */
+/* ========== ШАПКА ========== */
 .header {
     padding: 20px 0;
-    background: rgba(53, 52, 43, 0.98);
+    background: rgba(53, 52, 43, 0.95);
     backdrop-filter: blur(10px);
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    border-bottom: 1px solid rgba(158, 147, 126, 0.15);
+    border-bottom: 1px solid rgba(158, 147, 126, 0.2);
 }
 
 .header-container {
@@ -37,14 +37,14 @@ body {
     align-items: center;
 }
 
-/* Лого крупное */
+/* Лого — очень крупное на компе */
 .logo-wrapper {
     flex-shrink: 0;
 }
 
 .logo {
-    height: 60px;
     width: auto;
+    height: 80px; /* Огромное на компе */
     transition: opacity 0.3s;
 }
 
@@ -52,60 +52,32 @@ body {
     opacity: 0.9;
 }
 
-/* Навигация иконками */
-.nav-icons {
+/* Навигация текстом */
+.nav-menu {
     display: flex;
     gap: 40px;
-    align-items: center;
 }
 
-.nav-icon-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.nav-link {
+    color: #FFFFFF;
     text-decoration: none;
-    transition: transform 0.3s;
-}
-
-.nav-icon-item:hover {
-    transform: translateY(-3px);
-}
-
-.nav-icon {
-    width: 48px;
-    height: 48px;
-    background: rgba(158, 147, 126, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 6px;
-    transition: background 0.3s;
-}
-
-.nav-icon-item:hover .nav-icon {
-    background: rgba(158, 147, 126, 0.2);
-}
-
-.nav-icon svg {
-    width: 24px;
-    height: 24px;
-    stroke: #9E937E;
-}
-
-.nav-label {
-    font-size: 12px;
-    color: #9E937E;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s;
     letter-spacing: 0.5px;
 }
 
-/* ========== ПЕРВЫЙ ЭКРАН С ФЕМИДОЙ ========== */
+.nav-link:hover {
+    color: #9E937E;
+}
+
+/* ========== ПЕРВЫЙ ЭКРАН ========== */
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 120px 0;
-    background: #35342B;
+    padding: 140px 0 100px;
+    background: linear-gradient(180deg, #35342B 0%, #2E2D26 100%);
     margin-top: 100px; /* под шапку */
 }
 
@@ -116,61 +88,60 @@ body {
     align-items: center;
 }
 
-/* Левая часть — текст */
+/* Левая часть */
 .hero-content {
     max-width: 650px;
-    justify-self: start;
 }
 
-.hero-words-wrapper {
-    height: 90px; /* фикс.высота чтобы не прыгало */
+/* Фиксированная высота для анимированных слов */
+.hero-words-container {
+    height: 120px; /* фиксированная высота, чтобы ничего не прыгало */
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .hero-word {
-    font-size: 72px;
-    font-weight: 500;
+    font-size: 90px;
+    font-weight: 700;
     color: #9E937E;
-    line-height: 1.1;
-    transition: opacity 0.6s ease;
+    line-height: 1;
+    transition: opacity 0.5s ease;
     display: inline-block;
 }
 
 .hero-title {
-    font-size: 64px;
+    font-size: 60px;
     font-weight: 500;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #FFFFFF;
-    line-height: 1.1;
+    line-height: 1.2;
 }
 
 .hero-subtitle {
-    font-size: 18px;
-    color: #9E937E;
-    margin-bottom: 50px;
+    font-size: 26px;
+    color: #D6D6D6;
+    margin-bottom: 40px;
     font-weight: 400;
-    letter-spacing: 0.5px;
 }
 
 .btn {
     display: inline-block;
-    padding: 14px 32px;
-    background: transparent;
-    color: #9E937E;
+    padding: 16px 36px;
+    background: #9E937E;
+    color: #35342B;
     text-decoration: none;
-    border: 1px solid #9E937E;
-    font-weight: 400;
-    font-size: 14px;
-    letter-spacing: 0.5px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 16px;
     transition: all 0.3s;
+    border: none;
     cursor: pointer;
 }
 
 .btn:hover {
-    background: #9E937E;
-    color: #35342B;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(158, 147, 126, 0.3);
 }
 
 /* Правая часть — Фемида */
@@ -181,9 +152,9 @@ body {
 
 .femida-wrapper {
     width: 100%;
-    max-width: 440px;
+    max-width: 480px;
     animation: float 6s ease-in-out infinite;
-    filter: drop-shadow(0 0 30px rgba(158,147,126,0.2));
+    filter: drop-shadow(0 0 30px rgba(158,147,126,0.3));
 }
 
 @keyframes float {
@@ -196,252 +167,55 @@ body {
     height: auto;
 }
 
-/* КАРТОЧКИ (БЕЗ ИЗМЕНЕНИЙ) */
-.cards {
-    padding: 80px 0;
-    background: #2E2D26;
-}
-
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: #4A483E;
-}
-
-.card {
-    background: #2E2D26;
-    padding: 50px 40px;
-    transition: all 0.3s;
-}
-
-.card:hover {
-    background: #35342B;
-}
-
-.card-number {
-    color: #9E937E;
-    font-size: 12px;
-    margin-bottom: 20px;
-    opacity: 0.5;
-    letter-spacing: 0.5px;
-}
-
-.card-title {
-    font-size: 24px;
-    font-weight: 400;
-    margin-bottom: 15px;
-    color: #FFFFFF;
-    line-height: 1.3;
-}
-
-.card-desc {
-    color: #9E937E;
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    opacity: 0.8;
-}
-
-.card-link {
-    color: #9E937E;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 400;
-    transition: all 0.3s;
-    display: inline-block;
-    letter-spacing: 0.3px;
-}
-
-.card-link:hover {
-    transform: translateX(5px);
-    color: #ffffff;
-}
-
-/* ПРЕИМУЩЕСТВА (БЕЗ ИЗМЕНЕНИЙ) */
-.features {
-    padding: 100px 0;
-    background: #35342B;
-}
-
-.section-title {
-    font-size: 32px;
-    font-weight: 400;
-    margin-bottom: 60px;
-    text-align: center;
-    color: #FFFFFF;
-    letter-spacing: 0.5px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-}
-
-.feature-item {
-    text-align: left;
-}
-
-.feature-icon {
-    font-size: 32px;
-    margin-bottom: 20px;
-    color: #9E937E;
-}
-
-.feature-item h3 {
-    font-size: 18px;
-    font-weight: 400;
-    margin-bottom: 10px;
-    color: #FFFFFF;
-}
-
-.feature-item p {
-    color: #9E937E;
-    font-size: 14px;
-    line-height: 1.6;
-    opacity: 0.8;
-}
-
-/* КОНТАКТЫ (БЕЗ ИЗМЕНЕНИЙ) */
-.contacts {
-    padding: 100px 0;
-    background: #2E2D26;
-}
-
-.contacts-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: #4A483E;
-}
-
-.contacts-info {
-    background: #2E2D26;
-    padding: 60px 50px;
-}
-
-.contacts-info .section-title {
-    text-align: left;
-    margin-bottom: 40px;
-}
-
-.contact-item {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #4A483E;
-}
-
-.contact-label {
-    display: block;
-    color: #9E937E;
-    font-size: 12px;
-    margin-bottom: 5px;
-    letter-spacing: 0.5px;
-    opacity: 0.7;
-}
-
-.contact-value {
-    color: #FFFFFF;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.2s;
-    font-weight: 300;
-}
-
-.contact-value:hover {
-    color: #9E937E;
-}
-
-.whatsapp-btn {
-    margin-top: 40px;
-    width: 100%;
-    text-align: center;
-    border-color: #9E937E;
-    color: #9E937E;
-    background: transparent;
-}
-
-.whatsapp-btn:hover {
-    background: #9E937E;
-    color: #2E2D26;
-}
-
-.contacts-map {
-    background: #2E2D26;
-    height: 100%;
-    min-height: 500px;
-}
-
-.contacts-map iframe {
-    width: 100%;
-    height: 100%;
-    display: block;
-    filter: grayscale(0.5);
-}
-
-/* ФУТЕР (БЕЗ ИЗМЕНЕНИЙ) */
-.footer {
-    padding: 40px 0;
-    background: #35342B;
-    border-top: 1px solid #4A483E;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.footer-logo {
-    height: 24px;
-    width: auto;
-    opacity: 0.7;
-}
-
-.footer-copy {
-    color: #9E937E;
-    font-size: 13px;
-    opacity: 0.7;
-}
-
 /* ========== АДАПТАЦИЯ ========== */
-@media (max-width: 1024px) {
-    .container {
-        padding: 0 30px;
-    }
-    
+@media (max-width: 1100px) {
     .hero-word {
-        font-size: 60px;
+        font-size: 70px;
     }
     
     .hero-title {
-        font-size: 54px;
+        font-size: 48px;
+    }
+    
+    .hero-words-container {
+        height: 90px;
+    }
+    
+    .logo {
+        height: 60px;
+    }
+    
+    .nav-link {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+        text-align: left;
+    }
+    
+    .hero-image {
+        justify-content: center;
+        order: -1;
     }
     
     .femida-wrapper {
-        max-width: 360px;
+        max-width: 320px;
     }
     
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-    }
-    
-    .nav-icons {
+    .nav-menu {
         gap: 25px;
     }
 }
 
-@media (max-width: 768px) {
-    .container {
-        padding: 0 20px;
-    }
-    
+@media (max-width: 600px) {
     .header-container {
         flex-direction: column;
         gap: 15px;
@@ -451,36 +225,21 @@ body {
         height: 50px;
     }
     
-    .nav-icons {
-        gap: 25px;
+    .nav-menu {
+        gap: 20px;
     }
     
-    .nav-icon {
-        width: 42px;
-        height: 42px;
-    }
-    
-    .nav-icon svg {
-        width: 22px;
-        height: 22px;
+    .nav-link {
+        font-size: 14px;
     }
     
     .hero {
-        margin-top: 130px;
-        padding: 60px 0;
+        margin-top: 140px;
+        padding: 80px 0;
     }
     
-    .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    
-    .hero-content {
-        max-width: 100%;
-    }
-    
-    .hero-words-wrapper {
-        height: 70px;
+    .hero-words-container {
+        height: 60px;
     }
     
     .hero-word {
@@ -488,87 +247,188 @@ body {
     }
     
     .hero-title {
-        font-size: 42px;
+        font-size: 32px;
     }
     
     .hero-subtitle {
-        font-size: 16px;
-        margin-bottom: 40px;
-    }
-    
-    .hero-image {
-        justify-content: center;
-        order: -1;
+        font-size: 18px;
+        margin-bottom: 30px;
     }
     
     .femida-wrapper {
-        max-width: 300px;
+        max-width: 260px;
+    }
+}
+
+/* ========== ОСТАЛЬНЫЕ СЕКЦИИ ========== */
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 36px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.service-card {
+    background: #2E2D26;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #4A483E;
+    transition: all 0.3s;
+}
+
+.service-card:hover {
+    border-color: #9E937E;
+    transform: translateY(-5px);
+}
+
+.service-card h3 {
+    color: #9E937E;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: #D6D6D6;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-content p {
+    font-size: 18px;
+    color: #D6D6D6;
+    margin-bottom: 30px;
+    line-height: 1.7;
+}
+
+.features {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.feature {
+    padding: 8px 20px;
+    background: #2E2D26;
+    border: 1px solid #4A483E;
+    border-radius: 30px;
+    color: #9E937E;
+    font-size: 14px;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.why-item {
+    background: #2E2D26;
+    padding: 30px 20px;
+    border-radius: 8px;
+    border: 1px solid #4A483E;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.why-item:hover {
+    border-color: #9E937E;
+    transform: translateY(-5px);
+}
+
+.contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.contacts-info {
+    background: #2E2D26;
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.contact-item {
+    margin-bottom: 25px;
+}
+
+.contact-item strong {
+    display: block;
+    color: #9E937E;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.contact-item a,
+.contact-item span {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.whatsapp-btn {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.contacts-map {
+    border-radius: 8px;
+    overflow: hidden;
+    height: 400px;
+}
+
+.contacts-map iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.footer {
+    padding: 30px 0;
+    text-align: center;
+    border-top: 1px solid #4A483E;
+    color: #D6D6D6;
+}
+
+@media (max-width: 900px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     
-    .cards-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .card {
-        padding: 40px 30px;
-    }
-    
-    .features-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .contacts-grid {
         grid-template-columns: 1fr;
     }
-    
-    .contacts-info {
-        padding: 40px 30px;
-    }
-    
-    .contacts-map {
-        min-height: 350px;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
 }
 
-@media (max-width: 480px) {
-    .hero-words-wrapper {
-        height: 60px;
+@media (max-width: 600px) {
+    .services-grid {
+        grid-template-columns: 1fr;
     }
     
-    .hero-word {
-        font-size: 40px;
+    .why-grid {
+        grid-template-columns: 1fr;
     }
     
-    .hero-title {
-        font-size: 32px;
-    }
-    
-    .nav-icons {
-        gap: 15px;
-    }
-    
-    .nav-icon {
-        width: 38px;
-        height: 38px;
-    }
-    
-    .nav-icon svg {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .nav-label {
-        font-size: 10px;
-    }
-    
-    .card-title {
-        font-size: 20px;
+    .section-title {
+        font-size: 28px;
     }
 }
