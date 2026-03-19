@@ -99,9 +99,9 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 40px 0 40px; /* Уменьшил вертикальные отступы */
+    padding: 40px 0 40px;
     background: linear-gradient(180deg, #35342B 0%, #2E2D26 100%);
-    margin-top: 120px; /* Точно под размер шапки */
+    margin-top: 120px;
 }
 
 .hero-grid {
@@ -203,7 +203,7 @@ body {
 /* ========== КАРТОЧКИ УСЛУГ ========== */
 .cards {
     padding: 100px 0;
-    scroll-margin-top: 120px; /* Чтобы при нажатии на якорь секция вставала ровно под шапку */
+    scroll-margin-top: 120px;
 }
 
 .cards-grid {
@@ -464,95 +464,25 @@ body {
     }
     
     .cards, .features, .contacts {
-        scroll-margin-top: 100px; /* Меньше на планшетах */
+        scroll-margin-top: 100px;
     }
 }
 
+/* ========== МОБИЛЬНАЯ ВЕРСИЯ (ИДЕАЛЬНАЯ) ========== */
 @media (max-width: 600px) {
     .header-container {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        gap: 0;
+        padding: 10px 15px;
     }
     
-    .logo {
-        height: 70px;
-    }
-    
-    .nav-icons {
-        gap: 15px;
-    }
-    
-    .nav-icon svg {
-        width: 28px;
-        height: 28px;
-    }
-    
-    .nav-label {
-        font-size: 12px;
-    }
-    
-    .hero {
-        margin-top: 90px;
-        padding: 20px 0;
-        min-height: calc(100vh - 90px);
-    }
-    
-    .hero-words-wrapper {
-        min-height: 50px;
-    }
-    
-    .hero-word {
-        font-size: 40px;
-        white-space: normal;
-    }
-    
-    .hero-title {
-        font-size: 28px;
-    }
-    
-    .hero-subtitle {
-        font-size: 18px;
-        margin-bottom: 30px;
-    }
-    
-    .femida-wrapper {
-        max-width: 220px;
-    }
-    
-    .cards-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .features-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .card {
-        padding: 20px;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-    
-    .cards, .features, .contacts {
-        scroll-margin-top: 70px;
-    }
-}
-
-@media (max-width: 400px) {
     .logo {
         height: 50px;
     }
     
     .nav-icons {
-        gap: 10px;
+        gap: 12px;
     }
     
     .nav-icon svg {
@@ -567,18 +497,140 @@ body {
     .hero {
         margin-top: 70px;
         min-height: calc(100vh - 70px);
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
     }
     
-    .hero-word {
-        font-size: 32px;
+    .hero-grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 15px;
     }
     
-    .hero-title {
-        font-size: 24px;
+    .hero-left {
+        width: 55%;
+        max-width: 55%;
+        padding-right: 10px;
+    }
+    
+    .hero-right {
+        width: 40%;
+        display: flex;
+        justify-content: flex-end;
+        order: 2;
     }
     
     .femida-wrapper {
-        max-width: 180px;
+        max-width: 100%;
+    }
+    
+    .hero-words-wrapper {
+        min-height: 40px;
+        margin-bottom: 5px;
+    }
+    
+    .hero-word {
+        font-size: 24px;
+        white-space: normal;
+        line-height: 1.2;
+    }
+    
+    .hero-static {
+        width: 100%;
+    }
+    
+    .hero-title {
+        font-size: 18px;
+        margin-bottom: 8px;
+        line-height: 1.3;
+    }
+    
+    .hero-subtitle {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 14px;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    
+    .cards, .features, .contacts {
+        padding: 50px 0;
+        scroll-margin-top: 70px;
+    }
+    
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .contacts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contacts-map {
+        height: 250px;
+    }
+    
+    .hero-word {
+        transition: opacity 0.3s ease;
+    }
+}
+
+@media (max-width: 400px) {
+    .logo {
+        height: 40px;
+    }
+    
+    .nav-icons {
+        gap: 8px;
+    }
+    
+    .hero-left {
+        width: 50%;
+    }
+    
+    .hero-right {
+        width: 45%;
+    }
+    
+    .hero-word {
+        font-size: 20px;
+    }
+    
+    .hero-title {
+        font-size: 16px;
+    }
+    
+    .hero-subtitle {
+        font-size: 12px;
+    }
+    
+    .btn {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+    
+    .hero {
+        margin-top: 60px;
+        min-height: calc(100vh - 60px);
     }
     
     .cards, .features, .contacts {
