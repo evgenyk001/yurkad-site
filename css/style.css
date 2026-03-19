@@ -117,7 +117,7 @@ body {
     gap: 60px;
     align-items: center;
     width: 100%;
-    margin-bottom: 15px; /* Уменьшил, чтобы кнопка поднялась */
+    margin-bottom: 15px;
 }
 
 /* Левая колонка */
@@ -133,11 +133,11 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-    margin-top: -20px; /* Поднял выше */
+    margin-top: -20px;
 }
 
 .hero-word {
-    font-size: 72px; /* Увеличил */
+    font-size: 72px;
     font-weight: 700;
     color: #9E937E;
     line-height: 1;
@@ -166,22 +166,23 @@ body {
     font-weight: 400;
 }
 
-/* Кнопка в компьютерной версии - ПОДНЯЛ И УВЕЛИЧИЛ */
+/* Кнопка в компьютерной версии - ПОДНЯЛ */
 .hero .btn {
     display: inline-block;
-    padding: 20px 52px; /* Ещё увеличил */
+    padding: 20px 52px;
     background: #9E937E;
     color: #35342B;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 700;
-    font-size: 20px; /* Увеличил */
+    font-size: 20px;
     transition: all 0.3s;
     border: none;
     cursor: pointer;
     width: auto;
     align-self: flex-start;
-    margin-top: 5px; /* Поднял */
+    margin-top: 0px; /* УБРАЛ ОТСТУП СВЕРХУ */
+    margin-bottom: 20px; /* ДОБАВИЛ СНИЗУ */
     letter-spacing: 0.5px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
@@ -492,7 +493,7 @@ body {
     }
     
     .logo {
-        height: 65px; /* Увеличил */
+        height: 95px; /* УВЕЛИЧИЛ В 1.5 РАЗА (было 65) */
     }
     
     .nav-icons {
@@ -509,8 +510,8 @@ body {
     }
     
     .hero {
-        margin-top: 95px; /* Опустил */
-        min-height: calc(100vh - 95px);
+        margin-top: 115px; /* ПОДНЯЛ под большое лого */
+        min-height: calc(100vh - 115px);
         padding: 30px 0;
     }
     
@@ -532,27 +533,29 @@ body {
     }
     
     .femida-wrapper {
-        max-width: 150px; /* Увеличил */
+        max-width: 150px;
     }
     
     .hero-words-wrapper {
-        min-height: 40px;
+        min-height: auto; /* АВТОМАТИЧЕСКАЯ ВЫСОТА */
         margin-bottom: 8px;
     }
     
     .hero-word {
-        font-size: 26px; /* Увеличил */
+        font-size: 22px; /* УМЕНЬШИЛ для длинных слов */
         white-space: normal;
         font-weight: 700;
+        word-break: break-word; /* ПРИНУДИТЕЛЬНЫЙ ПЕРЕНОС */
+        max-width: 100%;
     }
     
     .hero-title {
-        font-size: 20px; /* Увеличил */
+        font-size: 20px;
         margin-bottom: 5px;
     }
     
     .hero-subtitle {
-        font-size: 16px; /* Увеличил */
+        font-size: 16px;
     }
     
     .hero .btn {
@@ -560,8 +563,8 @@ body {
         width: 85%;
         max-width: 320px;
         margin: 0 auto;
-        padding: 18px 28px; /* Увеличил */
-        font-size: 18px; /* Увеличил */
+        padding: 18px 28px;
+        font-size: 18px;
         font-weight: 700;
         border-radius: 8px;
         text-align: center;
@@ -571,7 +574,7 @@ body {
     
     .cards, .features, .contacts {
         padding: 50px 0;
-        scroll-margin-top: 95px;
+        scroll-margin-top: 115px;
     }
     
     .cards-grid {
@@ -636,7 +639,7 @@ body {
 
 @media (max-width: 400px) {
     .logo {
-        height: 55px;
+        height: 80px; /* ПРОПОРЦИОНАЛЬНО */
     }
     
     .nav-icons {
@@ -656,7 +659,7 @@ body {
     }
     
     .hero-word {
-        font-size: 24px;
+        font-size: 20px; /* ЕЩЁ МЕНЬШЕ */
     }
     
     .hero-title {
