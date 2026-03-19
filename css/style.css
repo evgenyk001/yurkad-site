@@ -37,14 +37,14 @@ body {
     align-items: center;
 }
 
-/* Лого — очень крупное на компе */
+/* Лого крупное */
 .logo-wrapper {
     flex-shrink: 0;
 }
 
 .logo {
     width: auto;
-    height: 80px; /* Огромное на компе */
+    height: 80px; /* Очень крупно на компе */
     transition: opacity 0.3s;
 }
 
@@ -52,23 +52,52 @@ body {
     opacity: 0.9;
 }
 
-/* Навигация текстом */
-.nav-menu {
+/* Навигация иконками */
+.nav-icons {
     display: flex;
-    gap: 40px;
+    gap: 30px;
+    align-items: center;
 }
 
-.nav-link {
-    color: #FFFFFF;
+.nav-icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    transition: color 0.3s;
-    letter-spacing: 0.5px;
+    transition: transform 0.3s;
 }
 
-.nav-link:hover {
+.nav-icon-item:hover {
+    transform: translateY(-3px);
+}
+
+.nav-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(158, 147, 126, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    transition: background 0.3s;
+}
+
+.nav-icon-item:hover .nav-icon {
+    background: rgba(158, 147, 126, 0.2);
+}
+
+.nav-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: #9E937E;
+}
+
+.nav-label {
+    font-size: 12px;
     color: #9E937E;
+    letter-spacing: 0.5px;
+    font-weight: 500;
 }
 
 /* ========== ПЕРВЫЙ ЭКРАН ========== */
@@ -78,7 +107,7 @@ body {
     align-items: center;
     padding: 140px 0 100px;
     background: linear-gradient(180deg, #35342B 0%, #2E2D26 100%);
-    margin-top: 100px; /* под шапку */
+    margin-top: 100px;
 }
 
 .hero-grid {
@@ -93,9 +122,9 @@ body {
     max-width: 650px;
 }
 
-/* Фиксированная высота для анимированных слов */
+/* Фиксированная высота для анимации */
 .hero-words-container {
-    height: 120px; /* фиксированная высота, чтобы ничего не прыгало */
+    height: 120px;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -167,6 +196,193 @@ body {
     height: auto;
 }
 
+/* ========== КАРТОЧКИ УСЛУГ ========== */
+.cards {
+    padding: 100px 0;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.card {
+    padding: 30px;
+    border-top: 1px solid #4A483E;
+    transition: all 0.3s;
+}
+
+.card:hover {
+    border-top-color: #9E937E;
+    transform: translateY(-5px);
+}
+
+.card-number {
+    color: #9E937E;
+    font-size: 14px;
+    margin-bottom: 15px;
+    opacity: 0.7;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+}
+
+.card-desc {
+    color: #D6D6D6;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.card-link {
+    color: #9E937E;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.card-link:hover {
+    transform: translateX(5px);
+    color: #b3a690;
+}
+
+/* ========== ПРЕИМУЩЕСТВА ========== */
+.features {
+    padding: 100px 0;
+    background: #2E2D26;
+}
+
+.section-title {
+    font-size: 36px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.feature-item {
+    text-align: center;
+}
+
+.feature-icon {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.feature-icon svg {
+    width: 48px;
+    height: 48px;
+    stroke: #9E937E;
+    transition: transform 0.3s;
+}
+
+.feature-item:hover .feature-icon svg {
+    transform: scale(1.1);
+}
+
+.feature-item h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+}
+
+.feature-item p {
+    color: #D6D6D6;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ========== КОНТАКТЫ ========== */
+.contacts {
+    padding: 100px 0;
+}
+
+.contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.contacts-info {
+    background: #2E2D26;
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.contact-item {
+    margin-bottom: 30px;
+}
+
+.contact-label {
+    display: block;
+    color: #9E937E;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.contact-value {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.contact-value:hover {
+    color: #9E937E;
+}
+
+.whatsapp-btn {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.contacts-map {
+    border-radius: 8px;
+    overflow: hidden;
+    height: 450px;
+}
+
+.contacts-map iframe {
+    width: 100%;
+    height: 100%;
+}
+
+/* ========== ФУТЕР ========== */
+.footer {
+    padding: 40px 0;
+    border-top: 1px solid #4A483E;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo {
+    height: 30px;
+    width: auto;
+    opacity: 0.8;
+}
+
+.footer-copy {
+    color: #D6D6D6;
+    font-size: 14px;
+}
+
 /* ========== АДАПТАЦИЯ ========== */
 @media (max-width: 1100px) {
     .hero-word {
@@ -184,10 +400,6 @@ body {
     .logo {
         height: 60px;
     }
-    
-    .nav-link {
-        font-size: 16px;
-    }
 }
 
 @media (max-width: 900px) {
@@ -203,15 +415,27 @@ body {
     
     .hero-image {
         justify-content: center;
-        order: -1;
+        order: -1; /* Фемида сверху на телефоне */
     }
     
     .femida-wrapper {
         max-width: 320px;
     }
     
-    .nav-menu {
-        gap: 25px;
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .contacts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-icons {
+        gap: 20px;
     }
 }
 
@@ -225,12 +449,22 @@ body {
         height: 50px;
     }
     
-    .nav-menu {
-        gap: 20px;
+    .nav-icons {
+        gap: 15px;
     }
     
-    .nav-link {
-        font-size: 14px;
+    .nav-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .nav-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .nav-label {
+        font-size: 10px;
     }
     
     .hero {
@@ -258,177 +492,24 @@ body {
     .femida-wrapper {
         max-width: 260px;
     }
-}
-
-/* ========== ОСТАЛЬНЫЕ СЕКЦИИ ========== */
-section {
-    padding: 80px 0;
-}
-
-.section-title {
-    font-size: 36px;
-    margin-bottom: 50px;
-    text-align: center;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
-
-.service-card {
-    background: #2E2D26;
-    padding: 30px;
-    border-radius: 8px;
-    border: 1px solid #4A483E;
-    transition: all 0.3s;
-}
-
-.service-card:hover {
-    border-color: #9E937E;
-    transform: translateY(-5px);
-}
-
-.service-card h3 {
-    color: #9E937E;
-    font-size: 22px;
-    margin-bottom: 15px;
-}
-
-.service-card p {
-    color: #D6D6D6;
-    font-size: 15px;
-    line-height: 1.6;
-}
-
-.about-content {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.about-content p {
-    font-size: 18px;
-    color: #D6D6D6;
-    margin-bottom: 30px;
-    line-height: 1.7;
-}
-
-.features {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.feature {
-    padding: 8px 20px;
-    background: #2E2D26;
-    border: 1px solid #4A483E;
-    border-radius: 30px;
-    color: #9E937E;
-    font-size: 14px;
-}
-
-.why-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-}
-
-.why-item {
-    background: #2E2D26;
-    padding: 30px 20px;
-    border-radius: 8px;
-    border: 1px solid #4A483E;
-    text-align: center;
-    transition: all 0.3s;
-}
-
-.why-item:hover {
-    border-color: #9E937E;
-    transform: translateY(-5px);
-}
-
-.contacts-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
-
-.contacts-info {
-    background: #2E2D26;
-    padding: 40px;
-    border-radius: 8px;
-}
-
-.contact-item {
-    margin-bottom: 25px;
-}
-
-.contact-item strong {
-    display: block;
-    color: #9E937E;
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-
-.contact-item a,
-.contact-item span {
-    color: #FFFFFF;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-.whatsapp-btn {
-    margin-top: 20px;
-    width: 100%;
-    text-align: center;
-}
-
-.contacts-map {
-    border-radius: 8px;
-    overflow: hidden;
-    height: 400px;
-}
-
-.contacts-map iframe {
-    width: 100%;
-    height: 100%;
-}
-
-.footer {
-    padding: 30px 0;
-    text-align: center;
-    border-top: 1px solid #4A483E;
-    color: #D6D6D6;
-}
-
-@media (max-width: 900px) {
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
     
-    .why-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .contacts-grid {
+    .cards-grid {
         grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 600px) {
-    .services-grid {
-        grid-template-columns: 1fr;
+        gap: 20px;
     }
     
-    .why-grid {
+    .features-grid {
         grid-template-columns: 1fr;
+        gap: 30px;
     }
     
-    .section-title {
-        font-size: 28px;
+    .card {
+        padding: 20px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
     }
 }
