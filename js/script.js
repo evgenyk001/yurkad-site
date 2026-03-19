@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnLeft = document.querySelector('.carousel-btn.left');
     const btnRight = document.querySelector('.carousel-btn.right');
     
-    let currentIndex = 2; // начинаем с центра (0,1,2,3,4)
+    let currentIndex = 2;
     let isDesktop = window.innerWidth >= 1024;
     
     // Создаем точки-индикаторы
@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Обновление 3D позиций (для компа)
     function updateCarouselDesktop() {
         cards.forEach((card, i) => {
-            // Сбрасываем классы
             card.classList.remove('active', 'prev', 'next', 'far');
             
             const distance = i - currentIndex;
@@ -55,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
         
-        // Обновляем точки
         document.querySelectorAll('.dot').forEach((dot, i) => {
             if (i === currentIndex) {
                 dot.classList.add('active');
@@ -67,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Обновление для мобилок
     function updateCarouselMobile() {
-        // Просто обновляем точки
         document.querySelectorAll('.dot').forEach((dot, i) => {
             if (i === currentIndex) {
                 dot.classList.add('active');
@@ -77,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    // Основная функция обновления
     function updateCarousel() {
         if (window.innerWidth >= 1024) {
             updateCarouselDesktop();
@@ -96,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (currentIndex > 0) {
                     currentIndex--;
                     scrollToIndex(currentIndex);
+                    updateCarouselMobile();
                 }
             }
         });
@@ -110,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (currentIndex < cards.length - 1) {
                     currentIndex++;
                     scrollToIndex(currentIndex);
+                    updateCarouselMobile();
                 }
             }
         });
@@ -120,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
         carousel.addEventListener('scroll', () => {
             if (window.innerWidth < 1024) {
                 const scrollPosition = carousel.scrollLeft;
-                const cardWidth = cards[0].offsetWidth + 15; // ширина + gap
+                const cardWidth = cards[0].offsetWidth + 15;
                 const newIndex = Math.round(scrollPosition / cardWidth);
                 
                 if (newIndex >= 0 && newIndex < cards.length && newIndex !== currentIndex) {
@@ -131,22 +129,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    // При изменении размера окна
     window.addEventListener('resize', () => {
         isDesktop = window.innerWidth >= 1024;
         updateCarousel();
         
-        // Если стали мобильным режимом, скроллим к активной карточке
         if (!isDesktop) {
             scrollToIndex(currentIndex);
         }
     });
     
-    // Инициализация
     createDots();
     updateCarousel();
     
-    // Начальный скролл для мобилок
     if (window.innerWidth < 1024) {
         setTimeout(() => scrollToIndex(currentIndex), 100);
     }
