@@ -133,7 +133,7 @@ body {
     line-height: 1;
     transition: opacity 0.5s ease;
     display: inline-block;
-    white-space: nowrap; /* чтобы слово не переносилось */
+    white-space: nowrap;
 }
 
 /* СТАТИЧНЫЙ БЛОК */
@@ -175,7 +175,7 @@ body {
     box-shadow: 0 10px 25px rgba(158, 147, 126, 0.3);
 }
 
-/* Правая колонка — Фемида */
+/* Правая колонка — Фемида (PNG) */
 .hero-right {
     display: flex;
     justify-content: flex-end;
@@ -183,7 +183,7 @@ body {
 
 .femida-wrapper {
     width: 100%;
-    max-width: 480px;
+    max-width: 320px; /* УМЕНЬШИЛ С 480px ДО 320px */
     animation: float 6s ease-in-out infinite;
     filter: drop-shadow(0 0 30px rgba(158,147,126,0.3));
 }
@@ -193,9 +193,10 @@ body {
     50% { transform: translateY(-15px); }
 }
 
-.femida-wrapper svg {
+.femida-image {
     width: 100%;
     height: auto;
+    display: block;
 }
 
 /* ========== КАРТОЧКИ УСЛУГ ========== */
@@ -430,7 +431,7 @@ body {
     }
     
     .hero-word {
-        white-space: normal; /* на мобилке можно переносить */
+        white-space: normal;
     }
     
     .hero-right {
@@ -439,7 +440,7 @@ body {
     }
     
     .femida-wrapper {
-        max-width: 320px;
+        max-width: 280px; /* И на мобилке тоже уменьшил */
     }
     
     .cards-grid {
@@ -508,7 +509,7 @@ body {
     }
     
     .femida-wrapper {
-        max-width: 240px;
+        max-width: 220px; /* Ещё меньше на маленьких телефонах */
     }
     
     .cards-grid {
@@ -556,5 +557,9 @@ body {
     
     .hero-title {
         font-size: 24px;
+    }
+    
+    .femida-wrapper {
+        max-width: 180px;
     }
 }
