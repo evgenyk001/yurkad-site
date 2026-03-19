@@ -96,10 +96,10 @@ body {
 
 /* ========== ПЕРВЫЙ ЭКРАН ========== */
 .hero {
-    min-height: 100vh;
+    min-height: calc(100vh - 120px); /* ФИКСИРУЕМ ВЫСОТУ */
     display: flex;
     align-items: center;
-    padding: 40px 0;
+    padding: 20px 0;
     background: linear-gradient(180deg, #35342B 0%, #2E2D26 100%);
     margin-top: 120px;
 }
@@ -117,7 +117,7 @@ body {
     gap: 60px;
     align-items: center;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 0;
 }
 
 /* Левая колонка */
@@ -132,13 +132,13 @@ body {
     min-height: 100px;
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-    margin-top: -30px; /* Поднял ещё выше */
+    margin-bottom: 5px;
+    margin-top: -30px;
 }
 
 .hero-word {
     font-size: 72px;
-    font-weight: 700;
+    font-weight: 800; /* ПОЖИРНЕЕ */
     color: #9E937E;
     line-height: 1;
     transition: opacity 0.5s ease;
@@ -153,8 +153,8 @@ body {
 
 .hero-title {
     font-size: 48px;
-    font-weight: 500;
-    margin-bottom: 15px;
+    font-weight: 600;
+    margin-bottom: 5px; /* УМЕНЬШИЛ */
     color: #FFFFFF;
     line-height: 1.2;
 }
@@ -162,11 +162,11 @@ body {
 .hero-subtitle {
     font-size: 24px;
     color: #D6D6D6;
-    margin-bottom: 5px;
+    margin-bottom: 5px; /* УМЕНЬШИЛ */
     font-weight: 400;
 }
 
-/* Кнопка в компьютерной версии - ПОДНЯТА */
+/* Кнопка в компьютерной версии */
 .hero .btn {
     display: inline-block;
     padding: 22px 60px;
@@ -181,7 +181,7 @@ body {
     cursor: pointer;
     width: auto;
     align-self: flex-start;
-    margin-top: -10px; /* ПОДНЯЛ ЕЩЁ ВЫШЕ (было 5px) */
+    margin-top: -15px; /* ПОДНЯЛ */
     margin-bottom: 0;
     letter-spacing: 0.5px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -443,14 +443,14 @@ body {
     .hero .btn {
         padding: 20px 50px;
         font-size: 20px;
-        margin-top: -5px;
+        margin-top: -10px;
     }
 }
 
 @media (max-width: 900px) {
     .hero-row {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 30px;
     }
     
     .hero-left {
@@ -468,7 +468,7 @@ body {
     }
     
     .femida-wrapper {
-        max-width: 280px;
+        max-width: 260px;
     }
     
     .cards-grid {
@@ -484,7 +484,7 @@ body {
     }
     
     .nav-icons {
-        gap: 25px;
+        gap: 20px;
     }
     
     .cards, .features, .contacts {
@@ -499,26 +499,26 @@ body {
     }
     
     .logo {
-        height: 95px;
+        height: 85px;
     }
     
     .nav-icons {
-        gap: 18px;
+        gap: 15px;
     }
     
     .nav-icon svg {
-        width: 26px;
-        height: 26px;
+        width: 24px;
+        height: 24px;
     }
     
     .nav-label {
-        font-size: 11px;
+        font-size: 10px;
     }
     
     .hero {
-        margin-top: 125px;
-        min-height: calc(100vh - 125px);
-        padding: 20px 0;
+        margin-top: 115px;
+        min-height: calc(100vh - 115px);
+        padding: 15px 0;
     }
     
     .hero-row {
@@ -526,14 +526,14 @@ body {
         flex-direction: column;
         align-items: center;
         gap: 5px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
     
-    /* Анимация слов СВЕРХУ - ПО ЦЕНТРУ */
+    /* Анимация слов */
     .hero-words-wrapper {
         width: 100%;
         display: flex;
-        justify-content: center; /* ВЫРОВНЯЛ ПО ЦЕНТРУ */
+        justify-content: center;
         margin-bottom: 5px;
         min-height: auto;
         margin-top: 0;
@@ -541,7 +541,8 @@ body {
     }
     
     .hero-word {
-        font-size: 34px; /* ЧУТЬ КРУПНЕЕ */
+        font-size: 32px;
+        font-weight: 800; /* ПОЖИРНЕЕ */
         white-space: normal;
         text-align: center;
         word-break: break-word;
@@ -549,55 +550,57 @@ body {
         max-width: 100%;
     }
     
-    /* Ряд с Фемидой и текстом */
-    .hero-left {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 5px;
-    }
-    
+    /* Фемида */
     .hero-right {
         width: 100%;
         justify-content: center;
-        margin-top: 0;
-        margin-bottom: 5px;
+        margin: 5px 0;
     }
     
     .femida-wrapper {
-        max-width: 180px;
+        max-width: 160px;
         margin: 0 auto;
     }
     
+    /* Текст - ПРИБЛИЗИЛ */
+    .hero-left {
+        width: 100%;
+        text-align: center;
+    }
+    
     .hero-title {
-        font-size: 24px;
-        margin-bottom: 8px;
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 2px; /* МИНИМАЛЬНЫЙ ОТСТУП */
+        line-height: 1.2;
     }
     
     .hero-subtitle {
-        font-size: 20px;
+        font-size: 18px;
         margin-bottom: 5px;
+        line-height: 1.3;
     }
     
-    /* Кнопка ПО ЦЕНТРУ и ПОДНЯТА */
+    /* Кнопка ПО ЦЕНТРУ */
     .hero .btn {
         display: block;
-        width: 90%;
-        max-width: 380px;
-        margin: 0 auto; /* УБРАЛ ОТСТУП СВЕРХУ, ТЕПЕРЬ ПО ЦЕНТРУ */
-        padding: 22px 30px;
-        font-size: 22px;
+        width: 85%;
+        max-width: 320px;
+        margin: 5px auto 0;
+        padding: 18px 24px;
+        font-size: 20px;
         font-weight: 700;
-        border-radius: 10px;
+        border-radius: 8px;
         text-align: center;
-        letter-spacing: 0.5px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         position: relative;
-        top: -5px; /* ПОДНЯЛ ЧУТЬ ВЫШЕ */
+        left: auto;
+        transform: none;
+        top: 0;
     }
     
     .cards, .features, .contacts {
-        padding: 50px 0;
-        scroll-margin-top: 125px;
+        padding: 40px 0;
+        scroll-margin-top: 115px;
     }
     
     .cards-grid {
@@ -606,15 +609,15 @@ body {
     }
     
     .card {
-        padding: 25px;
+        padding: 20px;
     }
     
     .card-title {
-        font-size: 22px;
+        font-size: 20px;
     }
     
     .card-desc {
-        font-size: 15px;
+        font-size: 14px;
     }
     
     .features-grid {
@@ -623,11 +626,11 @@ body {
     }
     
     .feature-item h3 {
-        font-size: 20px;
+        font-size: 18px;
     }
     
     .feature-item p {
-        font-size: 15px;
+        font-size: 14px;
     }
     
     .contacts-grid {
@@ -636,59 +639,58 @@ body {
     }
     
     .contacts-info {
-        padding: 30px;
+        padding: 25px;
     }
     
     .contact-value {
-        font-size: 18px;
+        font-size: 16px;
     }
     
     .contacts-map {
-        height: 250px;
+        height: 200px;
     }
     
     .footer {
-        padding: 30px 0;
+        padding: 25px 0;
     }
     
     .footer-logo {
-        height: 30px;
+        height: 25px;
     }
     
     .footer-copy {
-        font-size: 13px;
+        font-size: 12px;
     }
 }
 
 @media (max-width: 400px) {
     .logo {
-        height: 80px;
+        height: 70px;
     }
     
     .nav-icons {
-        gap: 12px;
+        gap: 10px;
     }
     
     .hero-word {
-        font-size: 30px; /* ЧУТЬ МЕНЬШЕ, НО ВСЁ РАВНО КРУПНО */
+        font-size: 28px;
     }
     
     .femida-wrapper {
-        max-width: 160px;
+        max-width: 140px;
     }
     
     .hero-title {
-        font-size: 22px;
+        font-size: 20px;
     }
     
     .hero-subtitle {
-        font-size: 18px;
+        font-size: 16px;
     }
     
     .hero .btn {
-        width: 95%;
-        padding: 20px 24px;
-        font-size: 20px;
-        top: -3px;
+        width: 90%;
+        padding: 16px 20px;
+        font-size: 18px;
     }
 }
