@@ -175,7 +175,7 @@ body {
     box-shadow: 0 10px 25px rgba(158, 147, 126, 0.3);
 }
 
-/* Правая колонка — Фемида (PNG) - МИНИМАЛЬНАЯ КОРРЕКЦИЯ */
+/* Правая колонка — Фемида (PNG) */
 .hero-right {
     display: flex;
     justify-content: flex-end;
@@ -183,7 +183,7 @@ body {
 
 .femida-wrapper {
     width: 100%;
-    max-width: 320px;
+    max-width: 320px; /* УМЕНЬШИЛ С 480px ДО 320px */
     animation: float 6s ease-in-out infinite;
     filter: drop-shadow(0 0 30px rgba(158,147,126,0.3));
 }
@@ -197,8 +197,6 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    /* Очень слабая коррекция, почти оригинал */
-    filter: sepia(0.15) saturate(1.2) brightness(1.01);
 }
 
 /* ========== КАРТОЧКИ УСЛУГ ========== */
@@ -442,11 +440,7 @@ body {
     }
     
     .femida-wrapper {
-        max-width: 280px;
-    }
-    
-    .femida-image {
-        filter: sepia(0.1) saturate(1.1) brightness(1.01);
+        max-width: 280px; /* И на мобилке тоже уменьшил */
     }
     
     .cards-grid {
@@ -515,7 +509,7 @@ body {
     }
     
     .femida-wrapper {
-        max-width: 220px;
+        max-width: 220px; /* Ещё меньше на маленьких телефонах */
     }
     
     .cards-grid {
