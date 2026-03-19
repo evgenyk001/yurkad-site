@@ -99,9 +99,9 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 140px 0 100px;
+    padding: 40px 0 40px; /* Уменьшил вертикальные отступы */
     background: linear-gradient(180deg, #35342B 0%, #2E2D26 100%);
-    margin-top: 140px;
+    margin-top: 120px; /* Точно под размер шапки */
 }
 
 .hero-grid {
@@ -183,7 +183,7 @@ body {
 
 .femida-wrapper {
     width: 100%;
-    max-width: 320px; /* УМЕНЬШИЛ С 480px ДО 320px */
+    max-width: 320px;
     animation: float 6s ease-in-out infinite;
     filter: drop-shadow(0 0 30px rgba(158,147,126,0.3));
 }
@@ -197,11 +197,13 @@ body {
     width: 100%;
     height: auto;
     display: block;
+    filter: sepia(0.15) saturate(1.2) brightness(1.01);
 }
 
 /* ========== КАРТОЧКИ УСЛУГ ========== */
 .cards {
     padding: 100px 0;
+    scroll-margin-top: 120px; /* Чтобы при нажатии на якорь секция вставала ровно под шапку */
 }
 
 .cards-grid {
@@ -260,6 +262,7 @@ body {
 .features {
     padding: 100px 0;
     background: #2E2D26;
+    scroll-margin-top: 120px;
 }
 
 .section-title {
@@ -310,6 +313,7 @@ body {
 /* ========== КОНТАКТЫ ========== */
 .contacts {
     padding: 100px 0;
+    scroll-margin-top: 120px;
 }
 
 .contacts-grid {
@@ -440,7 +444,7 @@ body {
     }
     
     .femida-wrapper {
-        max-width: 280px; /* И на мобилке тоже уменьшил */
+        max-width: 280px;
     }
     
     .cards-grid {
@@ -457,6 +461,10 @@ body {
     
     .nav-icons {
         gap: 25px;
+    }
+    
+    .cards, .features, .contacts {
+        scroll-margin-top: 100px; /* Меньше на планшетах */
     }
 }
 
@@ -486,8 +494,9 @@ body {
     }
     
     .hero {
-        margin-top: 140px;
-        padding: 60px 0;
+        margin-top: 90px;
+        padding: 20px 0;
+        min-height: calc(100vh - 90px);
     }
     
     .hero-words-wrapper {
@@ -509,7 +518,7 @@ body {
     }
     
     .femida-wrapper {
-        max-width: 220px; /* Ещё меньше на маленьких телефонах */
+        max-width: 220px;
     }
     
     .cards-grid {
@@ -531,6 +540,10 @@ body {
         gap: 15px;
         text-align: center;
     }
+    
+    .cards, .features, .contacts {
+        scroll-margin-top: 70px;
+    }
 }
 
 @media (max-width: 400px) {
@@ -551,6 +564,11 @@ body {
         font-size: 10px;
     }
     
+    .hero {
+        margin-top: 70px;
+        min-height: calc(100vh - 70px);
+    }
+    
     .hero-word {
         font-size: 32px;
     }
@@ -561,5 +579,9 @@ body {
     
     .femida-wrapper {
         max-width: 180px;
+    }
+    
+    .cards, .features, .contacts {
+        scroll-margin-top: 60px;
     }
 }
