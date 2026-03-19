@@ -17,7 +17,7 @@ html {
     padding: 0 20px;
 }
 
-/* -------------------- ГЛОБАЛЬНЫЕ АНИМАЦИИ -------------------- */
+/* -------------------- АНИМАЦИИ -------------------- */
 .fade-in-up {
     opacity: 0;
     transform: translateY(20px);
@@ -39,7 +39,6 @@ html {
     background: rgba(53, 52, 43, 0.9);
     backdrop-filter: blur(10px);
     z-index: 100;
-    transition: 0.3s;
     border-bottom: 1px solid rgba(158,147,126,0.15);
 }
 
@@ -50,35 +49,35 @@ html {
 
 /* -------------------- ПЕРВЫЙ ЭКРАН -------------------- */
 .hero {
-    padding: 140px 0;
+    padding: 100px 0;
     background: linear-gradient(180deg, #35342B 0%, #2E2D26 100%);
 }
 
 .hero-flex {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 40px;
+    gap: 60px;
+}
+
+.hero-content {
+    flex: 1;
 }
 
 .hero-title {
-    font-size: 52px;
+    font-size: 48px;
     margin-bottom: 20px;
     line-height: 1.2;
-    color: #FFFFFF;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
 .hero-subtitle {
-    font-size: 22px;
+    font-size: 20px;
     color: #D6D6D6;
     margin-bottom: 40px;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
-/* -------------------- ПРЕМИАЛЬНАЯ КНОПКА -------------------- */
-.premium-btn {
-    position: relative;
+/* -------------------- КНОПКА -------------------- */
+.btn {
     display: inline-block;
     padding: 16px 34px;
     background: #9E937E;
@@ -87,100 +86,84 @@ html {
     font-weight: 600;
     border-radius: 8px;
     text-decoration: none;
-    overflow: hidden;
-    transition: transform .3s ease, box-shadow .3s ease;
+    transition: 0.3s;
     box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
-.premium-btn:hover {
+.btn:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 28px rgba(0,0,0,0.45);
 }
 
-.btn-glow {
-    position: absolute;
-    top: 0;
-    left: -120%;
-    width: 120%;
-    height: 100%;
-    background: linear-gradient(
-        120deg,
-        transparent 0%,
-        rgba(255,255,255,0.45) 50%,
-        transparent 100%
-    );
-    transform: skewX(-20deg);
-    transition: left .8s ease;
-}
-
-.premium-btn:hover .btn-glow {
-    left: 120%;
-}
-
 /* -------------------- ФЕМИДА -------------------- */
 .femida-wrapper {
-    width: 420px;
+    width: 380px;
     opacity: 0.9;
     filter: drop-shadow(0 0 25px rgba(158,147,126,0.35));
     animation: femidaFloat 6s ease-in-out infinite;
 }
 
 @keyframes femidaFloat {
-    0% { transform: translateY(0); }
+    0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-12px); }
-    100% { transform: translateY(0); }
 }
 
-/* -------------------- КАРУСЕЛЬ УСЛУГ (3D ДЛЯ ТВОЕГО JS) -------------------- */
+/* -------------------- КАРУСЕЛЬ (ПРОСТАЯ И РАБОЧАЯ) -------------------- */
 .services-carousel {
-    padding: 120px 0;
-    overflow: hidden;
-    position: relative;
+    padding: 100px 0;
 }
 
 .services-carousel h2 {
     text-align: center;
     font-size: 40px;
-    margin-bottom: 60px;
-    color: #FFFFFF;
+    margin-bottom: 50px;
 }
 
 .carousel-wrapper {
     position: relative;
-    width: 100%;
-    height: 500px; /* фиксированная высота для 3D */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0 40px;
 }
 
 .carousel {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    perspective: 1200px;
-    transform-style: preserve-3d;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px 5px 30px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.carousel::-webkit-scrollbar {
+    height: 6px;
+}
+
+.carousel::-webkit-scrollbar-track {
+    background: #2E2D26;
+    border-radius: 10px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background: #9E937E;
+    border-radius: 10px;
 }
 
 .service-card {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 320px;
+    flex: 0 0 auto;
+    width: 300px;
     background: #2E2D26;
     padding: 30px 20px;
     border-radius: 14px;
     border: 1px solid #4A483E;
     text-align: center;
-    transition: all 0.5s ease;
-    backface-visibility: hidden;
-    transform-origin: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    scroll-snap-align: start;
+    transition: 0.3s;
 }
 
-.service-card.active {
+.service-card:hover {
     border-color: #9E937E;
-    box-shadow: 0 0 35px rgba(158,147,126,0.35);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(158,147,126,0.2);
 }
 
 .service-card h3 {
@@ -191,7 +174,7 @@ html {
 
 .service-card p {
     color: #D6D6D6;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.5;
 }
 
@@ -199,39 +182,37 @@ html {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 20;
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: rgba(46, 45, 38, 0.8);
-    border: 1px solid #9E937E;
+    background: #2E2D26;
+    border: 2px solid #9E937E;
     color: #9E937E;
-    font-size: 32px;
+    font-size: 28px;
     cursor: pointer;
-    transition: 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(5px);
+    transition: 0.3s;
+    z-index: 10;
 }
 
 .carousel-btn:hover {
     background: #9E937E;
     color: #35342B;
-    border-color: #9E937E;
 }
 
 .carousel-btn.left {
-    left: 20px;
+    left: 0;
 }
 
 .carousel-btn.right {
-    right: 20px;
+    right: 0;
 }
 
 /* -------------------- О КОМПАНИИ -------------------- */
 .about {
-    padding: 120px 0;
+    padding: 100px 0;
 }
 
 .about-flex {
@@ -243,11 +224,10 @@ html {
 .about-text h2 {
     font-size: 36px;
     margin-bottom: 20px;
-    color: #FFFFFF;
 }
 
 .about-text p {
-    font-size: 20px;
+    font-size: 18px;
     color: #D6D6D6;
     line-height: 1.7;
     margin-bottom: 30px;
@@ -255,114 +235,102 @@ html {
 
 .about-features {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     flex-wrap: wrap;
 }
 
 .feature {
     background: #2E2D26;
-    padding: 18px 24px;
+    padding: 12px 20px;
     border-radius: 8px;
     border: 1px solid #4A483E;
     color: #9E937E;
-    font-weight: bold;
-    font-size: 18px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.25);
-    transition: 0.3s;
+    font-weight: 600;
+    font-size: 16px;
 }
 
-.feature:hover {
-    border-color: #9E937E;
-    transform: translateY(-3px);
-}
-
-/* -------------------- ПОЧЕМУ МЫ (С ИКОНКАМИ) -------------------- */
+/* -------------------- ПОЧЕМУ МЫ -------------------- */
 .why {
-    padding: 120px 0;
+    padding: 100px 0;
 }
 
 .why h2 {
     text-align: center;
     font-size: 36px;
     margin-bottom: 50px;
-    color: #FFFFFF;
 }
 
 .why-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
 }
 
 .why-card {
     background: #2E2D26;
-    padding: 35px 20px;
-    border-radius: 10px;
+    padding: 30px 20px;
+    border-radius: 12px;
     border: 1px solid #4A483E;
     text-align: center;
-    font-size: 20px;
-    color: #D6D6D6;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 0 transparent;
-    position: relative;
-}
-
-.why-card::before {
-    content: "✓";
-    display: block;
-    width: 50px;
-    height: 50px;
-    background: #9E937E;
-    color: #35342B;
-    font-size: 28px;
-    font-weight: bold;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 18px;
+    transition: 0.3s;
 }
 
 .why-card:hover {
     border-color: #9E937E;
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(158,147,126,0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(158,147,126,0.15);
 }
 
-/* -------------------- КОНТАКТЫ + КАРТА (2 КОЛОНКИ) -------------------- */
+.why-icon {
+    width: 50px;
+    height: 50px;
+    background: #9E937E;
+    color: #35342B;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.why-icon::before {
+    content: "✓";
+}
+
+/* -------------------- КОНТАКТЫ + КАРТА -------------------- */
 .contacts {
-    padding: 120px 0;
+    padding: 100px 0;
 }
 
 .contacts h2 {
     text-align: center;
     font-size: 36px;
     margin-bottom: 50px;
-    color: #FFFFFF;
 }
 
 .contacts-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: start;
+    gap: 30px;
 }
 
 .contacts-info {
     background: #2E2D26;
-    padding: 40px;
+    padding: 35px;
     border-radius: 14px;
     border: 1px solid #4A483E;
 }
 
-.contacts-info .contact-item {
-    font-size: 22px;
+.contact-item {
     margin-bottom: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 20px;
     border-bottom: 1px solid #4A483E;
 }
 
-.contacts-info .contact-item:last-child {
+.contact-item:last-child {
     border-bottom: none;
 }
 
@@ -370,13 +338,13 @@ html {
     color: #9E937E;
     display: block;
     margin-bottom: 5px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .contact-item a {
     color: #FFFFFF;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 20px;
     transition: 0.3s;
 }
 
@@ -384,20 +352,19 @@ html {
     color: #9E937E;
 }
 
-.contacts-info .whatsapp-btn {
+.whatsapp-btn {
     display: inline-block;
     background: #9E937E;
     color: #35342B;
-    padding: 15px 30px;
+    padding: 14px 30px;
     border-radius: 8px;
     text-decoration: none;
-    font-weight: bold;
-    margin-top: 20px;
+    font-weight: 600;
+    margin-top: 10px;
     transition: 0.3s;
-    font-size: 18px;
 }
 
-.contacts-info .whatsapp-btn:hover {
+.whatsapp-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(158,147,126,0.3);
 }
@@ -406,7 +373,7 @@ html {
     border-radius: 14px;
     overflow: hidden;
     height: 100%;
-    min-height: 400px;
+    min-height: 380px;
     border: 1px solid #4A483E;
 }
 
@@ -418,89 +385,60 @@ html {
 
 /* -------------------- ФУТЕР -------------------- */
 .footer {
-    padding: 40px 0;
+    padding: 30px 0;
     text-align: center;
     color: #D6D6D6;
     border-top: 1px solid #4A483E;
-    font-size: 16px;
+    font-size: 14px;
 }
 
-/* -------------------- АДАПТИВ -------------------- */
+/* -------------------- АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ -------------------- */
 @media (max-width: 900px) {
     .hero-flex {
         flex-direction: column;
         text-align: center;
     }
-
+    
     .hero-title {
-        font-size: 42px;
+        font-size: 36px;
     }
-
-    .hero-subtitle {
-        font-size: 20px;
-    }
-
+    
     .femida-wrapper {
-        width: 300px;
-        margin-top: 30px;
+        width: 280px;
     }
-
+    
     .about-flex {
         flex-direction: column;
         text-align: center;
     }
-
-    .about-features {
-        justify-content: center;
-    }
-
+    
     .why-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
+    
     .contacts-wrapper {
         grid-template-columns: 1fr;
-        gap: 30px;
     }
-
-    .contacts-map {
-        min-height: 350px;
-    }
-
-    /* Упрощаем 3D на мобилах */
-    .carousel-wrapper {
-        height: 400px;
-    }
-
-    .service-card {
-        width: 260px;
-        padding: 20px 15px;
+    
+    .carousel-btn {
+        display: none;
     }
 }
 
 @media (max-width: 600px) {
     .hero-title {
-        font-size: 32px;
+        font-size: 28px;
     }
-
+    
+    .service-card {
+        width: 260px;
+    }
+    
     .why-grid {
         grid-template-columns: 1fr;
     }
-
-    .contacts-info .contact-item {
-        font-size: 18px;
-    }
-
-    .contacts-info .contact-item a {
-        font-size: 18px;
-    }
-
-    .carousel-wrapper {
-        height: 350px;
-    }
-
-    .service-card {
-        width: 220px;
-        padding: 15px;
+    
+    .about-features {
+        justify-content: center;
     }
 }
