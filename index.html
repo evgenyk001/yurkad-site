@@ -2,45 +2,32 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Юридические услуги в Артёме | ЮрКад - профессиональная защита</title>
-    <meta name="description" content="Юридическая компания ЮрКад в Артёме. Профессиональная защита в судах, арбитраже, жилищные и семейные споры. Консультация бесплатно! Звоните: +7 (914) 344 45 13">
-    <meta name="keywords" content="юридические услуги Артём, адвокат Артём, юрист консультация, арбитражные споры, семейные споры Артём, жилищные споры, земельное право">
+    <title>ЮрКад — юридические услуги в Артёме</title>
+    <meta name="description" content="Юридическая компания ЮрКад в Артёме. Профессиональная защита в судах, семейные и жилищные споры. Бесплатная консультация">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <!-- ШАПКА -->
-    <header class="header fade-in-up">
+    <header class="header">
         <div class="container">
-            <img src="assets/logo.png" alt="Логотип юридической компании ЮрКад в Артёме" class="logo">
+            <img src="assets/logo.png" alt="ЮрКад" class="logo">
         </div>
     </header>
 
     <!-- ПЕРВЫЙ ЭКРАН -->
     <section class="hero">
-        <div class="container hero-flex">
-
-            <!-- Текст -->
-            <div class="hero-content fade-in-up">
+        <div class="container hero-grid">
+            <div class="hero-content">
                 <h1 class="hero-title">Юридические услуги в Артёме</h1>
-
-                <p class="hero-subtitle">
-                    Профессиональная защита интересов в судах, арбитражах, жилищных и административных делах.
-                </p>
-
-                <!-- КНОПКА НА ВОТСАП -->
-                <a href="https://wa.me/79143444513" class="btn" target="_blank">
-                    Получить консультацию в WhatsApp
-                </a>
+                <p class="hero-subtitle">Профессиональная защита в судах, арбитражах, жилищных и административных делах</p>
+                <a href="https://wa.me/79143444513" class="btn" target="_blank">Получить консультацию в WhatsApp</a>
             </div>
-
-            <!-- Фемида -->
-            <div class="hero-image fade-in-up">
-                <div class="femida-wrapper">
-                    <!-- SVG ФЕМИДА -->
-                    <svg width="380" height="380" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Изображение богини правосудия Фемиды">
-                        <g stroke="#9E937E" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+            <div class="hero-image">
+                <div class="femida">
+                    <svg width="380" height="380" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="#9E937E" stroke-width="18">
                             <circle cx="256" cy="90" r="40"/>
                             <path d="M256 130 C210 210, 210 300, 256 360 C302 300, 302 210, 256 130Z"/>
                             <line x1="256" y1="160" x2="160" y2="240"/>
@@ -55,155 +42,118 @@
                     </svg>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- УСЛУГИ — КАРУСЕЛЬ -->
-    <section class="services-carousel fade-in-up">
+    <!-- УСЛУГИ -->
+    <section class="services">
         <div class="container">
-            <h2>Наши услуги</h2>
-        </div>
-
-        <div class="carousel-wrapper">
-            <button class="carousel-btn left" aria-label="Предыдущая услуга">‹</button>
+            <h2 class="section-title">Наши услуги</h2>
             
-            <div class="carousel">
-                <!-- 1 -->
-                <div class="service-card">
-                    <div class="icon"></div>
-                    <h3>Арбитражные споры</h3>
-                    <p>Представительство в арбитражных судах, договорные споры, взыскание задолженности.</p>
+            <div class="services-slider">
+                <button class="slider-arrow prev" aria-label="Предыдущая">←</button>
+                
+                <div class="slider-container">
+                    <div class="slider-track">
+                        <div class="service-card" data-index="0">
+                            <h3>Арбитражные споры</h3>
+                            <p>Представительство в арбитражных судах, договорные споры, взыскание задолженности</p>
+                        </div>
+                        <div class="service-card" data-index="1">
+                            <h3>Семейные споры</h3>
+                            <p>Развод, алименты, раздел имущества, определение места жительства детей</p>
+                        </div>
+                        <div class="service-card" data-index="2">
+                            <h3>Жилищные споры</h3>
+                            <p>Выселение, признание права собственности, споры с застройщиками</p>
+                        </div>
+                        <div class="service-card" data-index="3">
+                            <h3>Земельное право</h3>
+                            <p>Оформление участков, амнистии, помощь льготным категориям</p>
+                        </div>
+                        <div class="service-card" data-index="4">
+                            <h3>Представительство в судах</h3>
+                            <p>Полное сопровождение, подготовка документов, защита интересов</p>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- 2 -->
-                <div class="service-card">
-                    <div class="icon"></div>
-                    <h3>Семейные споры</h3>
-                    <p>Развод, алименты, раздел имущества, определение места жительства детей.</p>
-                </div>
-
-                <!-- 3 -->
-                <div class="service-card">
-                    <div class="icon"></div>
-                    <h3>Жилищные споры</h3>
-                    <p>Выселение, признание права собственности, споры с застройщиками.</p>
-                </div>
-
-                <!-- 4 -->
-                <div class="service-card">
-                    <div class="icon"></div>
-                    <h3>Земельное право</h3>
-                    <p>Оформление участков, амнистии, помощь льготным категориям граждан.</p>
-                </div>
-
-                <!-- 5 -->
-                <div class="service-card">
-                    <div class="icon"></div>
-                    <h3>Представительство в судах</h3>
-                    <p>Полное сопровождение, подготовка документов, защита интересов.</p>
-                </div>
+                
+                <button class="slider-arrow next" aria-label="Следующая">→</button>
             </div>
-
-            <button class="carousel-btn right" aria-label="Следующая услуга">›</button>
+            
+            <div class="slider-dots"></div>
         </div>
-
-        <!-- Индикаторы (точки) -->
-        <div class="carousel-dots"></div>
     </section>
 
     <!-- О КОМПАНИИ -->
-    <section class="about fade-in-up">
-        <div class="container about-flex">
-
-            <div class="about-text">
-                <h2>О компании</h2>
-                <p>
-                    ЮрКад — юридическая компания, оказывающая профессиональную помощь в решении сложных правовых вопросов.
-                    Мы работаем официально, строго соблюдаем конфиденциальность и сопровождаем клиентов на всех этапах.
-                </p>
-
-                <div class="about-features">
+    <section class="about">
+        <div class="container about-grid">
+            <div class="about-content">
+                <h2 class="section-title">О компании</h2>
+                <p>ЮрКад — юридическая компания, оказывающая профессиональную помощь в решении сложных правовых вопросов. Мы работаем официально, строго соблюдаем конфиденциальность и сопровождаем клиентов на всех этапах.</p>
+                <div class="features">
                     <span class="feature">10+ лет опыта</span>
                     <span class="feature">Конфиденциальность</span>
                     <span class="feature">Индивидуальный подход</span>
                 </div>
             </div>
-
-            <div class="about-image fade-in-up">
-                <div class="about-svg">
-                    <!-- SVG МОЛОТОК СУДЬИ -->
-                    <svg width="240" height="240" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Изображение судейского молотка">
-                        <g stroke="#9E937E" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="120" y1="360" x2="360" y2="120"/>
-                            <rect x="300" y="80" width="120" height="80" rx="10" stroke="#9E937E" fill="none"/>
-                            <rect x="80" y="360" width="260" height="60" rx="10" stroke="#9E937E" fill="none"/>
-                        </g>
-                    </svg>
-                </div>
+            <div class="about-image">
+                <svg width="240" height="240" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="#9E937E" stroke-width="22">
+                        <line x1="120" y1="360" x2="360" y2="120"/>
+                        <rect x="300" y="80" width="120" height="80" rx="10" stroke="#9E937E" fill="none"/>
+                        <rect x="80" y="360" width="260" height="60" rx="10" stroke="#9E937E" fill="none"/>
+                    </g>
+                </svg>
             </div>
-
         </div>
     </section>
 
     <!-- ПОЧЕМУ МЫ -->
-    <section class="why fade-in-up">
+    <section class="why">
         <div class="container">
-            <h2>Почему выбирают нас</h2>
-
+            <h2 class="section-title">Почему выбирают нас</h2>
             <div class="why-grid">
-                <div class="why-card">
-                    <div class="why-icon"></div>
-                    Официальная работа
+                <div class="why-item">
+                    <div class="why-icon">✓</div>
+                    <span>Официальная работа</span>
                 </div>
-
-                <div class="why-card">
-                    <div class="why-icon"></div>
-                    Высокий процент выигранных дел
+                <div class="why-item">
+                    <div class="why-icon">✓</div>
+                    <span>Высокий процент выигранных дел</span>
                 </div>
-
-                <div class="why-card">
-                    <div class="why-icon"></div>
-                    Прозрачные условия
+                <div class="why-item">
+                    <div class="why-icon">✓</div>
+                    <span>Прозрачные условия</span>
                 </div>
-
-                <div class="why-card">
-                    <div class="why-icon"></div>
-                    Индивидуальная стратегия
+                <div class="why-item">
+                    <div class="why-icon">✓</div>
+                    <span>Индивидуальная стратегия</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- КОНТАКТЫ + КАРТА -->
-    <section id="contacts" class="contacts fade-in-up">
+    <!-- КОНТАКТЫ -->
+    <section class="contacts" id="contacts">
         <div class="container">
-            <h2>Контакты</h2>
-
-            <div class="contacts-wrapper">
-                <!-- Левая колонка - информация -->
+            <h2 class="section-title">Контакты</h2>
+            <div class="contacts-grid">
                 <div class="contacts-info">
-                    <div class="contact-item">
-                        <strong>Телефон:</strong>
+                    <div class="contact-block">
+                        <strong>Телефон</strong>
                         <a href="tel:+79143444513">+7 (914) 344 45 13</a>
                     </div>
-                    
-                    <div class="contact-item">
-                        <strong>Email:</strong>
+                    <div class="contact-block">
+                        <strong>Email</strong>
                         <a href="mailto:jurist.2023@bk.ru">jurist.2023@bk.ru</a>
                     </div>
-                    
-                    <div class="contact-item">
-                        <strong>Адрес:</strong>
+                    <div class="contact-block">
+                        <strong>Адрес</strong>
                         <span>г. Артём, площадь Ленина 3, офис 2,3</span>
                     </div>
-
-                    <a href="https://wa.me/79143444513" class="whatsapp-btn" target="_blank">
-                        Написать в WhatsApp
-                    </a>
+                    <a href="https://wa.me/79143444513" class="btn whatsapp-btn" target="_blank">Написать в WhatsApp</a>
                 </div>
-
-                <!-- Правая колонка - карта 2ГИС -->
                 <div class="contacts-map">
                     <iframe src="https://maps.2gis.com/embed/ru?m=43.350677%2C132.191395&r=43.350672%2C132.191353" width="100%" height="100%" frameborder="0" allowfullscreen="true"></iframe>
                 </div>
@@ -212,7 +162,7 @@
     </section>
 
     <!-- ФУТЕР -->
-    <footer class="footer fade-in-up">
+    <footer class="footer">
         <div class="container">
             <p>© ЮрКад, 2024. Все права защищены.</p>
         </div>
