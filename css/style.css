@@ -175,7 +175,7 @@ body {
     box-shadow: 0 10px 25px rgba(158, 147, 126, 0.3);
 }
 
-/* Правая колонка — Фемида (PNG) - ТОЧНО КАК ЛОГО #9E937E */
+/* Правая колонка — Фемида (PNG) - МИНИМАЛЬНАЯ КОРРЕКЦИЯ */
 .hero-right {
     display: flex;
     justify-content: flex-end;
@@ -197,8 +197,8 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    /* Точная подгонка под #9E937E - умеренно, как лого */
-    filter: sepia(0.5) saturate(1.8) brightness(1.02);
+    /* Очень слабая коррекция, почти оригинал */
+    filter: sepia(0.15) saturate(1.2) brightness(1.01);
 }
 
 /* ========== КАРТОЧКИ УСЛУГ ========== */
@@ -446,7 +446,7 @@ body {
     }
     
     .femida-image {
-        filter: sepia(0.4) saturate(1.6) brightness(1.02); /* Чуть слабее на мобилках */
+        filter: sepia(0.1) saturate(1.1) brightness(1.01);
     }
     
     .cards-grid {
