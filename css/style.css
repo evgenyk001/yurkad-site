@@ -181,7 +181,7 @@ body {
     cursor: pointer;
     width: auto;
     align-self: flex-start;
-    margin-top: -130px; /* ПОДНЯЛ */
+    margin-top: -160px; /* ПОДНЯЛ */
     margin-bottom: 0;
     letter-spacing: 0.5px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
