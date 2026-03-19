@@ -183,7 +183,7 @@ body {
 
 .femida-wrapper {
     width: 100%;
-    max-width: 320px; /* УМЕНЬШИЛ С 480px ДО 320px */
+    max-width: 320px;
     animation: float 6s ease-in-out infinite;
     filter: drop-shadow(0 0 30px rgba(158,147,126,0.3));
 }
@@ -197,6 +197,8 @@ body {
     width: 100%;
     height: auto;
     display: block;
+    /* Корректировка цвета под #9E937E */
+    filter: sepia(0.8) saturate(2.5) hue-rotate(0deg) brightness(0.9);
 }
 
 /* ========== КАРТОЧКИ УСЛУГ ========== */
@@ -440,7 +442,11 @@ body {
     }
     
     .femida-wrapper {
-        max-width: 280px; /* И на мобилке тоже уменьшил */
+        max-width: 280px;
+    }
+    
+    .femida-image {
+        filter: sepia(0.6) saturate(2) brightness(0.9); /* Чуть слабее на мобилках */
     }
     
     .cards-grid {
@@ -509,7 +515,7 @@ body {
     }
     
     .femida-wrapper {
-        max-width: 220px; /* Ещё меньше на маленьких телефонах */
+        max-width: 220px;
     }
     
     .cards-grid {
