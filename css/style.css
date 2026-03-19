@@ -517,7 +517,6 @@ body {
         font-size: 10px;
     }
     
-    /* ФИКС ФОНА - БЕЗ ГОРИЗОНТАЛЬНОГО СКРОЛЛА */
     .hero {
         margin-top: 115px;
         min-height: calc(100vh - 115px);
@@ -526,7 +525,6 @@ body {
         background: linear-gradient(180deg, #35342B 0%, #2E2D26 100%);
     }
     
-    /* Контент остаётся в центре */
     .hero .container {
         width: 100%;
         max-width: 100%;
@@ -544,7 +542,6 @@ body {
         margin-bottom: 10px;
     }
     
-    /* Анимация слов */
     .hero-words-wrapper {
         width: 100%;
         display: flex;
@@ -565,7 +562,6 @@ body {
         max-width: 100%;
     }
     
-    /* Фемида */
     .hero-right {
         width: 100%;
         justify-content: center;
@@ -577,7 +573,6 @@ body {
         margin: 0 auto;
     }
     
-    /* Текст */
     .hero-left {
         width: 100%;
         text-align: center;
@@ -596,7 +591,6 @@ body {
         line-height: 1.3;
     }
     
-    /* Кнопка */
     .hero .btn {
         display: block;
         width: 85%;
@@ -707,5 +701,44 @@ body {
         width: 90%;
         padding: 16px 20px;
         font-size: 18px;
+    }
+}
+
+/* ========== ЖЁСТКИЙ ФИКС ФОНА ДЛЯ МОБИЛЬНЫХ (ПЕРЕЗАПИСЫВАЕТ ВСЁ) ========== */
+@media (max-width: 600px) {
+    /* Защита от скролла */
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        position: relative;
+    }
+
+    /* Растягиваем проблемные секции */
+    .hero,
+    .features {
+        width: 100vw !important;
+        margin-left: -20px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        left: 0;
+        right: 0;
+        box-sizing: border-box !important;
+        background-size: cover;
+    }
+
+    /* Возвращаем контент в центр */
+    .hero .container,
+    .features .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
+    }
+
+    /* Страховка */
+    .hero-grid,
+    .features-grid {
+        width: 100%;
+        max-width: 100%;
     }
 }
