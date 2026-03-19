@@ -108,9 +108,10 @@ html {
     50% { transform: translateY(-12px); }
 }
 
-/* -------------------- КАРУСЕЛЬ (ПРОСТАЯ И РАБОЧАЯ) -------------------- */
+/* -------------------- КАРУСЕЛЬ -------------------- */
 .services-carousel {
     padding: 100px 0;
+    position: relative;
 }
 
 .services-carousel h2 {
@@ -157,13 +158,7 @@ html {
     border: 1px solid #4A483E;
     text-align: center;
     scroll-snap-align: start;
-    transition: 0.3s;
-}
-
-.service-card:hover {
-    border-color: #9E937E;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(158,147,126,0.2);
+    transition: all 0.3s ease;
 }
 
 .service-card h3 {
@@ -208,6 +203,29 @@ html {
 
 .carousel-btn.right {
     right: 0;
+}
+
+/* -------------------- ИНДИКАТОРЫ КАРУСЕЛИ -------------------- */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4A483E;
+    border: 1px solid #9E937E;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dot.active {
+    background: #9E937E;
+    transform: scale(1.2);
 }
 
 /* -------------------- О КОМПАНИИ -------------------- */
@@ -392,15 +410,19 @@ html {
     font-size: 14px;
 }
 
-/* -------------------- АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ -------------------- */
-@media (max-width: 900px) {
+/* -------------------- АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ -------------------- */
+@media (max-width: 768px) {
     .hero-flex {
         flex-direction: column;
         text-align: center;
     }
     
     .hero-title {
-        font-size: 36px;
+        font-size: 32px;
+    }
+    
+    .hero-subtitle {
+        font-size: 18px;
     }
     
     .femida-wrapper {
@@ -410,6 +432,10 @@ html {
     .about-flex {
         flex-direction: column;
         text-align: center;
+    }
+    
+    .about-features {
+        justify-content: center;
     }
     
     .why-grid {
@@ -423,22 +449,115 @@ html {
     .carousel-btn {
         display: none;
     }
-}
-
-@media (max-width: 600px) {
-    .hero-title {
-        font-size: 28px;
+    
+    /* Карусель на телефоне - по 1 слайду */
+    .carousel {
+        gap: 15px;
+        scroll-snap-type: x mandatory;
+        padding: 10px 0 20px;
     }
     
     .service-card {
-        width: 260px;
+        flex: 0 0 calc(100% - 60px);
+        max-width: 300px;
+        margin: 0 auto;
+        scroll-snap-align: center;
+    }
+    
+    .service-card:not(.active) {
+        opacity: 0.7;
+        transform: scale(0.95);
+    }
+    
+    .carousel {
+        scroll-padding: 0 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 28px;
     }
     
     .why-grid {
         grid-template-columns: 1fr;
     }
     
-    .about-features {
+    .service-card {
+        flex: 0 0 calc(100% - 40px);
+        max-width: 260px;
+    }
+}
+
+/* -------------------- 3D ЭФФЕКТ ДЛЯ КОМПА -------------------- */
+@media (min-width: 1024px) {
+    .services-carousel {
+        overflow: hidden;
+        padding: 100px 0;
+    }
+    
+    .carousel-wrapper {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        perspective: 1200px;
+    }
+    
+    .carousel {
+        display: flex;
         justify-content: center;
+        align-items: center;
+        gap: 20px;
+        min-height: 450px;
+        overflow: visible;
+        transform-style: preserve-3d;
+    }
+    
+    .service-card {
+        flex: 0 0 280px;
+        transition: all 0.5s ease;
+        opacity: 0.6;
+        transform: scale(0.85) translateX(0) rotateY(0deg);
+        filter: blur(2px);
+        position: relative;
+        z-index: 1;
+    }
+    
+    .service-card.active {
+        flex: 0 0 320px;
+        opacity: 1;
+        transform: scale(1.2) translateZ(50px);
+        filter: blur(0);
+        z-index: 10;
+        border-color: #9E937E;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    
+    .service-card.prev {
+        transform: scale(0.9) translateX(-30px) rotateY(10deg);
+        opacity: 0.8;
+        filter: blur(1px);
+        z-index: 5;
+    }
+    
+    .service-card.next {
+        transform: scale(0.9) translateX(30px) rotateY(-10deg);
+        opacity: 0.8;
+        filter: blur(1px);
+        z-index: 5;
+    }
+    
+    .service-card.far {
+        opacity: 0.4;
+        transform: scale(0.7) translateX(-60px) rotateY(20deg);
+        filter: blur(3px);
+    }
+    
+    .service-card.far.next {
+        transform: scale(0.7) translateX(60px) rotateY(-20deg);
+    }
+    
+    .carousel::-webkit-scrollbar {
+        display: none;
     }
 }
