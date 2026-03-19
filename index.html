@@ -55,31 +55,36 @@
         </div>
     </header>
 
-    <!-- ПЕРВЫЙ ЭКРАН: АНИМАЦИЯ СВЕРХУ + СТАТИЧНЫЙ БЛОК + ФЕМИДА -->
+    <!-- ПЕРВЫЙ ЭКРАН: АНИМАЦИЯ + ТЕКСТ + ФЕМИДА + КНОПКА -->
     <section class="hero">
         <div class="container hero-grid">
             
-            <!-- Левая колонка -->
-            <div class="hero-left">
-                <!-- Анимированные слова (живут своей жизнью) -->
-                <div class="hero-words-wrapper">
-                    <span class="hero-word" id="changing-word">Профессиональная</span>
+            <!-- Ряд с текстом и Фемидой (для мобилок будет в одну строку) -->
+            <div class="hero-row">
+                <!-- Левая колонка с текстом -->
+                <div class="hero-left">
+                    <!-- Анимированные слова -->
+                    <div class="hero-words-wrapper">
+                        <span class="hero-word" id="changing-word">Профессиональная</span>
+                    </div>
+                    
+                    <!-- СТАТИЧНЫЙ БЛОК -->
+                    <div class="hero-static">
+                        <h1 class="hero-title">юридическая защита</h1>
+                        <p class="hero-subtitle">в Артёме и Приморском крае</p>
+                    </div>
                 </div>
                 
-                <!-- СТАТИЧНЫЙ БЛОК, КОТОРЫЙ НЕ ДВИГАЕТСЯ -->
-                <div class="hero-static">
-                    <h1 class="hero-title">юридическая защита</h1>
-                    <p class="hero-subtitle">в Артёме и Приморском крае</p>
-                    <a href="#contacts" class="btn">Получить консультацию</a>
+                <!-- Правая колонка с Фемидой -->
+                <div class="hero-right">
+                    <div class="femida-wrapper">
+                        <img src="assets/femida.png" alt="Фемида" class="femida-image">
+                    </div>
                 </div>
             </div>
-            
-            <!-- Правая колонка с Фемидой (PNG) -->
-            <div class="hero-right">
-                <div class="femida-wrapper">
-                    <img src="assets/femida.png" alt="Фемида" class="femida-image">
-                </div>
-            </div>
+
+            <!-- Кнопка вынесена отдельно, чтобы быть под всем на мобилках -->
+            <a href="#contacts" class="btn">Получить консультацию</a>
 
         </div>
     </section>
