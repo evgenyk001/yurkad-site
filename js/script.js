@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Анимация смены слов на первом экране
-    const words = ['Профессиональная', 'Надёжная', 'Честная', 'Опытная'];
+    // Анимация смены слов
+    const words = ['Профессиональная', 'Надёжная', 'Честная', 'Компетентная'];
     const wordElement = document.getElementById('changing-word');
     let index = 0;
     
@@ -8,14 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(() => {
             index = (index + 1) % words.length;
             wordElement.style.opacity = '0';
+            wordElement.style.transform = 'translateY(10px)';
+            
             setTimeout(() => {
                 wordElement.textContent = words[index];
                 wordElement.style.opacity = '1';
-            }, 300);
-        }, 3000);
+                wordElement.style.transform = 'translateY(0)';
+            }, 200);
+        }, 2500);
     }
     
-    // Плавный скролл к якорям
+    // Плавный скролл
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
             e.preventDefault();
