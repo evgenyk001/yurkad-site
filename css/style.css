@@ -203,7 +203,7 @@ body {
     max-width: 320px;
     animation: float 6s ease-in-out infinite;
     filter: drop-shadow(0 0 30px rgba(158,147,126,0.3));
-    margin-top: -30px;
+    margin-top: -60px;
 }
 
 @keyframes float {
