@@ -20,7 +20,7 @@ body {
 
 /* ========== ШАПКА ========== */
 .header {
-    padding: 20px 0;
+    padding: 15px 0;
     background: rgba(53, 52, 43, 0.95);
     backdrop-filter: blur(10px);
     position: fixed;
