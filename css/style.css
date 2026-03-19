@@ -37,14 +37,14 @@ body {
     align-items: center;
 }
 
-/* Лого крупное */
+/* Лого очень крупное */
 .logo-wrapper {
     flex-shrink: 0;
 }
 
 .logo {
     width: auto;
-    height: 80px; /* Очень крупно на компе */
+    height: 120px; /* ОЧЕНЬ КРУПНО */
     transition: opacity 0.3s;
 }
 
@@ -52,10 +52,10 @@ body {
     opacity: 0.9;
 }
 
-/* Навигация иконками */
+/* Навигация иконками БЕЗ ОБВОДКИ */
 .nav-icons {
     display: flex;
-    gap: 30px;
+    gap: 40px;
     align-items: center;
 }
 
@@ -72,29 +72,24 @@ body {
 }
 
 .nav-icon {
-    width: 48px;
-    height: 48px;
-    background: rgba(158, 147, 126, 0.1);
-    border-radius: 50%;
+    /* Убрал фон и обводку */
+    background: none;
+    width: auto;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 6px;
-    transition: background 0.3s;
-}
-
-.nav-icon-item:hover .nav-icon {
-    background: rgba(158, 147, 126, 0.2);
+    margin-bottom: 8px;
 }
 
 .nav-icon svg {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     stroke: #9E937E;
 }
 
 .nav-label {
-    font-size: 12px;
+    font-size: 14px;
     color: #9E937E;
     letter-spacing: 0.5px;
     font-weight: 500;
@@ -107,7 +102,7 @@ body {
     align-items: center;
     padding: 140px 0 100px;
     background: linear-gradient(180deg, #35342B 0%, #2E2D26 100%);
-    margin-top: 100px;
+    margin-top: 140px; /* увеличил под большое лого */
 }
 
 .hero-grid {
@@ -122,16 +117,16 @@ body {
     max-width: 650px;
 }
 
-/* Фиксированная высота для анимации */
+/* ФИКСИРОВАННАЯ ВЫСОТА - НИЧЕГО НЕ ПРЫГАЕТ */
 .hero-words-container {
-    height: 120px;
+    height: 80px; /* фиксированная высота */
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
 
 .hero-word {
-    font-size: 90px;
+    font-size: 64px; /* уменьшил */
     font-weight: 700;
     color: #9E937E;
     line-height: 1;
@@ -140,7 +135,7 @@ body {
 }
 
 .hero-title {
-    font-size: 60px;
+    font-size: 48px; /* уменьшил */
     font-weight: 500;
     margin-bottom: 15px;
     color: #FFFFFF;
@@ -148,7 +143,7 @@ body {
 }
 
 .hero-subtitle {
-    font-size: 26px;
+    font-size: 24px;
     color: #D6D6D6;
     margin-bottom: 40px;
     font-weight: 400;
@@ -386,19 +381,19 @@ body {
 /* ========== АДАПТАЦИЯ ========== */
 @media (max-width: 1100px) {
     .hero-word {
-        font-size: 70px;
+        font-size: 54px;
     }
     
     .hero-title {
-        font-size: 48px;
+        font-size: 42px;
     }
     
     .hero-words-container {
-        height: 90px;
+        height: 70px;
     }
     
     .logo {
-        height: 60px;
+        height: 90px; /* на средних экранах */
     }
 }
 
@@ -435,53 +430,50 @@ body {
     }
     
     .nav-icons {
-        gap: 20px;
+        gap: 25px;
     }
 }
 
 @media (max-width: 600px) {
     .header-container {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row; /* В СТРОКУ на телефоне */
+        justify-content: space-between;
+        align-items: center;
+        gap: 0;
     }
     
     .logo {
-        height: 50px;
+        height: 70px; /* на телефоне */
     }
     
     .nav-icons {
         gap: 15px;
     }
     
-    .nav-icon {
-        width: 40px;
-        height: 40px;
-    }
-    
     .nav-icon svg {
-        width: 20px;
-        height: 20px;
+        width: 28px;
+        height: 28px;
     }
     
     .nav-label {
-        font-size: 10px;
+        font-size: 12px;
     }
     
     .hero {
         margin-top: 140px;
-        padding: 80px 0;
+        padding: 60px 0;
     }
     
     .hero-words-container {
-        height: 60px;
+        height: 50px;
     }
     
     .hero-word {
-        font-size: 48px;
+        font-size: 40px;
     }
     
     .hero-title {
-        font-size: 32px;
+        font-size: 28px;
     }
     
     .hero-subtitle {
@@ -490,7 +482,7 @@ body {
     }
     
     .femida-wrapper {
-        max-width: 260px;
+        max-width: 240px;
     }
     
     .cards-grid {
@@ -511,5 +503,24 @@ body {
         flex-direction: column;
         gap: 15px;
         text-align: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .logo {
+        height: 50px;
+    }
+    
+    .nav-icons {
+        gap: 10px;
+    }
+    
+    .nav-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .nav-label {
+        font-size: 10px;
     }
 }
