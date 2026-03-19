@@ -97,7 +97,7 @@ body {
 
 /* ========== ПЕРВЫЙ ЭКРАН ========== */
 .hero {
-    min-height: calc(100vh - 120px); /* ФИКСИРУЕМ ВЫСОТУ */
+    min-height: calc(100vh - 120px);
     display: flex;
     align-items: center;
     padding: 20px 0;
@@ -139,7 +139,7 @@ body {
 
 .hero-word {
     font-size: 72px;
-    font-weight: 800; /* ПОЖИРНЕЕ */
+    font-weight: 800;
     color: #9E937E;
     line-height: 1;
     transition: opacity 0.5s ease;
@@ -155,7 +155,7 @@ body {
 .hero-title {
     font-size: 48px;
     font-weight: 600;
-    margin-bottom: 5px; /* УМЕНЬШИЛ */
+    margin-bottom: 5px;
     color: #FFFFFF;
     line-height: 1.2;
 }
@@ -163,7 +163,7 @@ body {
 .hero-subtitle {
     font-size: 24px;
     color: #D6D6D6;
-    margin-bottom: 5px; /* УМЕНЬШИЛ */
+    margin-bottom: 5px;
     font-weight: 400;
 }
 
@@ -182,7 +182,7 @@ body {
     cursor: pointer;
     width: auto;
     align-self: flex-start;
-    margin-top: -180px; /* ПОДНЯЛ */
+    margin-top: -180px;
     margin-bottom: 0;
     letter-spacing: 0.5px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -517,13 +517,12 @@ body {
         font-size: 10px;
     }
     
-    /* ФИКС ФОНА - РАСТЯГИВАЕМ НА ВСЮ ШИРИНУ */
+    /* ФИКС ФОНА - БЕЗ ГОРИЗОНТАЛЬНОГО СКРОЛЛА */
     .hero {
         margin-top: 115px;
         min-height: calc(100vh - 115px);
         padding: 15px 0;
-        width: 100vw;
-        margin-left: calc(-50vw + 50%);
+        width: 100%;
         background: linear-gradient(180deg, #35342B 0%, #2E2D26 100%);
     }
     
@@ -532,6 +531,7 @@ body {
         width: 100%;
         max-width: 100%;
         padding: 0 20px;
+        margin: 0 auto;
         position: relative;
         z-index: 2;
     }
