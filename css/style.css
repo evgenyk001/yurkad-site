@@ -1,5 +1,4 @@
 /* -------------------- БАЗА -------------------- */
-
 body {
     background: #35342B;
     color: #FFFFFF;
@@ -19,7 +18,6 @@ html {
 }
 
 /* -------------------- ГЛОБАЛЬНЫЕ АНИМАЦИИ -------------------- */
-
 .fade-in-up {
     opacity: 0;
     transform: translateY(20px);
@@ -34,7 +32,6 @@ html {
 }
 
 /* -------------------- ШАПКА -------------------- */
-
 .header {
     padding: 20px 0;
     position: sticky;
@@ -52,7 +49,6 @@ html {
 }
 
 /* -------------------- ПЕРВЫЙ ЭКРАН -------------------- */
-
 .hero {
     padding: 140px 0;
     background: linear-gradient(180deg, #35342B 0%, #2E2D26 100%);
@@ -62,6 +58,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 40px;
 }
 
 .hero-title {
@@ -80,7 +77,6 @@ html {
 }
 
 /* -------------------- ПРЕМИАЛЬНАЯ КНОПКА -------------------- */
-
 .premium-btn {
     position: relative;
     display: inline-block;
@@ -122,7 +118,6 @@ html {
 }
 
 /* -------------------- ФЕМИДА -------------------- */
-
 .femida-wrapper {
     width: 420px;
     opacity: 0.9;
@@ -136,10 +131,10 @@ html {
     100% { transform: translateY(0); }
 }
 
-/* -------------------- КАРУСЕЛЬ УСЛУГ (APPLE STYLE) -------------------- */
-
+/* -------------------- КАРУСЕЛЬ УСЛУГ (НОВАЯ, РАБОЧАЯ) -------------------- */
 .services-carousel {
     padding: 120px 0;
+    overflow: hidden; /* чтобы ничего не вылезало */
 }
 
 .services-carousel h2 {
@@ -153,41 +148,45 @@ html {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 0 60px;
+    padding: 0 20px;
 }
 
 .carousel {
-    position: relative;
-    width: 100%;
-    height: 360px;
     display: flex;
-    justify-content: center; /* центр фиксирован */
-    align-items: center;
-    overflow: visible;
-    perspective: 1200px;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 20px 10px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Прячем скроллбар, но оставляем функционал */
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+.carousel {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .service-card {
-    position: absolute; /* ⭐ карточки могут ездить вокруг центра */
-    left: 50%;          /* центр сцены */
-    top: 50%;
-    transform-origin: center;
-    min-width: 300px;
+    flex: 0 0 auto;
+    width: 320px;
     background: #2E2D26;
-    padding: 30px;
+    padding: 30px 20px;
     border-radius: 14px;
     border: 1px solid #4A483E;
     text-align: center;
-    transition: 0.45s ease;
-    opacity: 0.45;
-    transform: translate(-50%, -50%) scale(0.75) rotateY(25deg);
+    transition: all 0.3s ease;
+    scroll-snap-align: start;
+    opacity: 0.9;
 }
 
-.service-card.active {
-    transform: scale(1.15) rotateY(0deg);
-    opacity: 1;
+.service-card:hover {
+    transform: translateY(-5px);
     border-color: #9E937E;
-    box-shadow: 0 0 35px rgba(158,147,126,0.35);
+    box-shadow: 0 10px 30px rgba(158,147,126,0.25);
 }
 
 .service-card h3 {
@@ -203,34 +202,40 @@ html {
 }
 
 .carousel-btn {
-    position: absolute;          /* ⭐ фиксируем стрелки */
-    top: 50%;                    /* по вертикали по центру */
-    transform: translateY(-50%); /* выравнивание */
-    z-index: 20;                 /* поверх карточек */
-
-    background: none;
-    border: none;
+    background: rgba(46, 45, 38, 0.8);
+    border: 1px solid #9E937E;
     color: #9E937E;
-    font-size: 48px;
+    font-size: 32px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     cursor: pointer;
-    padding: 10px;
     transition: 0.3s;
-}
-
-.carousel-btn.left {
-    left: 20px;   /* ⭐ слева */
-}
-
-.carousel-btn.right {
-    right: 20px;  /* ⭐ справа */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    backdrop-filter: blur(5px);
 }
 
 .carousel-btn:hover {
-    color: #ffffff;
+    background: #9E937E;
+    color: #35342B;
+    border-color: #9E937E;
+}
+
+.carousel-btn.left {
+    left: 10px;
+}
+
+.carousel-btn.right {
+    right: 10px;
 }
 
 /* -------------------- О КОМПАНИИ -------------------- */
-
 .about {
     padding: 120px 0;
 }
@@ -244,18 +249,20 @@ html {
 .about-text h2 {
     font-size: 36px;
     margin-bottom: 20px;
+    color: #FFFFFF;
 }
 
 .about-text p {
     font-size: 20px;
     color: #D6D6D6;
     line-height: 1.7;
+    margin-bottom: 30px;
 }
 
 .about-features {
-    margin-top: 30px;
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .feature {
@@ -267,10 +274,15 @@ html {
     font-weight: bold;
     font-size: 18px;
     box-shadow: 0 0 15px rgba(0,0,0,0.25);
+    transition: 0.3s;
 }
 
-/* -------------------- ПОЧЕМУ МЫ -------------------- */
+.feature:hover {
+    border-color: #9E937E;
+    transform: translateY(-3px);
+}
 
+/* -------------------- ПОЧЕМУ МЫ (С ИКОНКАМИ) -------------------- */
 .why {
     padding: 120px 0;
 }
@@ -279,34 +291,51 @@ html {
     text-align: center;
     font-size: 36px;
     margin-bottom: 50px;
+    color: #FFFFFF;
 }
 
 .why-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
 }
 
 .why-card {
     background: #2E2D26;
-    padding: 30px;
+    padding: 35px 20px;
     border-radius: 10px;
     border: 1px solid #4A483E;
     text-align: center;
     font-size: 20px;
     color: #D6D6D6;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     box-shadow: 0 0 0 transparent;
+    position: relative;
+}
+
+.why-card::before {
+    content: "✓";
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: #9E937E;
+    color: #35342B;
+    font-size: 28px;
+    font-weight: bold;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .why-card:hover {
     border-color: #9E937E;
-    transform: translateY(-6px);
-    box-shadow: 0 0 25px rgba(158,147,126,0.25);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(158,147,126,0.2);
 }
 
-/* -------------------- КОНТАКТЫ -------------------- */
-
+/* -------------------- КОНТАКТЫ + КАРТА (2 КОЛОНКИ) -------------------- */
 .contacts {
     padding: 120px 0;
 }
@@ -314,21 +343,86 @@ html {
 .contacts h2 {
     text-align: center;
     font-size: 36px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    color: #FFFFFF;
 }
 
-.contacts-grid {
+.contacts-wrapper {
     display: grid;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.contacts-info {
+    background: #2E2D26;
+    padding: 40px;
+    border-radius: 14px;
+    border: 1px solid #4A483E;
+}
+
+.contacts-info .contact-item {
     font-size: 22px;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #4A483E;
+}
+
+.contacts-info .contact-item:last-child {
+    border-bottom: none;
 }
 
 .contact-item strong {
     color: #9E937E;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.contact-item a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.contact-item a:hover {
+    color: #9E937E;
+}
+
+.contacts-info .whatsapp-btn {
+    display: inline-block;
+    background: #9E937E;
+    color: #35342B;
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: 0.3s;
+    font-size: 18px;
+}
+
+.contacts-info .whatsapp-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(158,147,126,0.3);
+}
+
+.contacts-map {
+    border-radius: 14px;
+    overflow: hidden;
+    height: 100%;
+    min-height: 400px;
+    border: 1px solid #4A483E;
+}
+
+.contacts-map iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 /* -------------------- ФУТЕР -------------------- */
-
 .footer {
     padding: 40px 0;
     text-align: center;
@@ -338,11 +432,18 @@ html {
 }
 
 /* -------------------- АДАПТИВ -------------------- */
-
 @media (max-width: 900px) {
     .hero-flex {
         flex-direction: column;
         text-align: center;
+    }
+
+    .hero-title {
+        font-size: 42px;
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
     }
 
     .femida-wrapper {
@@ -355,7 +456,42 @@ html {
         text-align: center;
     }
 
+    .about-features {
+        justify-content: center;
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contacts-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .contacts-map {
+        min-height: 350px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .service-card {
+        width: 260px;
+    }
+
     .why-grid {
         grid-template-columns: 1fr;
+    }
+
+    .contacts-info .contact-item {
+        font-size: 18px;
+    }
+
+    .contacts-info .contact-item a {
+        font-size: 18px;
     }
 }
