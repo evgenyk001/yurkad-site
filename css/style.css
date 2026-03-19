@@ -117,7 +117,7 @@ body {
     gap: 60px;
     align-items: center;
     width: 100%;
-    margin-bottom: 20px; /* Уменьшил отступ под кнопку */
+    margin-bottom: 15px; /* Уменьшил, чтобы кнопка поднялась */
 }
 
 /* Левая колонка */
@@ -169,25 +169,26 @@ body {
 /* Кнопка в компьютерной версии - ПОДНЯЛ И УВЕЛИЧИЛ */
 .hero .btn {
     display: inline-block;
-    padding: 18px 48px; /* Увеличил */
+    padding: 20px 52px; /* Ещё увеличил */
     background: #9E937E;
     color: #35342B;
     text-decoration: none;
-    border-radius: 8px; /* Чуть скруглил */
-    font-weight: 700; /* Жирнее */
-    font-size: 18px; /* Увеличил */
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 20px; /* Увеличил */
     transition: all 0.3s;
     border: none;
     cursor: pointer;
     width: auto;
     align-self: flex-start;
-    margin-top: 10px; /* Поднял */
+    margin-top: 5px; /* Поднял */
     letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 30px rgba(158, 147, 126, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 35px rgba(158, 147, 126, 0.5);
 }
 
 /* Правая колонка — Фемида (НЕ ТРОГАЕМ) */
@@ -487,20 +488,20 @@ body {
 /* ========== МОБИЛЬНАЯ ВЕРСИЯ ========== */
 @media (max-width: 600px) {
     .header-container {
-        padding: 15px 20px; /* Увеличил отступ */
+        padding: 15px 20px;
     }
     
     .logo {
-        height: 60px; /* Увеличил с 45 до 60 */
+        height: 65px; /* Увеличил */
     }
     
     .nav-icons {
-        gap: 15px;
+        gap: 18px;
     }
     
     .nav-icon svg {
-        width: 24px;
-        height: 24px;
+        width: 26px;
+        height: 26px;
     }
     
     .nav-label {
@@ -508,8 +509,8 @@ body {
     }
     
     .hero {
-        margin-top: 90px; /* Опустил шапку */
-        min-height: calc(100vh - 90px);
+        margin-top: 95px; /* Опустил */
+        min-height: calc(100vh - 95px);
         padding: 30px 0;
     }
     
@@ -524,7 +525,6 @@ body {
     
     .hero-left {
         width: 55%;
-        max-width: 55%;
     }
     
     .hero-right {
@@ -532,47 +532,46 @@ body {
     }
     
     .femida-wrapper {
-        max-width: 140px; /* Увеличил с 120 до 140 */
+        max-width: 150px; /* Увеличил */
     }
     
     .hero-words-wrapper {
-        min-height: 36px;
+        min-height: 40px;
         margin-bottom: 8px;
     }
     
     .hero-word {
-        font-size: 24px; /* Увеличил с 20 до 24 */
+        font-size: 26px; /* Увеличил */
         white-space: normal;
         font-weight: 700;
     }
     
     .hero-title {
-        font-size: 18px; /* Увеличил */
+        font-size: 20px; /* Увеличил */
         margin-bottom: 5px;
-        font-weight: 500;
     }
     
     .hero-subtitle {
-        font-size: 15px; /* Увеличил */
-        margin-bottom: 0;
+        font-size: 16px; /* Увеличил */
     }
     
     .hero .btn {
         display: block;
         width: 85%;
-        max-width: 300px;
+        max-width: 320px;
         margin: 0 auto;
-        padding: 16px 24px; /* Увеличил */
-        font-size: 16px; /* Увеличил */
+        padding: 18px 28px; /* Увеличил */
+        font-size: 18px; /* Увеличил */
         font-weight: 700;
         border-radius: 8px;
         text-align: center;
         letter-spacing: 0.5px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
     
     .cards, .features, .contacts {
         padding: 50px 0;
-        scroll-margin-top: 90px;
+        scroll-margin-top: 95px;
     }
     
     .cards-grid {
@@ -637,11 +636,11 @@ body {
 
 @media (max-width: 400px) {
     .logo {
-        height: 50px;
+        height: 55px;
     }
     
     .nav-icons {
-        gap: 10px;
+        gap: 12px;
     }
     
     .hero-left {
@@ -653,24 +652,24 @@ body {
     }
     
     .femida-wrapper {
-        max-width: 120px;
+        max-width: 130px;
     }
     
     .hero-word {
-        font-size: 22px;
+        font-size: 24px;
     }
     
     .hero-title {
-        font-size: 17px;
+        font-size: 18px;
     }
     
     .hero-subtitle {
-        font-size: 14px;
+        font-size: 15px;
     }
     
     .hero .btn {
         width: 90%;
-        padding: 14px 20px;
-        font-size: 15px;
+        padding: 16px 24px;
+        font-size: 17px;
     }
 }
