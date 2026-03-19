@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Анимация смены слов
-    const words = ['Профессиональная', 'Надёжная', 'Честная', 'Компетентная'];
+    const words = ['Надёжная', 'Профессиональная', 'Честная', 'Компетентная'];
     const wordElement = document.getElementById('changing-word');
     let index = 0;
     
@@ -14,17 +14,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 wordElement.textContent = words[index];
                 wordElement.style.opacity = '1';
                 wordElement.style.transform = 'translateY(0)';
-            }, 200);
-        }, 2500);
+            }, 400); // чуть плавнее
+        }, 2800);
     }
     
-    // Плавный скролл
+    // Плавный скролл для всех якорей (работает с иконками)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
             e.preventDefault();
-            const target = document.querySelector(anchor.getAttribute('href'));
+            const targetId = anchor.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const target = document.querySelector(targetId);
             if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
+                target.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
     });
