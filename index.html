@@ -3,66 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>ЮрКад — юридические услуги в Артёме</title>
-    <meta name="description" content="Юридическая компания ЮрКад в Артёме. Профессиональная защита в судах, арбитраже, семейные и жилищные споры">
+    <meta name="description" content="Юридическая компания ЮрКад в Артёме. Профессиональная защита в судах">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- ШАПКА С ИКОНКАМИ -->
+    <!-- ШАПКА: ЛОГО СЛЕВА, МЕНЮ СПРАВА -->
     <header class="header">
         <div class="container header-container">
             
-            <!-- Лого слева (крупное) -->
+            <!-- Лого (очень крупное на компе) -->
             <div class="logo-wrapper">
                 <img src="assets/logo.png" alt="ЮрКад" class="logo">
             </div>
 
-            <!-- Навигация иконками -->
-            <nav class="nav-icons">
-                
-                <a href="#services" class="nav-icon-item">
-                    <div class="nav-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9E937E" stroke-width="2">
-                            <rect x="2" y="7" width="20" height="14" rx="2"/>
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-                        </svg>
-                    </div>
-                    <span class="nav-label">Услуги</span>
-                </a>
-
-                <a href="#about" class="nav-icon-item">
-                    <div class="nav-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9E937E" stroke-width="2">
-                            <circle cx="12" cy="8" r="4"/>
-                            <path d="M5 20v-2a7 7 0 0 1 14 0v2"/>
-                        </svg>
-                    </div>
-                    <span class="nav-label">О нас</span>
-                </a>
-
-                <a href="#contacts" class="nav-icon-item">
-                    <div class="nav-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9E937E" stroke-width="2">
-                            <rect x="2" y="2" width="20" height="20" rx="2.5"/>
-                            <path d="M7 7h10M7 12h10M7 17h6"/>
-                        </svg>
-                    </div>
-                    <span class="nav-label">Контакты</span>
-                </a>
-
+            <!-- Навигация текстом (как на скрине) -->
+            <nav class="nav-menu">
+                <a href="#services" class="nav-link">Услуги</a>
+                <a href="#about" class="nav-link">О нас</a>
+                <a href="#contacts" class="nav-link">Контакты</a>
             </nav>
+
         </div>
     </header>
 
-    <!-- ПЕРВЫЙ ЭКРАН С ФЕМИДОЙ -->
+    <!-- ПЕРВЫЙ ЭКРАН С АНИМАЦИЕЙ СЛОВ -->
     <section class="hero">
         <div class="container hero-grid">
             
-            <!-- Левая часть с текстом (ВСЁ СЛЕВА) -->
+            <!-- Левая часть с текстом -->
             <div class="hero-content">
-                <div class="hero-words-wrapper">
-                    <span class="hero-word" id="changing-word">Надёжная</span>
+                <!-- Фиксированный контейнер для анимированных слов -->
+                <div class="hero-words-container">
+                    <span class="hero-word" id="changing-word">Профессиональная</span>
                 </div>
                 <h1 class="hero-title">юридическая защита</h1>
                 <p class="hero-subtitle">в Артёме и Приморском крае</p>
@@ -72,7 +46,7 @@
             <!-- Правая часть с Фемидой -->
             <div class="hero-image">
                 <div class="femida-wrapper">
-                    <svg width="420" height="420" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="440" height="440" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g stroke="#9E937E" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="256" cy="90" r="40"/>
                             <path d="M256 130 C210 210, 210 300, 256 360 C302 300, 302 210, 256 130Z"/>
@@ -92,134 +66,91 @@
         </div>
     </section>
 
-    <!-- КАРТОЧКИ УСЛУГ (БЕЗ ИЗМЕНЕНИЙ) -->
-    <section class="cards" id="services">
+    <!-- ОСТАЛЬНЫЕ СЕКЦИИ БЕЗ ИЗМЕНЕНИЙ -->
+    <section class="services" id="services">
         <div class="container">
-            <div class="cards-grid">
-                
-                <div class="card">
-                    <div class="card-number">01</div>
-                    <h2 class="card-title">Арбитражные споры</h2>
-                    <p class="card-desc">Представительство в арбитражных судах, договорные споры, взыскание задолженности</p>
-                    <a href="#contacts" class="card-link">Подробнее →</a>
+            <h2 class="section-title">Наши услуги</h2>
+            <div class="services-grid">
+                <!-- Карточки услуг -->
+                <div class="service-card">
+                    <h3>Арбитражные споры</h3>
+                    <p>Представительство в арбитражных судах, договорные споры, взыскание задолженности</p>
                 </div>
-
-                <div class="card">
-                    <div class="card-number">02</div>
-                    <h2 class="card-title">Семейные споры</h2>
-                    <p class="card-desc">Развод, алименты, раздел имущества, определение места жительства детей</p>
-                    <a href="#contacts" class="card-link">Подробнее →</a>
+                <div class="service-card">
+                    <h3>Семейные споры</h3>
+                    <p>Развод, алименты, раздел имущества, определение места жительства детей</p>
                 </div>
-
-                <div class="card">
-                    <div class="card-number">03</div>
-                    <h2 class="card-title">Жилищные споры</h2>
-                    <p class="card-desc">Выселение, признание права собственности, споры с застройщиками</p>
-                    <a href="#contacts" class="card-link">Подробнее →</a>
+                <div class="service-card">
+                    <h3>Жилищные споры</h3>
+                    <p>Выселение, признание права собственности, споры с застройщиками</p>
                 </div>
-
-                <div class="card">
-                    <div class="card-number">04</div>
-                    <h2 class="card-title">Земельное право</h2>
-                    <p class="card-desc">Оформление участков, амнистии, помощь льготным категориям граждан</p>
-                    <a href="#contacts" class="card-link">Подробнее →</a>
+                <div class="service-card">
+                    <h3>Земельное право</h3>
+                    <p>Оформление участков, амнистии, помощь льготным категориям граждан</p>
                 </div>
-
-                <div class="card">
-                    <div class="card-number">05</div>
-                    <h2 class="card-title">Представительство в судах</h2>
-                    <p class="card-desc">Полное сопровождение, подготовка документов, защита интересов</p>
-                    <a href="#contacts" class="card-link">Подробнее →</a>
+                <div class="service-card">
+                    <h3>Представительство в судах</h3>
+                    <p>Полное сопровождение, подготовка документов, защита интересов</p>
                 </div>
-
-                <div class="card">
-                    <div class="card-number">06</div>
-                    <h2 class="card-title">О компании</h2>
-                    <p class="card-desc">10+ лет опыта, конфиденциальность, индивидуальный подход</p>
-                    <a href="#about" class="card-link">Подробнее →</a>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ПОЧЕМУ МЫ (БЕЗ ИЗМЕНЕНИЙ) -->
-    <section class="features" id="about">
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">О компании</h2>
+            <div class="about-content">
+                <p>ЮрКад — юридическая компания, оказывающая профессиональную помощь в решении сложных правовых вопросов. Мы работаем официально, строго соблюдаем конфиденциальность и сопровождаем клиентов на всех этапах.</p>
+                <div class="features">
+                    <span class="feature">10+ лет опыта</span>
+                    <span class="feature">Конфиденциальность</span>
+                    <span class="feature">Индивидуальный подход</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why">
         <div class="container">
             <h2 class="section-title">Почему выбирают нас</h2>
-            <div class="features-grid">
-                
-                <div class="feature-item">
-                    <div class="feature-icon">⚖️</div>
-                    <h3>Официальная работа</h3>
-                    <p>Все договоры официальные, гарантии в документах</p>
-                </div>
-
-                <div class="feature-item">
-                    <div class="feature-icon">📊</div>
-                    <h3>Высокий процент выигранных дел</h3>
-                    <p>Более 90% дел заканчиваются в пользу клиента</p>
-                </div>
-
-                <div class="feature-item">
-                    <div class="feature-icon">💰</div>
-                    <h3>Прозрачные условия</h3>
-                    <p>Фиксированная стоимость или процент от выигрыша</p>
-                </div>
-
-                <div class="feature-item">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Индивидуальная стратегия</h3>
-                    <p>Разрабатываем план под вашу ситуацию</p>
-                </div>
-
+            <div class="why-grid">
+                <div class="why-item">Официальная работа</div>
+                <div class="why-item">Высокий процент выигранных дел</div>
+                <div class="why-item">Прозрачные условия</div>
+                <div class="why-item">Индивидуальная стратегия</div>
             </div>
         </div>
     </section>
 
-    <!-- КОНТАКТЫ (БЕЗ ИЗМЕНЕНИЙ) -->
     <section class="contacts" id="contacts">
         <div class="container">
+            <h2 class="section-title">Контакты</h2>
             <div class="contacts-grid">
-                
                 <div class="contacts-info">
-                    <h2 class="section-title">Контакты</h2>
-                    
                     <div class="contact-item">
-                        <span class="contact-label">Телефон</span>
-                        <a href="tel:+79143444513" class="contact-value">+7 (914) 344 45 13</a>
+                        <strong>Телефон</strong>
+                        <a href="tel:+79143444513">+7 (914) 344 45 13</a>
                     </div>
-                    
                     <div class="contact-item">
-                        <span class="contact-label">Email</span>
-                        <a href="mailto:jurist.2023@bk.ru" class="contact-value">jurist.2023@bk.ru</a>
+                        <strong>Email</strong>
+                        <a href="mailto:jurist.2023@bk.ru">jurist.2023@bk.ru</a>
                     </div>
-                    
                     <div class="contact-item">
-                        <span class="contact-label">Адрес</span>
-                        <span class="contact-value">г. Артём, площадь Ленина 3, офис 2,3</span>
+                        <strong>Адрес</strong>
+                        <span>г. Артём, площадь Ленина 3, офис 2,3</span>
                     </div>
-                    
-                    <a href="https://wa.me/79143444513" class="btn whatsapp-btn" target="_blank">
-                        Написать в WhatsApp
-                    </a>
+                    <a href="https://wa.me/79143444513" class="btn whatsapp-btn" target="_blank">Написать в WhatsApp</a>
                 </div>
-                
                 <div class="contacts-map">
                     <iframe src="https://maps.2gis.com/embed/ru?m=43.350677%2C132.191395&r=43.350672%2C132.191353" width="100%" height="100%" frameborder="0" allowfullscreen="true"></iframe>
                 </div>
-                
             </div>
         </div>
     </section>
 
-    <!-- ФУТЕР (БЕЗ ИЗМЕНЕНИЙ) -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <img src="assets/logo.png" alt="ЮрКад" class="footer-logo">
-                <p class="footer-copy">© ЮрКад, 2024. Все права защищены.</p>
-            </div>
+            <p>© ЮрКад, 2024. Все права защищены.</p>
         </div>
     </footer>
 
