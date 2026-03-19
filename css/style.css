@@ -494,7 +494,7 @@ body {
     }
 }
 
-/* ========== МОБИЛЬНАЯ ВЕРСИЯ (ЕДИНСТВЕННАЯ) ========== */
+/* ========== МОБИЛЬНАЯ ВЕРСИЯ ========== */
 @media (max-width: 600px) {
     .header-container {
         padding: 15px 20px;
@@ -517,11 +517,13 @@ body {
         font-size: 10px;
     }
     
+    /* ФИКС ФОНА - УБРАЛ ДУБЛИРОВАНИЕ */
     .hero {
         margin-top: 115px;
         min-height: calc(100vh - 115px);
         padding: 15px 0;
-        width: 100%;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
         background: linear-gradient(180deg, #35342B 0%, #2E2D26 100%);
     }
     
@@ -530,8 +532,6 @@ body {
         max-width: 100%;
         padding: 0 20px;
         margin: 0 auto;
-        position: relative;
-        z-index: 2;
     }
     
     .hero-row {
@@ -607,7 +607,23 @@ body {
         top: 0;
     }
     
-    .cards, .features, .contacts {
+    /* ФИКС ДЛЯ FEATURES */
+    .features {
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        background: #2E2D26;
+        padding-left: 20px;
+        padding-right: 20px;
+        box-sizing: border-box;
+    }
+    
+    .features .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .cards, .contacts {
         padding: 40px 0;
         scroll-margin-top: 115px;
     }
@@ -671,27 +687,7 @@ body {
         font-size: 12px;
     }
     
-    /* ГЛОБАЛЬНЫЙ ФИКС ФОНА И СКРОЛЛА */
-    html, body {
-        overflow-x: hidden !important;
-        width: 100% !important;
-    }
-    
-    .hero,
-    .features {
-        width: 100vw !important;
-        margin-left: -20px !important;
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-        box-sizing: border-box !important;
-    }
-    
-    .hero .container,
-    .features .container {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 0 !important;
-    }
+    /* УБРАЛ ДУБЛИРУЮЩИЙ БЛОК ГЛОБАЛЬНОГО ФИКСА */
 }
 
 @media (max-width: 400px) {
