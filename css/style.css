@@ -44,7 +44,7 @@ body {
 
 .logo {
     width: auto;
-    height: 120px; /* ОЧЕНЬ КРУПНО */
+    height: 120px;
     transition: opacity 0.3s;
 }
 
@@ -72,7 +72,6 @@ body {
 }
 
 .nav-icon {
-    /* Убрал фон и обводку */
     background: none;
     width: auto;
     height: auto;
@@ -102,7 +101,7 @@ body {
     align-items: center;
     padding: 140px 0 100px;
     background: linear-gradient(180deg, #35342B 0%, #2E2D26 100%);
-    margin-top: 140px; /* увеличил под большое лого */
+    margin-top: 140px;
 }
 
 .hero-grid {
@@ -112,21 +111,21 @@ body {
     align-items: center;
 }
 
-/* Левая часть */
-.hero-content {
+/* Левая колонка */
+.hero-left {
     max-width: 650px;
 }
 
-/* ФИКСИРОВАННАЯ ВЫСОТА - НИЧЕГО НЕ ПРЫГАЕТ */
-.hero-words-container {
-    height: 80px; /* фиксированная высота */
+/* Анимированные слова */
+.hero-words-wrapper {
+    min-height: 90px; /* Даём место для анимации */
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
 
 .hero-word {
-    font-size: 64px; /* уменьшил */
+    font-size: 64px;
     font-weight: 700;
     color: #9E937E;
     line-height: 1;
@@ -134,8 +133,13 @@ body {
     display: inline-block;
 }
 
+/* СТАТИЧНЫЙ БЛОК - НИКОГДА НЕ ДВИГАЕТСЯ */
+.hero-static {
+    position: relative;
+}
+
 .hero-title {
-    font-size: 48px; /* уменьшил */
+    font-size: 48px;
     font-weight: 500;
     margin-bottom: 15px;
     color: #FFFFFF;
@@ -168,8 +172,8 @@ body {
     box-shadow: 0 10px 25px rgba(158, 147, 126, 0.3);
 }
 
-/* Правая часть — Фемида */
-.hero-image {
+/* Правая колонка — Фемида */
+.hero-right {
     display: flex;
     justify-content: flex-end;
 }
@@ -388,12 +392,12 @@ body {
         font-size: 42px;
     }
     
-    .hero-words-container {
-        height: 70px;
+    .hero-words-wrapper {
+        min-height: 70px;
     }
     
     .logo {
-        height: 90px; /* на средних экранах */
+        height: 90px;
     }
 }
 
@@ -403,14 +407,14 @@ body {
         gap: 40px;
     }
     
-    .hero-content {
+    .hero-left {
         max-width: 100%;
         text-align: left;
     }
     
-    .hero-image {
+    .hero-right {
         justify-content: center;
-        order: -1; /* Фемида сверху на телефоне */
+        order: -1;
     }
     
     .femida-wrapper {
@@ -436,14 +440,14 @@ body {
 
 @media (max-width: 600px) {
     .header-container {
-        flex-direction: row; /* В СТРОКУ на телефоне */
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
         gap: 0;
     }
     
     .logo {
-        height: 70px; /* на телефоне */
+        height: 70px;
     }
     
     .nav-icons {
@@ -464,8 +468,8 @@ body {
         padding: 60px 0;
     }
     
-    .hero-words-container {
-        height: 50px;
+    .hero-words-wrapper {
+        min-height: 50px;
     }
     
     .hero-word {
@@ -522,5 +526,13 @@ body {
     
     .nav-label {
         font-size: 10px;
+    }
+    
+    .hero-word {
+        font-size: 32px;
+    }
+    
+    .hero-title {
+        font-size: 24px;
     }
 }
