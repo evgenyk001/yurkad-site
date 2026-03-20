@@ -231,7 +231,7 @@ html {
     filter: sepia(0.15) saturate(1.2) brightness(1.01);
 }
 
-/* ========== НОВЫЕ КАРТОЧКИ УСЛУГ ========== */
+/* ========== КАРТОЧКИ УСЛУГ В СТИЛЕ APPLE ========== */
 .cards {
     padding: 80px 0;
     scroll-margin-top: 120px;
@@ -240,95 +240,106 @@ html {
 .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 24px; /* Уменьшил для воздуха */
     margin-top: 50px;
 }
 
 .service-card {
     background: #2E2D26;
-    border-radius: 16px;
-    padding: 25px 20px;
-    border: 1px solid #4A483E;
-    transition: all 0.3s ease;
+    border-radius: 24px; /* Больше скругление, как у Apple */
+    padding: 20px 16px 24px;
+    border: 1px solid rgba(158, 147, 126, 0.1); /* Очень тонкая, почти незаметная граница */
+    transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .service-card:hover {
-    border-color: #9E937E;
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(158, 147, 126, 0.15);
+    border-color: rgba(158, 147, 126, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* ИСПРАВЛЕННЫЕ КАРТИНКИ - ПРЯМОУГОЛЬНЫЕ, БЕЗ ОБРЕЗКИ */
+/* КАРТИНКИ - ЧИСТО, АККУРАТНО, КАК У APPLE */
 .service-image {
     width: 100%;
-    height: auto;
-    max-height: 200px;
-    object-fit: contain;
-    border-radius: 12px;
+    height: 180px; /* Фиксированная высота */
+    object-fit: cover; /* Заполняет контейнер без искажений */
+    object-position: center;
+    border-radius: 16px; /* Мягкое скругление */
     margin-bottom: 20px;
-    border: 2px solid #9E937E;
     background: #35342B;
-    padding: 5px;
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover .service-image {
+    transform: scale(1.02); /* Легкое увеличение при наведении */
 }
 
 .service-title {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
-    color: #9E937E;
-    margin-bottom: 15px;
+    color: #FFFFFF;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em; /* Немного уже буквы, как у Apple */
 }
 
-/* УЛУЧШЕННАЯ АНИМАЦИЯ */
+/* КНОПКА - МИНИМАЛИСТИЧНАЯ */
 .service-toggle {
     background: none;
-    border: 2px solid #9E937E;
+    border: none;
     color: #9E937E;
-    padding: 10px 25px;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 15px;
+    gap: 6px;
+    margin-bottom: 8px;
+    background: rgba(158, 147, 126, 0.05);
 }
 
 .service-toggle:hover {
-    background: #9E937E;
-    color: #35342B;
+    background: rgba(158, 147, 126, 0.15);
+    color: #b3a690;
 }
 
 .service-toggle .arrow {
-    font-size: 18px;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 16px;
+    transition: transform 0.3s ease;
 }
 
 .service-toggle.active .arrow {
     transform: rotate(180deg);
 }
 
+/* ОПИСАНИЕ - ПЛАВНОЕ, МЯГКОЕ */
 .service-description {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, margin 0.4s ease;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     margin-top: 0;
     color: #D6D6D6;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.6;
     width: 100%;
+    border-top: 1px solid transparent;
 }
 
 .service-description.active {
-    max-height: 300px;
+    max-height: 250px;
     opacity: 1;
-    margin-top: 15px;
+    margin-top: 12px;
+    border-top-color: rgba(158, 147, 126, 0.2);
+    padding-top: 12px;
 }
 
 /* ========== ПРЕИМУЩЕСТВА ========== */
@@ -346,6 +357,8 @@ html {
     font-size: 36px;
     margin-bottom: 50px;
     text-align: center;
+    font-weight: 600;
+    letter-spacing: -0.02em;
 }
 
 .features-grid {
@@ -379,6 +392,7 @@ html {
     font-size: 20px;
     margin-bottom: 15px;
     color: #FFFFFF;
+    font-weight: 600;
 }
 
 .feature-item p {
@@ -402,7 +416,8 @@ html {
 .contacts-info {
     background: #2E2D26;
     padding: 40px;
-    border-radius: 8px;
+    border-radius: 24px; /* Как у карточек */
+    border: 1px solid rgba(158, 147, 126, 0.1);
 }
 
 .contact-item {
@@ -414,6 +429,8 @@ html {
     color: #9E937E;
     font-size: 14px;
     margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .contact-value {
@@ -421,6 +438,7 @@ html {
     text-decoration: none;
     font-size: 20px;
     transition: color 0.3s;
+    font-weight: 500;
 }
 
 .contact-value:hover {
@@ -431,12 +449,21 @@ html {
     margin-top: 20px;
     width: 100%;
     text-align: center;
+    background: rgba(158, 147, 126, 0.1);
+    border: 1px solid rgba(158, 147, 126, 0.3);
+    color: #9E937E;
+}
+
+.whatsapp-btn:hover {
+    background: #9E937E;
+    color: #35342B;
 }
 
 .contacts-map {
-    border-radius: 8px;
+    border-radius: 24px;
     overflow: hidden;
     height: 450px;
+    border: 1px solid rgba(158, 147, 126, 0.1);
 }
 
 .contacts-map iframe {
@@ -447,7 +474,7 @@ html {
 /* ========== ФУТЕР ========== */
 .footer {
     padding: 40px 0;
-    border-top: 1px solid #4A483E;
+    border-top: 1px solid rgba(158, 147, 126, 0.2);
 }
 
 .footer-content {
@@ -479,6 +506,7 @@ html {
     
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 }
 
@@ -537,10 +565,12 @@ html {
     
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
     
     .contacts-grid {
         grid-template-columns: 1fr;
+        gap: 30px;
     }
     
     .nav-icons {
@@ -654,45 +684,51 @@ html {
         width: 85%;
         max-width: 320px;
         margin: 5px auto 0;
-        padding: 18px 24px;
-        font-size: 20px;
-        font-weight: 700;
-        border-radius: 8px;
-        text-align: center;
+        padding: 16px 24px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 12px; /* Больше скругление */
     }
     
-    /* НОВЫЕ КАРТОЧКИ НА МОБИЛКЕ */
+    /* КАРТОЧКИ НА МОБИЛКЕ */
     .services-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 16px;
+    }
+    
+    .service-card {
+        padding: 16px 12px 20px;
+        border-radius: 20px;
     }
     
     .service-image {
-        width: 100%;
-        max-height: 160px;
+        height: 160px;
+        border-radius: 14px;
+        margin-bottom: 16px;
     }
     
     .service-title {
-        font-size: 20px;
+        font-size: 18px;
+        margin-bottom: 12px;
     }
     
     .service-toggle {
-        padding: 8px 20px;
-        font-size: 15px;
-    }
-    
-    .service-description {
+        padding: 6px 14px;
         font-size: 14px;
     }
     
+    .service-description {
+        font-size: 13px;
+    }
+    
     .service-description.active {
-        max-height: 250px;
+        max-height: 220px;
     }
     
     .features {
         width: 100%;
         background: #2E2D26;
-        padding: 40px 0;
+        padding: 60px 0;
     }
     
     .features .container {
@@ -708,7 +744,7 @@ html {
     
     .features-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 30px;
     }
     
     .feature-item h3 {
@@ -726,6 +762,7 @@ html {
     
     .contacts-info {
         padding: 25px;
+        border-radius: 20px;
     }
     
     .contact-value {
@@ -734,6 +771,7 @@ html {
     
     .contacts-map {
         height: 200px;
+        border-radius: 20px;
     }
     
     .footer {
@@ -786,16 +824,16 @@ html {
     
     .hero .btn {
         width: 90%;
-        padding: 16px 20px;
-        font-size: 18px;
+        padding: 14px 20px;
+        font-size: 16px;
     }
     
     .service-image {
-        max-height: 140px;
+        height: 140px;
     }
     
     .service-title {
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 
