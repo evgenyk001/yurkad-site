@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ========== ПРЕМИАЛЬНЫЙ АККОРДЕОН ==========
+    // ========== ПРЕМИАЛЬНЫЙ АККОРДЕОН С ПЛАВНЫМ ЗАКРЫТИЕМ ==========
     const toggleButtons = document.querySelectorAll('.service-toggle');
     
     document.querySelectorAll('.service-card').forEach(card => {
@@ -65,12 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const isActive = button.classList.contains('active');
             
+            // Закрываем все карточки с задержкой для плавности
             toggleButtons.forEach((btn) => {
                 const btnCard = btn.closest('.service-card');
                 const btnDesc = btn.nextElementSibling;
                 const btnArrow = btn.querySelector('.arrow');
                 
                 btn.classList.remove('active');
+                // Добавляем плавное закрытие
+                btnDesc.style.transition = 'max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), margin 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                 btnDesc.classList.remove('active');
                 btnArrow.innerHTML = '↓';
                 btnCard.style.borderColor = 'rgba(158, 147, 126, 0.1)';
@@ -105,8 +108,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const activeCard = activeButton.closest('.service-card');
             
             if (!activeCard.contains(e.target)) {
+                const description = activeButton.nextElementSibling;
                 activeButton.classList.remove('active');
-                activeButton.nextElementSibling.classList.remove('active');
+                // Плавное закрытие при клике вне
+                if (description) {
+                    description.style.transition = 'max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), margin 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                    description.classList.remove('active');
+                }
                 activeButton.querySelector('.arrow').innerHTML = '↓';
                 activeCard.style.borderColor = 'rgba(158, 147, 126, 0.1)';
             }
