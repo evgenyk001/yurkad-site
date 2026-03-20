@@ -63,7 +63,7 @@ html {
 /* Навигация иконками БЕЗ ОБВОДКИ */
 .nav-icons {
     display: flex;
-    gap: 30px; /* УМЕНЬШИЛ РАССТОЯНИЕ МЕЖДУ ИКОНКАМИ */
+    gap: 30px;
     align-items: center;
 }
 
@@ -86,20 +86,20 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 4px; /* УМЕНЬШИЛ ОТСТУП */
+    margin-bottom: 4px;
 }
 
 .nav-icon svg {
-    width: 22px; /* УМЕНЬШИЛ С 32px ДО 22px */
-    height: 22px; /* УМЕНЬШИЛ С 32px ДО 22px */
+    width: 22px;
+    height: 22px;
     stroke: #9E937E;
-    fill: #9E937E; /* ДЛЯ ТВОИХ НОВЫХ ИКОНОК */
+    fill: #9E937E;
 }
 
 .nav-label {
-    font-size: 12px; /* УМЕНЬШИЛ С 14px ДО 12px */
+    font-size: 12px;
     color: #9E937E;
-    letter-spacing: 0.3px; /* ЧУТЬ УМЕНЬШИЛ */
+    letter-spacing: 0.3px;
     font-weight: 500;
 }
 
@@ -513,7 +513,7 @@ html {
 /* ========== МОБИЛЬНАЯ ВЕРСИЯ ========== */
 @media (max-width: 600px) {
     .header-container {
-        padding: 15px 20px;
+        padding: 15px 15px; /* УМЕНЬШИЛ ПРАВЫЙ ПАДДИНГ */
     }
     
     .logo {
@@ -521,16 +521,17 @@ html {
     }
     
     .nav-icons {
-        gap: 12px; /* ЕЩЁ УМЕНЬШИЛ НА МОБИЛКАХ */
+        gap: 12px;
+        margin-right: 5px; /* ЧУТЬ-ЧУТЬ ОТОДВИНУЛ ОТ КРАЯ */
     }
     
     .nav-icon svg {
-        width: 20px; /* ЕЩЁ УМЕНЬШИЛ НА МОБИЛКАХ */
+        width: 20px;
         height: 20px;
     }
     
     .nav-label {
-        font-size: 9px; /* УМЕНЬШИЛ ДО 9px */
+        font-size: 9px;
         letter-spacing: 0.2px;
     }
     
@@ -702,6 +703,7 @@ html {
     
     .nav-icons {
         gap: 8px;
+        margin-right: 3px; /* И НА САМЫХ МАЛЕНЬКИХ ТОЖЕ */
     }
     
     .nav-icon svg {
