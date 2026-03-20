@@ -26,7 +26,7 @@ html {
     padding: 0 30px;
 }
 
-/* ========== ШАПКА С ПОШАГОВЫМ УМЕНЬШЕНИЕМ ========== */
+/* ========== ШАПКА С СУПЕР-ПЛАВНОЙ АНИМАЦИЕЙ ========== */
 .header {
     padding: 20px 0;
     background: rgba(53, 52, 43, 0.95);
@@ -37,7 +37,7 @@ html {
     width: 100%;
     z-index: 1000;
     border-bottom: 1px solid rgba(158, 147, 126, 0.2);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
     will-change: padding, height;
 }
 
@@ -45,14 +45,14 @@ html {
 @media (min-width: 901px) {
     /* Шаг 1: чуть меньше */
     .header.scroll-50 {
-        padding: 15px 0;
+        padding: 16px 0;
     }
     .header.scroll-50 .logo {
-        height: 100px;
+        height: 105px;
     }
     .header.scroll-50 .nav-icon svg {
-        width: 20px;
-        height: 20px;
+        width: 21px;
+        height: 21px;
     }
     .header.scroll-50 .nav-label {
         font-size: 11px;
@@ -60,14 +60,14 @@ html {
     
     /* Шаг 2: средний */
     .header.scroll-100 {
-        padding: 10px 0;
+        padding: 12px 0;
     }
     .header.scroll-100 .logo {
-        height: 80px;
+        height: 90px;
     }
     .header.scroll-100 .nav-icon svg {
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
     }
     .header.scroll-100 .nav-label {
         font-size: 10px;
@@ -75,18 +75,17 @@ html {
     
     /* Шаг 3: маленький */
     .header.scroll-150 {
-        padding: 5px 0;
+        padding: 8px 0;
     }
     .header.scroll-150 .logo {
-        height: 60px;
+        height: 75px;
     }
     .header.scroll-150 .nav-icon svg {
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
     }
     .header.scroll-150 .nav-label {
-        opacity: 0;
-        pointer-events: none;
+        font-size: 9px;
     }
     
     /* Шаг 4: минимальный (без подписей) */
@@ -95,11 +94,11 @@ html {
         transform: none;
     }
     .header.scroll-200 .logo {
-        height: 50px;
+        height: 60px;
     }
     .header.scroll-200 .nav-icon svg {
-        width: 14px;
-        height: 14px;
+        width: 18px;
+        height: 18px;
     }
     .header.scroll-200 .nav-label {
         opacity: 0;
@@ -122,7 +121,7 @@ html {
 .logo {
     width: auto;
     height: 120px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .logo:hover {
@@ -134,7 +133,7 @@ html {
     display: flex;
     gap: 30px;
     align-items: center;
-    transition: gap 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: gap 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .nav-icon-item {
@@ -157,7 +156,7 @@ html {
     align-items: center;
     justify-content: center;
     margin-bottom: 4px;
-    transition: margin-bottom 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: margin-bottom 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .nav-icon svg {
@@ -165,7 +164,7 @@ html {
     height: 22px;
     stroke: #9E937E;
     fill: #9E937E;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .nav-label {
@@ -173,12 +172,12 @@ html {
     color: #9E937E;
     letter-spacing: 0.3px;
     font-weight: 500;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
     opacity: 1;
     transform: translateY(0);
 }
 
-/* ========== ПЕРВЫЙ ЭКРАН С АДАПТИВНЫМИ ОТСТУПАМИ ========== */
+/* ========== ПЕРВЫЙ ЭКРАН ========== */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -192,16 +191,16 @@ html {
 
 .hero .container {
     padding-top: 140px;
-    padding-bottom: 40px;
-    transition: padding-top 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    padding-bottom: 20px;
+    transition: padding-top 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 /* Адаптация отступов под размер шапки */
 @media (min-width: 901px) {
-    .header.scroll-50 + .hero .container { padding-top: 120px; }
-    .header.scroll-100 + .hero .container { padding-top: 100px; }
-    .header.scroll-150 + .hero .container { padding-top: 80px; }
-    .header.scroll-200 + .hero .container { padding-top: 70px; }
+    .header.scroll-50 + .hero .container { padding-top: 125px; }
+    .header.scroll-100 + .hero .container { padding-top: 110px; }
+    .header.scroll-150 + .hero .container { padding-top: 95px; }
+    .header.scroll-200 + .hero .container { padding-top: 85px; }
 }
 
 .hero-grid {
@@ -268,7 +267,7 @@ html {
     font-weight: 400;
 }
 
-/* Кнопка в компьютерной версии */
+/* Кнопка — поднял */
 .hero .btn {
     display: inline-block;
     padding: 22px 60px;
@@ -283,7 +282,7 @@ html {
     cursor: pointer;
     width: auto;
     align-self: flex-start;
-    margin-top: 0;
+    margin-top: 10px;
     margin-bottom: 0;
     letter-spacing: 0.5px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -322,7 +321,7 @@ html {
 
 /* ========== КАРТОЧКИ УСЛУГ ========== */
 .cards {
-    padding: 60px 0;
+    padding: 40px 0 60px;
     scroll-margin-top: 100px;
 }
 
@@ -330,16 +329,17 @@ html {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    margin-top: 30px;
+    margin-top: 20px;
     align-items: start;
 }
 
+/* Премиальная анимация появления */
 .service-card {
     background: #2E2D26;
     border-radius: 24px;
     padding: 16px 12px;
     border: 1px solid rgba(158, 147, 126, 0.1);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -347,7 +347,14 @@ html {
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     height: fit-content;
-    will-change: transform, border-color, box-shadow;
+    opacity: 0;
+    transform: translateY(40px);
+    will-change: transform, opacity, border-color, box-shadow;
+}
+
+.service-card.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .service-card:hover {
@@ -680,7 +687,7 @@ html {
     .hero .btn {
         padding: 20px 50px;
         font-size: 20px;
-        margin-top: -10px;
+        margin-top: 5px;
     }
 }
 
