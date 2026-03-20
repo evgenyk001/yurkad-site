@@ -50,13 +50,10 @@ html {
     .header.scroll-50 .logo {
         height: 105px;
     }
-    .header.scroll-50 .nav-icon svg {
-        width: 21px;
-        height: 21px;
-    }
     .header.scroll-50 .nav-label {
         font-size: 11px;
     }
+    /* Иконки не уменьшаем */
     
     /* Шаг 2: средний */
     .header.scroll-100 {
@@ -64,10 +61,6 @@ html {
     }
     .header.scroll-100 .logo {
         height: 90px;
-    }
-    .header.scroll-100 .nav-icon svg {
-        width: 20px;
-        height: 20px;
     }
     .header.scroll-100 .nav-label {
         font-size: 10px;
@@ -79,10 +72,6 @@ html {
     }
     .header.scroll-150 .logo {
         height: 75px;
-    }
-    .header.scroll-150 .nav-icon svg {
-        width: 18px;
-        height: 18px;
     }
     .header.scroll-150 .nav-label {
         font-size: 9px;
@@ -96,14 +85,11 @@ html {
     .header.scroll-200 .logo {
         height: 60px;
     }
-    .header.scroll-200 .nav-icon svg {
-        width: 18px;
-        height: 18px;
-    }
     .header.scroll-200 .nav-label {
         opacity: 0;
         pointer-events: none;
     }
+    /* Иконки НЕ уменьшаем — оставляем 22px */
 }
 
 .header-container {
@@ -267,7 +253,7 @@ html {
     font-weight: 400;
 }
 
-/* Кнопка — поднял */
+/* Кнопка — поднята выше */
 .hero .btn {
     display: inline-block;
     padding: 22px 60px;
@@ -282,7 +268,7 @@ html {
     cursor: pointer;
     width: auto;
     align-self: flex-start;
-    margin-top: 10px;
+    margin-top: -15px;
     margin-bottom: 0;
     letter-spacing: 0.5px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -293,7 +279,7 @@ html {
     box-shadow: 0 20px 35px rgba(158, 147, 126, 0.5);
 }
 
-/* Правая колонка — Фемида */
+/* Правая колонка — Фемида (вернули на место) */
 .hero-right {
     display: flex;
     justify-content: flex-end;
@@ -304,7 +290,7 @@ html {
     max-width: 320px;
     animation: float 6s ease-in-out infinite;
     filter: drop-shadow(0 0 30px rgba(158,147,126,0.3));
-    margin-top: -40px;
+    margin-top: 0;
 }
 
 @keyframes float {
@@ -321,15 +307,15 @@ html {
 
 /* ========== КАРТОЧКИ УСЛУГ ========== */
 .cards {
-    padding: 40px 0 60px;
-    scroll-margin-top: 100px;
+    padding: 30px 0 60px;
+    scroll-margin-top: 90px;
 }
 
 .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    margin-top: 20px;
+    margin-top: 15px;
     align-items: start;
 }
 
@@ -687,7 +673,7 @@ html {
     .hero .btn {
         padding: 20px 50px;
         font-size: 20px;
-        margin-top: 5px;
+        margin-top: -10px;
     }
 }
 
