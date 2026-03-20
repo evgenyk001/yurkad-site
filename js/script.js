@@ -1,27 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ========== ПРЕМИАЛЬНАЯ АНИМАЦИЯ СЛОВ ==========
+    // ========== APPLE-STYLE АНИМАЦИЯ СЛОВ ==========
     const words = ['Профессиональная', 'Надёжная', 'Честная', 'Опытная', 'Сильная'];
     const wordElement = document.getElementById('changing-word');
     let index = 0;
     let intervalId;
     
     if (wordElement) {
-        wordElement.style.transition = 'opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        wordElement.style.transition = 'opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1), transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
         
         function changeWord() {
             index = (index + 1) % words.length;
             
-            wordElement.style.transform = 'translateY(-5px)';
+            // Apple-style исчезновение с масштабом
+            wordElement.style.transform = 'translateY(-8px) scale(0.95)';
             wordElement.style.opacity = '0';
             
             setTimeout(() => {
                 wordElement.textContent = words[index];
-                wordElement.style.transform = 'translateY(5px)';
+                // Apple-style появление с масштабом
+                wordElement.style.transform = 'translateY(8px) scale(0.98)';
                 wordElement.style.opacity = '1';
                 
                 setTimeout(() => {
-                    wordElement.style.transform = 'translateY(0)';
-                }, 50);
+                    wordElement.style.transform = 'translateY(0) scale(1)';
+                }, 60);
             }, 300);
         }
         
