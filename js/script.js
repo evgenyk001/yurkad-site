@@ -50,11 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ========== ПРЕМИАЛЬНЫЙ АККОРДЕОН С ПЛАВНЫМ ЗАКРЫТИЕМ ==========
+    // ========== ПРЕМИАЛЬНЫЙ АККОРДЕОН С МАКСИМАЛЬНО ПЛАВНЫМ ЗАКРЫТИЕМ ==========
     const toggleButtons = document.querySelectorAll('.service-toggle');
     
     document.querySelectorAll('.service-card').forEach(card => {
-        card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        card.style.transition = 'all 0.5s cubic-bezier(0.33, 1, 0.68, 1)';
     });
     
     toggleButtons.forEach(button => {
@@ -65,20 +65,21 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const isActive = button.classList.contains('active');
             
-            // Закрываем все карточки с задержкой для плавности
+            // Закрываем все карточки
             toggleButtons.forEach((btn) => {
                 const btnCard = btn.closest('.service-card');
                 const btnDesc = btn.nextElementSibling;
                 const btnArrow = btn.querySelector('.arrow');
                 
-                btn.classList.remove('active');
-                // Добавляем плавное закрытие
-                btnDesc.style.transition = 'max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), margin 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                btnDesc.classList.remove('active');
-                btnArrow.innerHTML = '↓';
-                btnCard.style.borderColor = 'rgba(158, 147, 126, 0.1)';
+                if (btn.classList.contains('active')) {
+                    btn.classList.remove('active');
+                    btnDesc.classList.remove('active');
+                    btnArrow.innerHTML = '↓';
+                    btnCard.style.borderColor = 'rgba(158, 147, 126, 0.1)';
+                }
             });
             
+            // Если текущая карточка была закрыта — открываем её
             if (!isActive) {
                 button.classList.add('active');
                 description.classList.add('active');
@@ -110,9 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!activeCard.contains(e.target)) {
                 const description = activeButton.nextElementSibling;
                 activeButton.classList.remove('active');
-                // Плавное закрытие при клике вне
                 if (description) {
-                    description.style.transition = 'max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), margin 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
                     description.classList.remove('active');
                 }
                 activeButton.querySelector('.arrow').innerHTML = '↓';
@@ -205,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.feature-item').forEach((item, index) => {
         item.style.opacity = '0';
         item.style.transform = 'translateY(20px)';
-        item.style.transition = `opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`;
+        item.style.transition = `opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1) ${index * 0.1}s, transform 0.5s cubic-bezier(0.33, 1, 0.68, 1) ${index * 0.1}s`;
         featuresObserver.observe(item);
     });
 });
