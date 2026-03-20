@@ -119,20 +119,20 @@ html {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
 .nav-icon-item:hover {
-    transform: translateY(-5px) scale(1.05);
+    transform: translateY(-6px) scale(1.03);
 }
 
 .nav-icon-item:hover .nav-icon svg {
-    filter: drop-shadow(0 4px 8px rgba(158, 147, 126, 0.3));
+    filter: drop-shadow(0 6px 12px rgba(158, 147, 126, 0.4));
 }
 
 .nav-icon-item:hover .nav-label {
-    color: #b3a690;
-    letter-spacing: 0.5px;
+    color: #c0b298;
+    letter-spacing: 0.8px;
 }
 
 .nav-icon {
@@ -234,6 +234,7 @@ html {
     min-height: 100px;
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 5px;
     margin-top: -30px;
 }
@@ -243,23 +244,11 @@ html {
     font-weight: 800;
     color: #9E937E;
     line-height: 1;
-    transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
-                transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     display: inline-block;
-    white-space: nowrap;
-    will-change: opacity, transform;
-    animation: wordReveal 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-
-@keyframes wordReveal {
-    from {
-        opacity: 0;
-        transform: translateY(15px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1), 
+                transform 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
 .hero-static {
@@ -281,17 +270,18 @@ html {
     font-weight: 400;
 }
 
-/* Кнопка с Apple-свечением */
+/* Кнопка с переливом */
 .hero .btn {
     display: inline-block;
     padding: 22px 60px;
-    background: #9E937E;
+    background: linear-gradient(135deg, #9E937E 0%, #b3a690 50%, #9E937E 100%);
+    background-size: 200% 200%;
     color: #35342B;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 700;
     font-size: 22px;
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     border: none;
     cursor: pointer;
     width: auto;
@@ -300,21 +290,24 @@ html {
     margin-bottom: 0;
     letter-spacing: 0.5px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    animation: applePulse 2.5s infinite ease-in-out;
+    animation: shimmer 3s infinite linear, gentlePulse 2.5s infinite ease-in-out;
 }
 
-@keyframes applePulse {
-    0%, 100% {
-        box-shadow: 0 4px 15px rgba(158, 147, 126, 0.2);
-    }
-    50% {
-        box-shadow: 0 8px 28px rgba(158, 147, 126, 0.45);
-    }
+@keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes gentlePulse {
+    0%, 100% { box-shadow: 0 4px 15px rgba(158, 147, 126, 0.2); }
+    50% { box-shadow: 0 8px 28px rgba(158, 147, 126, 0.45); }
 }
 
 .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 20px 35px rgba(158, 147, 126, 0.5);
+    animation: shimmer 1.5s infinite linear;
 }
 
 .hero-right {
@@ -409,31 +402,35 @@ html {
     letter-spacing: -0.02em;
 }
 
+/* Кнопка в карточках с переливом */
 .service-toggle {
-    background: none;
+    background: linear-gradient(135deg, #9E937E 0%, #b3a690 50%, #9E937E 100%);
+    background-size: 200% 200%;
     border: none;
-    color: #9E937E;
-    padding: 6px 14px;
-    border-radius: 20px;
+    color: #35342B;
+    padding: 8px 20px;
+    border-radius: 30px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     margin-bottom: 6px;
-    background: rgba(158, 147, 126, 0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    animation: shimmer 3s infinite linear;
 }
 
 .service-toggle:hover {
-    background: rgba(158, 147, 126, 0.15);
-    color: #b3a690;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(158, 147, 126, 0.4);
+    animation: shimmer 1.5s infinite linear;
 }
 
 .service-toggle .arrow {
     font-size: 14px;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
 .service-toggle.active .arrow {
