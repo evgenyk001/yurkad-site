@@ -262,15 +262,17 @@ html {
     box-shadow: 0 15px 30px rgba(158, 147, 126, 0.15);
 }
 
+/* ИСПРАВЛЕННЫЕ КАРТИНКИ - ПРЯМОУГОЛЬНЫЕ, БЕЗ ОБРЕЗКИ */
 .service-image {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: 12px;
     margin-bottom: 20px;
     border: 2px solid #9E937E;
-    padding: 5px;
     background: #35342B;
+    padding: 5px;
 }
 
 .service-title {
@@ -280,6 +282,7 @@ html {
     margin-bottom: 15px;
 }
 
+/* УЛУЧШЕННАЯ АНИМАЦИЯ */
 .service-toggle {
     background: none;
     border: 2px solid #9E937E;
@@ -289,7 +292,7 @@ html {
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -303,7 +306,7 @@ html {
 
 .service-toggle .arrow {
     font-size: 18px;
-    transition: transform 0.3s;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .service-toggle.active .arrow {
@@ -313,7 +316,7 @@ html {
 .service-description {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, margin 0.4s ease;
     opacity: 0;
     margin-top: 0;
     color: #D6D6D6;
@@ -323,7 +326,7 @@ html {
 }
 
 .service-description.active {
-    max-height: 200px;
+    max-height: 300px;
     opacity: 1;
     margin-top: 15px;
 }
@@ -665,8 +668,8 @@ html {
     }
     
     .service-image {
-        width: 100px;
-        height: 100px;
+        width: 100%;
+        max-height: 160px;
     }
     
     .service-title {
@@ -788,8 +791,7 @@ html {
     }
     
     .service-image {
-        width: 90px;
-        height: 90px;
+        max-height: 140px;
     }
     
     .service-title {
