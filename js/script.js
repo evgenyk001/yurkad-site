@@ -118,14 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const logo = document.querySelector('.logo-wrapper');
     let ticking = false;
     
-    // Функция обновления классов шапки
     function updateHeaderClasses() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Удаляем все старые классы
         header.classList.remove('scroll-50', 'scroll-100', 'scroll-150', 'scroll-200');
         
-        // Добавляем класс в зависимости от скролла
         if (scrollTop < 80) {
             // полная шапка
         } else if (scrollTop < 200) {
@@ -141,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ticking = false;
     }
     
-    // Оптимизированный обработчик скролла
     window.addEventListener('scroll', () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
@@ -151,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // Обновляем при загрузке
     updateHeaderClasses();
     
     // ========== ВОЗВРАТ НАВЕРХ ПРИ КЛИКЕ НА ЛОГО ==========
@@ -162,33 +157,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 behavior: 'smooth'
             });
             
-            // Возвращаем шапку к полному размеру
             setTimeout(() => {
                 header.classList.remove('scroll-50', 'scroll-100', 'scroll-150', 'scroll-200');
             }, 100);
         });
     }
 
-    // ========== АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК ==========
-    const observerOptions = {
+    // ========== ПРЕМИАЛЬНАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК ==========
+    const cardObserverOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -30px 0px'
     };
     
-    const observer = new IntersectionObserver((entries) => {
+    const cardObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
+                cardObserver.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, cardObserverOptions);
     
     document.querySelectorAll('.service-card').forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = `opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`;
-        observer.observe(card);
+        card.style.transitionDelay = `${index * 0.08}s`;
+        cardObserver.observe(card);
     });
 
     // ========== АНИМАЦИЯ ПОЯВЛЕНИЯ ПРЕИМУЩЕСТВ ==========
@@ -197,9 +189,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
+                featuresObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
     
     document.querySelectorAll('.feature-item').forEach((item, index) => {
         item.style.opacity = '0';
