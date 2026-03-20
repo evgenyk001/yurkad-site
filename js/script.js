@@ -6,25 +6,25 @@ document.addEventListener('DOMContentLoaded', () => {
     let intervalId;
     
     if (wordElement) {
-        wordElement.style.transition = 'opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1), transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+        wordElement.style.transition = 'opacity 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1)';
         
         function changeWord() {
             index = (index + 1) % words.length;
             
-            // Apple-style исчезновение с масштабом
-            wordElement.style.transform = 'translateY(-8px) scale(0.95)';
+            // Плавное исчезновение
             wordElement.style.opacity = '0';
+            wordElement.style.transform = 'translateY(-6px)';
             
             setTimeout(() => {
                 wordElement.textContent = words[index];
-                // Apple-style появление с масштабом
-                wordElement.style.transform = 'translateY(8px) scale(0.98)';
+                // Плавное появление
                 wordElement.style.opacity = '1';
+                wordElement.style.transform = 'translateY(6px)';
                 
                 setTimeout(() => {
-                    wordElement.style.transform = 'translateY(0) scale(1)';
+                    wordElement.style.transform = 'translateY(0)';
                 }, 60);
-            }, 300);
+            }, 250);
         }
         
         intervalId = setInterval(changeWord, 2800);
