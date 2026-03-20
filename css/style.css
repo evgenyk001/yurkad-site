@@ -388,11 +388,13 @@ html {
     transform: rotate(180deg);
 }
 
+/* ИСПРАВЛЕННОЕ ОПИСАНИЕ - ПЛАВНОЕ ЗАКРЫТИЕ */
 .service-description {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
-                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                margin 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     margin-top: 0;
     color: #D6D6D6;
