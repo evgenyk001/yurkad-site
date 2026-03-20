@@ -6,23 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let intervalId;
     
     if (wordElement) {
-        // Добавляем класс для супер-плавного перехода
         wordElement.style.transition = 'opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)';
         
         function changeWord() {
             index = (index + 1) % words.length;
             
-            // Эффект лёгкого смещения вверх при исчезновении
             wordElement.style.transform = 'translateY(-5px)';
             wordElement.style.opacity = '0';
             
             setTimeout(() => {
                 wordElement.textContent = words[index];
-                // Появление с лёгким смещением снизу
                 wordElement.style.transform = 'translateY(5px)';
                 wordElement.style.opacity = '1';
                 
-                // Возвращаем на место после появления
                 setTimeout(() => {
                     wordElement.style.transform = 'translateY(0)';
                 }, 50);
@@ -57,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ========== ПРЕМИАЛЬНЫЙ АККОРДЕОН ==========
     const toggleButtons = document.querySelectorAll('.service-toggle');
     
-    // Добавляем супер-плавные переходы для всех элементов
     document.querySelectorAll('.service-card').forEach(card => {
         card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
     });
@@ -70,8 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const isActive = button.classList.contains('active');
             
-            // Закрываем все карточки с задержкой для плавности
-            toggleButtons.forEach((btn, i) => {
+            toggleButtons.forEach((btn) => {
                 const btnCard = btn.closest('.service-card');
                 const btnDesc = btn.nextElementSibling;
                 const btnArrow = btn.querySelector('.arrow');
@@ -79,21 +73,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.remove('active');
                 btnDesc.classList.remove('active');
                 btnArrow.innerHTML = '↓';
-                
-                // Убираем подсветку
                 btnCard.style.borderColor = 'rgba(158, 147, 126, 0.1)';
             });
             
-            // Если текущая карточка была закрыта — открываем её с эффектом
             if (!isActive) {
                 button.classList.add('active');
                 description.classList.add('active');
                 arrow.innerHTML = '↑';
-                
-                // Подсвечиваем активную карточку
                 currentCard.style.borderColor = '#9E937E';
                 
-                // Плавный скролл к карточке, если она не полностью видна
                 setTimeout(() => {
                     const rect = currentCard.getBoundingClientRect();
                     const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
@@ -116,61 +104,61 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activeButton) {
             const activeCard = activeButton.closest('.service-card');
             
-            // Если клик был НЕ по активной карточке и НЕ по её кнопке
             if (!activeCard.contains(e.target)) {
-                // Закрываем активную карточку
                 activeButton.classList.remove('active');
                 activeButton.nextElementSibling.classList.remove('active');
                 activeButton.querySelector('.arrow').innerHTML = '↓';
-                
-                // Убираем подсветку
                 activeCard.style.borderColor = 'rgba(158, 147, 126, 0.1)';
             }
         }
     });
 
-    // ========== УМНАЯ ШАПКА (ТОЛЬКО ДЛЯ КОМПЬЮТЕРА) ==========
+    // ========== ПОШАГОВАЯ АДАПТАЦИЯ ШАПКИ ==========
     const header = document.querySelector('.header');
     const logo = document.querySelector('.logo-wrapper');
     let lastScrollTop = 0;
-    const scrollThreshold = 50; // Чувствительность скролла
+    let ticking = false;
     
-    // Функция для проверки ширины экрана
-    function isDesktop() {
-        return window.innerWidth > 900;
-    }
-    
-    // Обработчик скролла
-    window.addEventListener('scroll', () => {
-        if (!isDesktop()) return; // Только для компьютера
-        
+    // Функция обновления классов шапки
+    function updateHeaderClasses() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        if (Math.abs(scrollTop - lastScrollTop) > scrollThreshold) {
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                // Скроллим вниз - делаем шапку компактной
-                header.classList.add('compact');
-            } else {
-                // Скроллим вверх - возвращаем обычную шапку
-                header.classList.remove('compact');
-            }
-            lastScrollTop = scrollTop;
+        // Удаляем все классы скролла
+        header.classList.remove('scroll-50', 'scroll-100', 'scroll-150', 'scroll-200');
+        
+        if (scrollTop < 50) {
+            // В самом верху - ничего не добавляем
+            header.classList.remove('scroll-50', 'scroll-100', 'scroll-150', 'scroll-200');
+        } else if (scrollTop < 150) {
+            header.classList.add('scroll-50');
+        } else if (scrollTop < 300) {
+            header.classList.add('scroll-100');
+        } else if (scrollTop < 500) {
+            header.classList.add('scroll-150');
+        } else {
+            header.classList.add('scroll-200');
+        }
+        
+        lastScrollTop = scrollTop;
+        ticking = false;
+    }
+    
+    // Оптимизированный обработчик скролла (requestAnimationFrame)
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateHeaderClasses();
+            });
+            ticking = true;
         }
     });
     
-    // Возврат к полноразмерной шапке при достижении верха
-    window.addEventListener('scroll', () => {
-        if (!isDesktop()) return;
-        
-        if (window.pageYOffset < 50) {
-            header.classList.remove('compact');
-        }
-    });
+    // Обновляем при загрузке страницы
+    updateHeaderClasses();
     
     // ========== ВОЗВРАТ НАВЕРХ ПРИ КЛИКЕ НА ЛОГО ==========
     if (logo) {
         logo.addEventListener('click', () => {
-            // Плавный скролл наверх
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -178,12 +166,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Возвращаем шапку к полному размеру
             setTimeout(() => {
-                header.classList.remove('compact');
+                header.classList.remove('scroll-50', 'scroll-100', 'scroll-150', 'scroll-200');
             }, 100);
         });
     }
 
-    // ========== АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК ПРИ СКРОЛЛЕ ==========
+    // ========== АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК ==========
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
