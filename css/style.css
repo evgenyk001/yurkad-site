@@ -388,13 +388,14 @@ html {
     transform: rotate(180deg);
 }
 
-/* ИСПРАВЛЕННОЕ ОПИСАНИЕ - ПЛАВНОЕ ЗАКРЫТИЕ */
+/* МАКСИМАЛЬНО ПЛАВНОЕ ОПИСАНИЕ (APPLE-LEVEL) */
 .service-description {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
-                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                margin 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: max-height 0.6s cubic-bezier(0.33, 1, 0.68, 1), 
+                opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1),
+                margin 0.4s cubic-bezier(0.33, 1, 0.68, 1),
+                padding 0.4s cubic-bezier(0.33, 1, 0.68, 1);
     opacity: 0;
     margin-top: 0;
     color: #D6D6D6;
@@ -402,6 +403,7 @@ html {
     line-height: 1.5;
     width: 100%;
     border-top: 1px solid transparent;
+    padding-top: 0;
 }
 
 .service-description.active {
