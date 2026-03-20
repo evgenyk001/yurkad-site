@@ -44,24 +44,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // НОВОЕ: Открытие/закрытие описаний в карточках услуг
-    document.querySelectorAll('.service-toggle').forEach(button => {
+    // ========== АККОРДЕОН ДЛЯ КАРТОЧЕК УСЛУГ ==========
+    const toggleButtons = document.querySelectorAll('.service-toggle');
+    
+    toggleButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Переключаем класс active на кнопке
-            button.classList.toggle('active');
-            
             // Находим описание в этой же карточке
             const description = button.nextElementSibling;
-            
-            // Переключаем класс active у описания
-            description.classList.toggle('active');
-            
-            // Меняем стрелку
             const arrow = button.querySelector('.arrow');
-            if (description.classList.contains('active')) {
+            
+            // Проверяем, открыта ли текущая карточка
+            const isActive = button.classList.contains('active');
+            
+            // Закрываем все карточки
+            toggleButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.nextElementSibling.classList.remove('active');
+                btn.querySelector('.arrow').innerHTML = '↓';
+            });
+            
+            // Если текущая карточка была закрыта — открываем её
+            if (!isActive) {
+                button.classList.add('active');
+                description.classList.add('active');
                 arrow.innerHTML = '↑';
-            } else {
-                arrow.innerHTML = '↓';
             }
         });
     });
