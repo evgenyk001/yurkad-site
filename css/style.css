@@ -230,13 +230,15 @@ html {
     justify-self: start;
 }
 
+/* СЛОВА ПРИЖАТЫ К ЛЕВОМУ КРАЮ */
 .hero-words-wrapper {
     min-height: 100px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin-bottom: 5px;
     margin-top: -30px;
+    width: 100%;
 }
 
 .hero-word {
@@ -245,6 +247,7 @@ html {
     color: #9E937E;
     line-height: 1;
     display: inline-block;
+    white-space: nowrap;
     opacity: 1;
     transform: translateY(0);
     transition: opacity 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1), 
@@ -270,18 +273,23 @@ html {
     font-weight: 400;
 }
 
-/* Кнопка с переливом */
+/* ========== ГЛАВНАЯ КНОПКА - ВОЗДУШНАЯ С ПЕРЕЛИВОМ ========== */
 .hero .btn {
     display: inline-block;
     padding: 22px 60px;
-    background: linear-gradient(135deg, #9E937E 0%, #b3a690 50%, #9E937E 100%);
-    background-size: 200% 200%;
+    background: linear-gradient(125deg, 
+        #9E937E 0%, 
+        #b3a690 25%, 
+        #c9bc9f 50%, 
+        #b3a690 75%, 
+        #9E937E 100%);
+    background-size: 300% 100%;
     color: #35342B;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 12px;
     font-weight: 700;
     font-size: 22px;
-    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     border: none;
     cursor: pointer;
     width: auto;
@@ -289,25 +297,50 @@ html {
     margin-top: -160px;
     margin-bottom: 0;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    animation: shimmer 3s infinite linear, gentlePulse 2.5s infinite ease-in-out;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25), 0 0 0 1px rgba(158,147,126,0.2);
+    animation: liquidShine 3s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
 }
 
-@keyframes shimmer {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Эффект свечения при наведении */
+.hero .btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(115deg, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.3) 50%, 
+        rgba(255,255,255,0) 100%);
+    transform: rotate(25deg);
+    transition: left 0.8s ease;
+    pointer-events: none;
 }
 
-@keyframes gentlePulse {
-    0%, 100% { box-shadow: 0 4px 15px rgba(158, 147, 126, 0.2); }
-    50% { box-shadow: 0 8px 28px rgba(158, 147, 126, 0.45); }
+.hero .btn:hover::before {
+    left: 100%;
 }
 
-.btn:hover {
-    transform: translateY(-3px);
+.hero .btn:hover {
+    transform: translateY(-4px);
     box-shadow: 0 20px 35px rgba(158, 147, 126, 0.5);
-    animation: shimmer 1.5s infinite linear;
+    animation: liquidShine 1.2s ease-in-out infinite;
+}
+
+@keyframes liquidShine {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .hero-right {
@@ -402,10 +435,15 @@ html {
     letter-spacing: -0.02em;
 }
 
-/* Кнопка в карточках с переливом */
+/* ========== КНОПКИ В КАРТОЧКАХ - ТАКОЙ ЖЕ СТИЛЬ ========== */
 .service-toggle {
-    background: linear-gradient(135deg, #9E937E 0%, #b3a690 50%, #9E937E 100%);
-    background-size: 200% 200%;
+    background: linear-gradient(125deg, 
+        #9E937E 0%, 
+        #b3a690 25%, 
+        #c9bc9f 50%, 
+        #b3a690 75%, 
+        #9E937E 100%);
+    background-size: 300% 100%;
     border: none;
     color: #35342B;
     padding: 8px 20px;
@@ -418,14 +456,37 @@ html {
     align-items: center;
     gap: 8px;
     margin-bottom: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    animation: shimmer 3s infinite linear;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 0 0 1px rgba(158,147,126,0.2);
+    animation: liquidShine 4s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Эффект свечения при наведении */
+.service-toggle::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(115deg, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.4) 50%, 
+        rgba(255,255,255,0) 100%);
+    transform: rotate(25deg);
+    transition: left 0.6s ease;
+    pointer-events: none;
+}
+
+.service-toggle:hover::before {
+    left: 100%;
 }
 
 .service-toggle:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(158, 147, 126, 0.4);
-    animation: shimmer 1.5s infinite linear;
+    box-shadow: 0 8px 20px rgba(158, 147, 126, 0.45);
+    animation: liquidShine 1.5s ease-in-out infinite;
 }
 
 .service-toggle .arrow {
