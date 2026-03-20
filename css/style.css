@@ -140,7 +140,7 @@ html {
     justify-self: start;
 }
 
-/* Анимированные слова */
+/* Анимированные слова - УЛУЧШЕННАЯ АНИМАЦИЯ */
 .hero-words-wrapper {
     min-height: 100px;
     display: flex;
@@ -154,9 +154,11 @@ html {
     font-weight: 800;
     color: #9E937E;
     line-height: 1;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), 
+                transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
     display: inline-block;
     white-space: nowrap;
+    will-change: opacity, transform;
 }
 
 /* СТАТИЧНЫЙ БЛОК */
@@ -242,7 +244,7 @@ html {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     margin-top: 50px;
-    align-items: start; /* ВАЖНО: карточки прижимаются к верху */
+    align-items: start;
 }
 
 .service-card {
@@ -250,14 +252,15 @@ html {
     border-radius: 24px;
     padding: 20px 16px;
     border: 1px solid rgba(158, 147, 126, 0.1);
-    transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     backdrop-filter: blur(10px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    height: fit-content; /* Высота подстраивается под контент */
+    height: fit-content;
+    will-change: transform, border-color, box-shadow;
 }
 
 .service-card:hover {
@@ -266,7 +269,7 @@ html {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* КАРТИНКИ - ЧИСТО, АККУРАТНО, КАК У APPLE */
+/* КАРТИНКИ */
 .service-image {
     width: 100%;
     height: 180px;
@@ -275,7 +278,8 @@ html {
     border-radius: 16px;
     margin-bottom: 20px;
     background: #35342B;
-    transition: transform 0.4s ease;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
 .service-card:hover .service-image {
@@ -290,7 +294,7 @@ html {
     letter-spacing: -0.02em;
 }
 
-/* КНОПКА - МИНИМАЛИСТИЧНАЯ */
+/* КНОПКА */
 .service-toggle {
     background: none;
     border: none;
@@ -300,7 +304,7 @@ html {
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -315,18 +319,21 @@ html {
 
 .service-toggle .arrow {
     font-size: 16px;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .service-toggle.active .arrow {
     transform: rotate(180deg);
 }
 
-/* ОПИСАНИЕ - ПЛАВНОЕ, МЯГКОЕ */
+/* ОПИСАНИЕ - СУПЕР-ПЛАВНОЕ */
 .service-description {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                margin 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.3s ease;
     opacity: 0;
     margin-top: 0;
     color: #D6D6D6;
@@ -373,6 +380,21 @@ html {
 
 .feature-item {
     text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: featureAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.feature-item:nth-child(1) { animation-delay: 0.1s; }
+.feature-item:nth-child(2) { animation-delay: 0.2s; }
+.feature-item:nth-child(3) { animation-delay: 0.3s; }
+.feature-item:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes featureAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .feature-icon {
@@ -385,7 +407,7 @@ html {
     width: 48px;
     height: 48px;
     stroke: #9E937E;
-    transition: transform 0.3s;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .feature-item:hover .feature-icon svg {
@@ -422,10 +444,29 @@ html {
     padding: 40px;
     border-radius: 24px;
     border: 1px solid rgba(158, 147, 126, 0.1);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contacts-info:hover {
+    transform: scale(1.02);
 }
 
 .contact-item {
     margin-bottom: 30px;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: contactAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.contact-item:nth-child(1) { animation-delay: 0.1s; }
+.contact-item:nth-child(2) { animation-delay: 0.2s; }
+.contact-item:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes contactAppear {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .contact-label {
@@ -456,11 +497,13 @@ html {
     background: rgba(158, 147, 126, 0.1);
     border: 1px solid rgba(158, 147, 126, 0.3);
     color: #9E937E;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .whatsapp-btn:hover {
     background: #9E937E;
     color: #35342B;
+    transform: translateY(-2px);
 }
 
 .contacts-map {
@@ -468,6 +511,16 @@ html {
     overflow: hidden;
     height: 450px;
     border: 1px solid rgba(158, 147, 126, 0.1);
+    opacity: 0;
+    transform: translateX(20px);
+    animation: mapAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+@keyframes mapAppear {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .contacts-map iframe {
@@ -491,6 +544,11 @@ html {
     height: 30px;
     width: auto;
     opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.footer-logo:hover {
+    opacity: 1;
 }
 
 .footer-copy {
