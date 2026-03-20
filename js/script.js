@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 wordElement.textContent = words[index];
                 wordElement.style.opacity = '1';
-            }, 400); // Немного увеличил для плавности
+            }, 400);
         }
         
         // Запускаем интервал
         intervalId = setInterval(changeWord, 2800);
         
-        // Останавливаем анимацию, если вкладка неактивна (экономия ресурсов)
+        // Останавливаем анимацию, если вкладка неактивна
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
                 clearInterval(intervalId);
@@ -40,6 +40,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     behavior: 'smooth',
                     block: 'start'
                 });
+            }
+        });
+    });
+
+    // НОВОЕ: Открытие/закрытие описаний в карточках услуг
+    document.querySelectorAll('.service-toggle').forEach(button => {
+        button.addEventListener('click', () => {
+            // Переключаем класс active на кнопке
+            button.classList.toggle('active');
+            
+            // Находим описание в этой же карточке
+            const description = button.nextElementSibling;
+            
+            // Переключаем класс active у описания
+            description.classList.toggle('active');
+            
+            // Меняем стрелку
+            const arrow = button.querySelector('.arrow');
+            if (description.classList.contains('active')) {
+                arrow.innerHTML = '↑';
+            } else {
+                arrow.innerHTML = '↓';
             }
         });
     });
