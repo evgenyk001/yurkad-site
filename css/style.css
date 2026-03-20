@@ -231,62 +231,101 @@ html {
     filter: sepia(0.15) saturate(1.2) brightness(1.01);
 }
 
-/* ========== КАРТОЧКИ УСЛУГ ========== */
+/* ========== НОВЫЕ КАРТОЧКИ УСЛУГ ========== */
 .cards {
-    padding: 100px 0;
+    padding: 80px 0;
     scroll-margin-top: 120px;
 }
 
-.cards-grid {
+.services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+    margin-top: 50px;
 }
 
-.card {
-    padding: 30px;
-    border-top: 1px solid #4A483E;
-    transition: all 0.3s;
+.service-card {
+    background: #2E2D26;
+    border-radius: 16px;
+    padding: 25px 20px;
+    border: 1px solid #4A483E;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.card:hover {
-    border-top-color: #9E937E;
+.service-card:hover {
+    border-color: #9E937E;
     transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(158, 147, 126, 0.15);
 }
 
-.card-number {
-    color: #9E937E;
-    font-size: 14px;
-    margin-bottom: 15px;
-    opacity: 0.7;
-}
-
-.card-title {
-    font-size: 24px;
-    font-weight: 500;
-    margin-bottom: 15px;
-    color: #FFFFFF;
-}
-
-.card-desc {
-    color: #D6D6D6;
-    font-size: 16px;
-    line-height: 1.6;
+.service-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
     margin-bottom: 20px;
+    border: 2px solid #9E937E;
+    padding: 5px;
+    background: #35342B;
 }
 
-.card-link {
+.service-title {
+    font-size: 22px;
+    font-weight: 600;
     color: #9E937E;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    transition: all 0.3s;
-    display: inline-block;
+    margin-bottom: 15px;
 }
 
-.card-link:hover {
-    transform: translateX(5px);
-    color: #b3a690;
+.service-toggle {
+    background: none;
+    border: 2px solid #9E937E;
+    color: #9E937E;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.service-toggle:hover {
+    background: #9E937E;
+    color: #35342B;
+}
+
+.service-toggle .arrow {
+    font-size: 18px;
+    transition: transform 0.3s;
+}
+
+.service-toggle.active .arrow {
+    transform: rotate(180deg);
+}
+
+.service-description {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+    opacity: 0;
+    margin-top: 0;
+    color: #D6D6D6;
+    font-size: 15px;
+    line-height: 1.6;
+    width: 100%;
+}
+
+.service-description.active {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 15px;
 }
 
 /* ========== ПРЕИМУЩЕСТВА ========== */
@@ -434,6 +473,10 @@ html {
     .hero-word {
         font-size: 66px;
     }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 1100px) {
@@ -489,10 +532,6 @@ html {
         max-width: 260px;
     }
     
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -513,7 +552,7 @@ html {
 /* ========== МОБИЛЬНАЯ ВЕРСИЯ ========== */
 @media (max-width: 600px) {
     .header-container {
-        padding: 15px 15px; /* УМЕНЬШИЛ ПРАВЫЙ ПАДДИНГ */
+        padding: 15px 15px;
     }
     
     .logo {
@@ -522,7 +561,7 @@ html {
     
     .nav-icons {
         gap: 12px;
-        margin-right: 5px; /* ЧУТЬ-ЧУТЬ ОТОДВИНУЛ ОТ КРАЯ */
+        margin-right: 5px;
     }
     
     .nav-icon svg {
@@ -619,6 +658,34 @@ html {
         text-align: center;
     }
     
+    /* НОВЫЕ КАРТОЧКИ НА МОБИЛКЕ */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .service-image {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .service-title {
+        font-size: 20px;
+    }
+    
+    .service-toggle {
+        padding: 8px 20px;
+        font-size: 15px;
+    }
+    
+    .service-description {
+        font-size: 14px;
+    }
+    
+    .service-description.active {
+        max-height: 250px;
+    }
+    
     .features {
         width: 100%;
         background: #2E2D26;
@@ -634,23 +701,6 @@ html {
     .cards, .contacts {
         padding: 40px 0;
         scroll-margin-top: 115px;
-    }
-    
-    .cards-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .card {
-        padding: 20px;
-    }
-    
-    .card-title {
-        font-size: 20px;
-    }
-    
-    .card-desc {
-        font-size: 14px;
     }
     
     .features-grid {
@@ -703,7 +753,7 @@ html {
     
     .nav-icons {
         gap: 8px;
-        margin-right: 3px; /* И НА САМЫХ МАЛЕНЬКИХ ТОЖЕ */
+        margin-right: 3px;
     }
     
     .nav-icon svg {
@@ -734,6 +784,15 @@ html {
     .hero .btn {
         width: 90%;
         padding: 16px 20px;
+        font-size: 18px;
+    }
+    
+    .service-image {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .service-title {
         font-size: 18px;
     }
 }
