@@ -192,21 +192,18 @@ document.addEventListener('DOMContentLoaded', () => {
         cardObserver.observe(card);
     });
 
-    // ========== АНИМАЦИЯ ПОЯВЛЕНИЯ ПРЕИМУЩЕСТВ ==========
+    // ========== ПРЕМИАЛЬНАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ ПРЕИМУЩЕСТВ ==========
     const featuresObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
                 featuresObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    }, { threshold: 0.2, rootMargin: '0px 0px -30px 0px' });
     
     document.querySelectorAll('.feature-item').forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(20px)';
-        item.style.transition = `opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1) ${index * 0.1}s, transform 0.5s cubic-bezier(0.33, 1, 0.68, 1) ${index * 0.1}s`;
+        item.style.transitionDelay = `${index * 0.1}s`;
         featuresObserver.observe(item);
     });
 });
