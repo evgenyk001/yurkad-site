@@ -1000,7 +1000,7 @@ html {
 /* ========== МОБИЛЬНАЯ ВЕРСИЯ ========== */
 @media (max-width: 600px) {
     .header-container {
-        padding: 15px 15px;
+        padding: 5px 15px;
     }
     
     .logo {
