@@ -497,9 +497,9 @@ html {
     padding-top: 10px;
 }
 
-/* ========== ПРЕИМУЩЕСТВА ========== */
+/* ========== ПРЕИМУЩЕСТВА (APPLE STYLE) ========== */
 .features {
-    padding: 60px 0;
+    padding: 80px 0;
     background: #2E2D26;
     scroll-margin-top: 100px;
     width: 100%;
@@ -509,8 +509,8 @@ html {
 }
 
 .section-title {
-    font-size: 32px;
-    margin-bottom: 40px;
+    font-size: 36px;
+    margin-bottom: 60px;
     text-align: center;
     font-weight: 600;
     letter-spacing: -0.02em;
@@ -519,56 +519,58 @@ html {
 .features-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+    gap: 40px;
+    margin-top: 20px;
 }
 
 .feature-item {
     text-align: center;
+    padding: 20px;
+    border-radius: 24px;
+    transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     opacity: 0;
     transform: translateY(30px);
-    animation: featureAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.feature-item:nth-child(1) { animation-delay: 0.1s; }
-.feature-item:nth-child(2) { animation-delay: 0.2s; }
-.feature-item:nth-child(3) { animation-delay: 0.3s; }
-.feature-item:nth-child(4) { animation-delay: 0.4s; }
+.feature-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-@keyframes featureAppear {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.feature-item:hover {
+    background: rgba(158, 147, 126, 0.05);
+    transform: translateY(-5px);
 }
 
 .feature-icon {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     display: flex;
     justify-content: center;
 }
 
 .feature-icon svg {
-    width: 48px;
-    height: 48px;
-    stroke: #9E937E;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 56px;
+    height: 56px;
+    transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
 .feature-item:hover .feature-icon svg {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .feature-item h3 {
     font-size: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     color: #FFFFFF;
     font-weight: 600;
 }
 
 .feature-item p {
     color: #D6D6D6;
-    font-size: 15px;
-    line-height: 1.6;
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 200px;
+    margin: 0 auto;
 }
 
 /* ========== КОНТАКТЫ ========== */
@@ -714,6 +716,15 @@ html {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
+    
+    .features-grid {
+        gap: 30px;
+    }
+    
+    .feature-icon svg {
+        width: 48px;
+        height: 48px;
+    }
 }
 
 @media (max-width: 1100px) {
@@ -771,7 +782,11 @@ html {
     
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 30px;
+    }
+    
+    .feature-item p {
+        max-width: 100%;
     }
     
     .contacts-grid {
@@ -954,7 +969,12 @@ html {
     
     .features-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 40px;
+    }
+    
+    .feature-icon svg {
+        width: 52px;
+        height: 52px;
     }
     
     .feature-item h3 {
@@ -963,6 +983,12 @@ html {
     
     .feature-item p {
         font-size: 14px;
+        max-width: 100%;
+    }
+    
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 40px;
     }
     
     .contacts {
