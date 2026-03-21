@@ -206,4 +206,37 @@ document.addEventListener('DOMContentLoaded', () => {
         item.style.transitionDelay = `${index * 0.1}s`;
         featuresObserver.observe(item);
     });
+
+    // ========== ПЕРЕКЛЮЧЕНИЕ КАРТЫ И АДРЕСА ==========
+    const cityBtns = document.querySelectorAll('.city-btn');
+    const mapFrame = document.getElementById('map-frame');
+    const artemAddress = document.getElementById('artem-address');
+    const ussuriyskAddress = document.getElementById('ussuriysk-address');
+
+    const maps = {
+        artem: 'https://maps.2gis.com/embed/ru?m=132.18083%2C43.354723%2F16&r=43.354723%2C132.18083',
+        ussuriysk: 'https://maps.2gis.com/embed/ru?m=131.953719%2C43.802527%2F16&r=43.802527%2C131.953719'
+    };
+
+    if (cityBtns.length && mapFrame) {
+        cityBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                cityBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const city = btn.dataset.city;
+                if (maps[city]) {
+                    mapFrame.src = maps[city];
+                }
+                
+                if (city === 'artem') {
+                    if (artemAddress) artemAddress.style.display = 'block';
+                    if (ussuriyskAddress) ussuriyskAddress.style.display = 'none';
+                } else {
+                    if (artemAddress) artemAddress.style.display = 'none';
+                    if (ussuriyskAddress) ussuriyskAddress.style.display = 'block';
+                }
+            });
+        });
+    }
 });
