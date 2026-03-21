@@ -239,13 +239,20 @@
         </div>
     </section>
 
-    <!-- КОНТАКТЫ + КАРТА -->
+    <!-- КОНТАКТЫ + КАРТА С ПЕРЕКЛЮЧЕНИЕМ МЕЖДУ АРТЁМОМ И УССУРИЙСКОМ -->
     <section class="contacts" id="contacts">
         <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            
+            <!-- Переключатель городов -->
+            <div class="city-switcher">
+                <button class="city-btn active" data-city="artem">Артём</button>
+                <button class="city-btn" data-city="ussuriysk">Уссурийск</button>
+            </div>
+            
             <div class="contacts-grid">
                 
                 <div class="contacts-info">
-                    <h2 class="section-title">Контакты</h2>
                     
                     <div class="contact-item">
                         <span class="contact-label">Телефон</span>
@@ -257,9 +264,14 @@
                         <a href="mailto:jurist.2023@bk.ru" class="contact-value">jurist.2023@bk.ru</a>
                     </div>
                     
-                    <div class="contact-item">
-                        <span class="contact-label">Адрес</span>
+                    <div class="contact-item" id="artem-address">
+                        <span class="contact-label">Адрес (Артём)</span>
                         <span class="contact-value">г. Артём, площадь Ленина 3, офис 2,3</span>
+                    </div>
+                    
+                    <div class="contact-item" id="ussuriysk-address" style="display: none;">
+                        <span class="contact-label">Адрес (Уссурийск)</span>
+                        <span class="contact-value">г. Уссурийск, ул. Ленина, 131</span>
                     </div>
                     
                     <a href="https://wa.me/79143444513" class="btn whatsapp-btn" target="_blank">
@@ -268,7 +280,7 @@
                 </div>
                 
                 <div class="contacts-map">
-                    <iframe src="https://maps.2gis.com/embed/ru?m=43.350677%2C132.191395&r=43.350672%2C132.191353" width="100%" height="100%" frameborder="0" allowfullscreen="true"></iframe>
+                    <iframe id="map-frame" src="https://maps.2gis.com/embed/ru?m=132.18083%2C43.354723%2F16&r=43.354723%2C132.18083" width="100%" height="100%" frameborder="0" allowfullscreen="true"></iframe>
                 </div>
                 
             </div>
