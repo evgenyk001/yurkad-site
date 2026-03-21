@@ -177,6 +177,7 @@ html {
     position: relative;
     animation: heroAppear 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards,
                gradientShift 12s ease infinite;
+    scroll-margin-top: 100px;
 }
 
 @keyframes heroAppear {
@@ -354,7 +355,7 @@ html {
 /* ========== КАРТОЧКИ УСЛУГ ========== */
 .cards {
     padding: 30px 0 60px;
-    scroll-margin-top: 30px;
+    scroll-margin-top: 100px;
 }
 
 .services-grid {
@@ -499,14 +500,13 @@ html {
 
 /* ========== ПРЕИМУЩЕСТВА (APPLE STYLE С ПРЕМИАЛЬНОЙ АНИМАЦИЕЙ) ========== */
 .features {
-    padding: 140px 0;
+    padding: 100px 0;
     background: #2E2D26;
     scroll-margin-top: 100px;
     width: 100%;
     position: relative;
     left: 0;
     right: 0;
-    min-height: 100vh;
     display: flex;
     align-items: center;
 }
@@ -517,7 +517,7 @@ html {
 
 .section-title {
     font-size: 42px;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
     text-align: center;
     font-weight: 600;
     letter-spacing: -0.02em;
@@ -532,7 +532,7 @@ html {
 
 .feature-item {
     text-align: center;
-    padding: 40px 25px;
+    padding: 35px 25px;
     border-radius: 32px;
     transition: all 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     opacity: 0;
@@ -578,7 +578,7 @@ html {
 }
 
 .feature-icon {
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     display: flex;
     justify-content: center;
 }
@@ -619,7 +619,7 @@ html {
 
 .feature-item h3 {
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     color: #FFFFFF;
     font-weight: 600;
     letter-spacing: -0.01em;
@@ -627,7 +627,7 @@ html {
 
 .feature-item p {
     color: #D6D6D6;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.6;
     max-width: 300px;
     margin: 0 auto;
@@ -636,7 +636,7 @@ html {
 /* ========== КОНТАКТЫ ========== */
 .contacts {
     padding: 100px 0;
-    scroll-margin-top: 120px;
+    scroll-margin-top: 100px;
 }
 
 .contacts-grid {
@@ -904,6 +904,7 @@ html {
     .hero {
         min-height: 100vh;
         margin-top: 0;
+        scroll-margin-top: 115px;
     }
     
     .hero .container {
@@ -1028,8 +1029,8 @@ html {
     }
     
     .features {
-        padding: 80px 0;
-        min-height: auto;
+        padding: 60px 0;
+        scroll-margin-top: 115px;
     }
     
     .features .container {
@@ -1061,7 +1062,7 @@ html {
     
     .section-title {
         font-size: 32px;
-        margin-bottom: 50px;
+        margin-bottom: 40px;
     }
     
     .contacts {
