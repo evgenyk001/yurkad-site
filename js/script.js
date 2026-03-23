@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ОФСЕТЫ (подбери идеальные значения для своего сайта)
     const OFFSETS = {
         '.hero': 0,           // хедер уже сам учитываем
-        '.cards': 80,        // услуги
+        '.cards': 120,        // услуги
         '.features': 100,     // преимущества
         '.contacts': 100      // контакты
     };
