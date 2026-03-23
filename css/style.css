@@ -781,7 +781,7 @@ html {
     display: block;
 }
 
-/* ========== ТУМБЛЕР ПЕРЕКЛЮЧЕНИЯ ГОРОДОВ ========== */
+/* ========== ТУМБЛЕР ПЕРЕКЛЮЧЕНИЯ ГОРОДОВ С АНИМАЦИЕЙ ========== */
 .city-toggle {
     position: relative;
     display: flex;
@@ -809,7 +809,7 @@ html {
     font-weight: 600;
     color: #9E937E;
     cursor: pointer;
-    transition: color 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    transition: color 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     text-align: center;
 }
 
@@ -823,10 +823,24 @@ html {
     left: 4px;
     bottom: 4px;
     width: calc(50% - 4px);
-    background: #9E937E;
+    background: linear-gradient(125deg, #9E937E 0%, #b3a690 25%, #c9bc9f 50%, #b3a690 75%, #9E937E 100%);
+    background-size: 300% 100%;
     border-radius: 60px;
-    transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     z-index: 1;
+    animation: sliderShine 3s ease-in-out infinite;
+}
+
+@keyframes sliderShine {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 #city-ussuriysk:checked ~ .toggle-slider {
@@ -897,7 +911,7 @@ html {
     box-shadow: 0 8px 20px rgba(158, 147, 126, 0.4);
 }
 
-/* ========== ФУТЕР ========== */
+/* ========== ФУТЕР (ПО ЦЕНТРУ, БЕЗ ЛОГО) ========== */
 .footer {
     padding: 40px 0;
     border-top: 1px solid rgba(158, 147, 126, 0.2);
@@ -905,19 +919,9 @@ html {
 
 .footer-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-}
-
-.footer-logo {
-    height: 30px;
-    width: auto;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-}
-
-.footer-logo:hover {
-    opacity: 1;
+    text-align: center;
 }
 
 .footer-copy {
@@ -1255,10 +1259,6 @@ html {
     
     .footer {
         padding: 25px 0;
-    }
-    
-    .footer-logo {
-        height: 25px;
     }
     
     .footer-copy {
