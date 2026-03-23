@@ -236,4 +236,50 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // ========== ПЛАВНАЯ ПРОКРУТКА ДЛЯ НАВИГАЦИИ (ДОБАВЛЕНО) ==========
+    const navLinks = document.querySelectorAll('.nav-icon-item, a[href^="#"]');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            let targetId = this.getAttribute('href');
+            
+            // Для логотипа (если ведёт наверх)
+            if (this.classList.contains('logo-wrapper') || targetId === '#') {
+                targetId = '.hero';
+            }
+            
+            if (targetId && targetId !== '#') {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    const headerHeight = document.querySelector('.header')?.offsetHeight || 100;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+
+    // ========== КНОПКА "ЗАПИСАТЬСЯ" (ДОБАВЛЕНО) ==========
+    const bookingBtn = document.querySelector('.hero .btn');
+    if (bookingBtn) {
+        bookingBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const contactsSection = document.querySelector('.contacts');
+            if (contactsSection) {
+                const headerHeight = document.querySelector('.header')?.offsetHeight || 100;
+                const targetPosition = contactsSection.getBoundingClientRect().top + window.scrollY - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
 });
