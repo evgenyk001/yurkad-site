@@ -36,66 +36,72 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // ========== РУЧНАЯ НАСТРОЙКА ОТСТУПОВ ДЛЯ ЯКОРЕЙ ==========
-    // ОФСЕТЫ (подбери идеальные значения для своего сайта)
-    const OFFSETS = {
-        '.hero': 0,           // хедер уже сам учитываем
-        '.cards': 120,        // услуги
-        '.features': 100,     // преимущества
-        '.contacts': 100      // контакты
-    };
-    
-    // Функция прокрутки с ручной корректировкой
-    function scrollToElement(targetElement, customOffset = null) {
+    // ========== АВТОМАТИЧЕСКАЯ ПРОКРУТКА С ПОДБОРОМ ОТСТУПА ==========
+    function smartScrollTo(targetElement) {
         if (!targetElement) return;
         
-        // Получаем высоту хедера
+        // Получаем высоту шапки
         const header = document.querySelector('.header');
         const headerHeight = header?.offsetHeight || 100;
         
-        // Получаем базовый офсет из настроек
-        let offset = customOffset !== null ? customOffset : OFFSETS[targetElement.className] || 80;
+        // Получаем ID или класс секции для определения типа
+        const targetId = targetElement.id || targetElement.className;
         
-        // Вычисляем позицию
+        // Автоматический подбор отступа в зависимости от секции
+        let extraOffset = 0;
+        
+        // Если это секция услуг, преимуществ или контактов - добавляем немного воздуха
+        if (targetElement.classList.contains('cards') || 
+            targetElement.classList.contains('features') || 
+            targetElement.classList.contains('contacts') ||
+            targetElement.id === 'cards' ||
+            targetElement.id === 'features' ||
+            targetElement.id === 'contacts') {
+            extraOffset = 25; // 25px дополнительного воздуха
+        }
+        
+        // Если это карточка услуги - больше отступ
+        if (targetElement.classList.contains('service-card')) {
+            extraOffset = 40;
+        }
+        
+        // Рассчитываем позицию
         const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-        const offsetPosition = elementPosition - headerHeight - offset;
+        const finalPosition = elementPosition - headerHeight - extraOffset;
         
         // Прокручиваем
         window.scrollTo({
-            top: offsetPosition,
+            top: finalPosition,
             behavior: 'smooth'
         });
         
-        // Дополнительная корректировка через 200ms (на случай анимаций)
+        // ФИНАЛЬНАЯ ДОВОДКА: через 300ms проверяем и корректируем
         setTimeout(() => {
             const currentScroll = window.scrollY;
-            const targetScroll = elementPosition - headerHeight - offset;
+            const newElementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+            const newHeaderHeight = document.querySelector('.header')?.offsetHeight || 100;
+            const correctPosition = newElementPosition - newHeaderHeight - extraOffset;
             
-            if (Math.abs(currentScroll - targetScroll) > 10) {
+            // Если разница больше 10px - корректируем
+            if (Math.abs(currentScroll - correctPosition) > 10) {
                 window.scrollTo({
-                    top: targetScroll,
+                    top: correctPosition,
                     behavior: 'smooth'
                 });
             }
-        }, 200);
+        }, 350);
     }
     
-    // ========== НАСТРОЙКА ВСЕХ ЯКОРЕЙ ==========
-    function setupAnchors() {
-        // Секции для навигации
-        const sections = {
-            'hero': '.hero',
-            'cards': '.cards', 
-            'features': '.features',
-            'contacts': '.contacts'
-        };
-        
-        // Навигационные иконки
+    // ========== НАСТРОЙКА ВСЕХ КЛИКОВ ==========
+    function setupNavigation() {
+        // 1. Навигационные иконки
         const navItems = document.querySelectorAll('.nav-icon-item');
         navItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
-                const targetId = item.getAttribute('data-target') || item.getAttribute('href');
+                const href = item.getAttribute('href');
+                const dataTarget = item.getAttribute('data-target');
+                const targetId = dataTarget || href;
                 
                 if (targetId && targetId !== '#') {
                     let targetElement = document.querySelector(targetId);
@@ -104,53 +110,43 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     
                     if (targetElement) {
-                        // Задержка для стабилизации
-                        setTimeout(() => {
-                            scrollToElement(targetElement);
-                        }, 50);
+                        setTimeout(() => smartScrollTo(targetElement), 30);
                     }
                 }
             });
         });
         
-        // Все якоря
+        // 2. Все якоря
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
-                const targetId = anchor.getAttribute('href');
-                if (targetId === '#' || !targetId) return;
+                const href = anchor.getAttribute('href');
+                if (href === '#' || !href) return;
                 
-                const targetElement = document.querySelector(targetId);
+                const targetElement = document.querySelector(href);
                 if (targetElement) {
                     e.preventDefault();
-                    setTimeout(() => {
-                        scrollToElement(targetElement);
-                    }, 50);
+                    setTimeout(() => smartScrollTo(targetElement), 30);
                 }
             });
         });
         
-        // Кнопка "Записаться"
+        // 3. Кнопка "Записаться"
         const bookingBtn = document.querySelector('.hero .btn');
         if (bookingBtn) {
             bookingBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const contactsSection = document.querySelector('.contacts');
                 if (contactsSection) {
-                    setTimeout(() => {
-                        scrollToElement(contactsSection);
-                    }, 50);
+                    setTimeout(() => smartScrollTo(contactsSection), 30);
                 }
             });
         }
         
-        // Логотип (наверх)
+        // 4. Логотип (наверх)
         const logo = document.querySelector('.logo-wrapper');
         if (logo) {
             logo.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
                 setTimeout(() => {
                     document.querySelector('.header')?.classList.remove('scroll-50', 'scroll-100', 'scroll-150', 'scroll-200');
                 }, 100);
@@ -170,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const description = button.nextElementSibling;
             const arrow = button.querySelector('.arrow');
             const currentCard = button.closest('.service-card');
-            
             const isActive = button.classList.contains('active');
             
             toggleButtons.forEach((btn) => {
@@ -198,9 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const isVisible = rect.top >= headerHeight && rect.bottom <= window.innerHeight;
                     
                     if (!isVisible) {
-                        setTimeout(() => {
-                            scrollToElement(currentCard, 30);
-                        }, 50);
+                        setTimeout(() => smartScrollTo(currentCard), 50);
                     }
                 }, 100);
             }
@@ -319,8 +312,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // ========== ЗАПУСК ==========
     if (document.readyState === 'complete') {
-        setupAnchors();
+        setupNavigation();
     } else {
-        window.addEventListener('load', setupAnchors);
+        window.addEventListener('load', setupNavigation);
     }
 });
