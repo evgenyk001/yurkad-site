@@ -209,29 +209,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ========== ПЕРЕКЛЮЧЕНИЕ КАРТЫ И АДРЕСА (ДЛЯ ТУМБЛЕРА) ==========
     const cityRadios = document.querySelectorAll('input[name="city"]');
-    const mapFrame = document.getElementById('map-frame');
+    const mapArtem = document.getElementById('map-artem');
+    const mapUssuriysk = document.getElementById('map-ussuriysk');
     const artemAddress = document.getElementById('artem-address');
     const ussuriyskAddress = document.getElementById('ussuriysk-address');
 
-    const maps = {
-        artem: 'https://maps.2gis.com/embed/ru?m=132.18083%2C43.354723%2F16&r=43.354723%2C132.18083',
-        ussuriysk: 'https://maps.2gis.com/embed/ru?m=131.953719%2C43.802527%2F16&r=43.802527%2C131.953719'
-    };
-
-    if (cityRadios.length && mapFrame) {
+    if (cityRadios.length) {
         cityRadios.forEach(radio => {
             radio.addEventListener('change', () => {
                 if (radio.checked) {
                     const city = radio.id === 'city-artem' ? 'artem' : 'ussuriysk';
                     
-                    if (maps[city]) {
-                        mapFrame.src = maps[city];
-                    }
-                    
+                    // Переключаем карты
                     if (city === 'artem') {
+                        if (mapArtem) mapArtem.style.display = 'block';
+                        if (mapUssuriysk) mapUssuriysk.style.display = 'none';
                         if (artemAddress) artemAddress.style.display = 'block';
                         if (ussuriyskAddress) ussuriyskAddress.style.display = 'none';
                     } else {
+                        if (mapArtem) mapArtem.style.display = 'none';
+                        if (mapUssuriysk) mapUssuriysk.style.display = 'block';
                         if (artemAddress) artemAddress.style.display = 'none';
                         if (ussuriyskAddress) ussuriyskAddress.style.display = 'block';
                     }
