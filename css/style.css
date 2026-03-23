@@ -1456,3 +1456,10 @@ html {
 .contacts .section-title {
     margin-bottom: 15px;
 }
+
+/* ========== МОБИЛЬНАЯ ВЕРСИЯ - ДОПОЛНИТЕЛЬНЫЙ ЯКОРЬ ДЛЯ КОНТАКТОВ ========== */
+@media (max-width: 600px) {
+    .contacts {
+        scroll-margin-top: 70px;
+    }
+}
