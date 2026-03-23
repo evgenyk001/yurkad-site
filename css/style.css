@@ -1063,10 +1063,35 @@ html {
         letter-spacing: 0.2px;
     }
     
-    .header.scroll-50 .logo { height: 60px; }
-    .header.scroll-100 .logo { height: 55px; }
-    .header.scroll-150 .logo { height: 50px; }
-    .header.scroll-200 .logo { height: 45px; }
+    /* ========== ПОШАГОВОЕ УМЕНЬШЕНИЕ ШАПКИ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ ========== */
+    .header.scroll-50 .logo {
+        height: 55px;
+    }
+    .header.scroll-50 .nav-label {
+        font-size: 8px;
+    }
+    
+    .header.scroll-100 .logo {
+        height: 48px;
+    }
+    .header.scroll-100 .nav-label {
+        font-size: 7px;
+    }
+    
+    .header.scroll-150 .logo {
+        height: 42px;
+    }
+    .header.scroll-150 .nav-label {
+        font-size: 6px;
+    }
+    
+    .header.scroll-200 .logo {
+        height: 36px;
+    }
+    .header.scroll-200 .nav-label {
+        opacity: 0;
+        pointer-events: none;
+    }
     
     .hero {
         min-height: 100vh;
@@ -1303,6 +1328,20 @@ html {
     
     .nav-label {
         font-size: 8px;
+    }
+    
+    /* Пошаговое уменьшение для 400px */
+    .header.scroll-50 .logo {
+        height: 48px;
+    }
+    .header.scroll-100 .logo {
+        height: 42px;
+    }
+    .header.scroll-150 .logo {
+        height: 38px;
+    }
+    .header.scroll-200 .logo {
+        height: 34px;
     }
     
     .hero-word {
