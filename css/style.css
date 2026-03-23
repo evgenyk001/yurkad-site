@@ -231,7 +231,7 @@ html {
     justify-self: start;
 }
 
-/* СЛОВА ПРИЖАТЫ К ЛЕВОМУ КРАЮ И ПЕРЕЛИВАЮТСЯ */
+/* СЛОВА ПРИЖАТЫ К ЛЕВОМУ КРАЮ */
 .hero-words-wrapper {
     min-height: 100px;
     display: flex;
@@ -245,6 +245,7 @@ html {
 .hero-word {
     font-size: 72px;
     font-weight: 800;
+    color: #9E937E;
     line-height: 1;
     display: inline-block;
     white-space: nowrap;
@@ -252,25 +253,6 @@ html {
     transform: translateY(0);
     transition: opacity 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1), 
                 transform 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    /* ПЕРЕЛИВ ТЕКСТА */
-    background: linear-gradient(125deg, 
-        #9E937E 0%, 
-        #c9bc9f 50%, 
-        #9E937E 100%);
-    background-size: 200% 100%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: textShine 3s ease-in-out infinite;
-}
-
-@keyframes textShine {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
 }
 
 .hero-static {
@@ -334,9 +316,17 @@ html {
     }
 }
 
+/* ИСПРАВЛЕННАЯ АНИМАЦИЯ - БЕЗ ЗАТУПОВ, ТУДА-ОБРАТНО */
 @keyframes liquidShine {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .hero .btn:hover {
@@ -1093,7 +1083,6 @@ html {
         word-break: break-word;
         line-height: 1.2;
         max-width: 100%;
-        background-size: 150% 100%;
     }
     
     .hero-right {
@@ -1295,7 +1284,6 @@ html {
     
     .hero-word {
         font-size: 28px;
-        background-size: 150% 100%;
     }
     
     .femida-wrapper {
