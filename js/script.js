@@ -38,16 +38,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // ========== ПЛАВНЫЙ СКРОЛЛ К ЯКОРЯМ ==========
+    // ========== ФУНКЦИЯ ПЛАВНОЙ ПРОКРУТКИ С УЧЁТОМ ДИНАМИЧЕСКОЙ ШАПКИ ==========
+    function smoothScrollToElement(targetElement, offset = 0) {
+        if (!targetElement) return;
+        
+        const header = document.querySelector('.header');
+        const headerHeight = header?.offsetHeight || 100;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight - offset;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    }
+    
+    // ========== ПЛАВНЫЙ СКРОЛЛ К ЯКОРЯМ (ИСПРАВЛЕННЫЙ) ==========
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
-            e.preventDefault();
-            const target = document.querySelector(anchor.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            const targetId = anchor.getAttribute('href');
+            if (targetId === '#' || !targetId) return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                // Небольшая задержка для стабилизации шапки
+                setTimeout(() => {
+                    smoothScrollToElement(targetElement);
+                }, 50);
             }
         });
     });
@@ -93,10 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
                     
                     if (!isVisible) {
-                        currentCard.scrollIntoView({ 
-                            behavior: 'smooth', 
-                            block: 'center'
-                        });
+                        setTimeout(() => {
+                            smoothScrollToElement(currentCard, 30);
+                        }, 50);
                     }
                 }, 100);
             }
@@ -237,48 +253,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ========== ПЛАВНАЯ ПРОКРУТКА ДЛЯ НАВИГАЦИИ (ДОБАВЛЕНО) ==========
-    const navLinks = document.querySelectorAll('.nav-icon-item, a[href^="#"]');
+    // ========== НАВИГАЦИЯ ПО МЕНЮ (ИСПРАВЛЕННАЯ) ==========
+    const navItems = document.querySelectorAll('.nav-icon-item');
     
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            let targetId = this.getAttribute('href');
-            
-            // Для логотипа (если ведёт наверх)
-            if (this.classList.contains('logo-wrapper') || targetId === '#') {
-                targetId = '.hero';
-            }
+    navItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-target') || this.getAttribute('href');
             
             if (targetId && targetId !== '#') {
-                const targetElement = document.querySelector(targetId);
+                let targetElement = document.querySelector(targetId);
+                
+                // Если нет такого селектора, пробуем найти по id без #
+                if (!targetElement && targetId.startsWith('#')) {
+                    targetElement = document.getElementById(targetId.slice(1));
+                }
+                
                 if (targetElement) {
-                    e.preventDefault();
-                    const headerHeight = document.querySelector('.header')?.offsetHeight || 100;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    setTimeout(() => {
+                        smoothScrollToElement(targetElement);
+                    }, 50);
                 }
             }
         });
     });
 
-    // ========== КНОПКА "ЗАПИСАТЬСЯ" (ДОБАВЛЕНО) ==========
+    // ========== КНОПКА "ЗАПИСАТЬСЯ" (ИСПРАВЛЕННАЯ) ==========
     const bookingBtn = document.querySelector('.hero .btn');
     if (bookingBtn) {
         bookingBtn.addEventListener('click', function(e) {
             e.preventDefault();
             const contactsSection = document.querySelector('.contacts');
             if (contactsSection) {
-                const headerHeight = document.querySelector('.header')?.offsetHeight || 100;
-                const targetPosition = contactsSection.getBoundingClientRect().top + window.scrollY - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                setTimeout(() => {
+                    smoothScrollToElement(contactsSection);
+                }, 50);
             }
         });
     }
