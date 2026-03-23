@@ -36,125 +36,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // ========== АВТОМАТИЧЕСКАЯ ПРОКРУТКА С ПОДБОРОМ ОТСТУПА ==========
-    function smartScrollTo(targetElement) {
-        if (!targetElement) return;
-        
-        // Получаем высоту шапки
-        const header = document.querySelector('.header');
-        const headerHeight = header?.offsetHeight || 100;
-        
-        // Получаем ID или класс секции для определения типа
-        const targetId = targetElement.id || targetElement.className;
-        
-        // Автоматический подбор отступа в зависимости от секции
-        let extraOffset = 0;
-        
-        // Если это секция услуг, преимуществ или контактов - добавляем немного воздуха
-        if (targetElement.classList.contains('cards') || 
-            targetElement.classList.contains('features') || 
-            targetElement.classList.contains('contacts') ||
-            targetElement.id === 'cards' ||
-            targetElement.id === 'features' ||
-            targetElement.id === 'contacts') {
-            extraOffset = 25; // 25px дополнительного воздуха
-        }
-        
-        // Если это карточка услуги - больше отступ
-        if (targetElement.classList.contains('service-card')) {
-            extraOffset = 40;
-        }
-        
-        // Рассчитываем позицию
-        const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-        const finalPosition = elementPosition - headerHeight - extraOffset;
-        
-        // Прокручиваем
-        window.scrollTo({
-            top: finalPosition,
-            behavior: 'smooth'
-        });
-        
-        // ФИНАЛЬНАЯ ДОВОДКА: через 300ms проверяем и корректируем
-        setTimeout(() => {
-            const currentScroll = window.scrollY;
-            const newElementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-            const newHeaderHeight = document.querySelector('.header')?.offsetHeight || 100;
-            const correctPosition = newElementPosition - newHeaderHeight - extraOffset;
+    // ========== ПРОСТАЯ ПРОКРУТКА К ЯКОРЯМ (БЕЗ ЛИШНИХ РАСЧЁТОВ) ==========
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            const targetId = anchor.getAttribute('href');
+            if (targetId === '#' || !targetId) return;
             
-            // Если разница больше 10px - корректируем
-            if (Math.abs(currentScroll - correctPosition) > 10) {
-                window.scrollTo({
-                    top: correctPosition,
-                    behavior: 'smooth'
+            const target = document.querySelector(targetId);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
                 });
             }
-        }, 350);
-    }
-    
-    // ========== НАСТРОЙКА ВСЕХ КЛИКОВ ==========
-    function setupNavigation() {
-        // 1. Навигационные иконки
-        const navItems = document.querySelectorAll('.nav-icon-item');
-        navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const href = item.getAttribute('href');
-                const dataTarget = item.getAttribute('data-target');
-                const targetId = dataTarget || href;
-                
-                if (targetId && targetId !== '#') {
-                    let targetElement = document.querySelector(targetId);
-                    if (!targetElement && targetId.startsWith('#')) {
-                        targetElement = document.getElementById(targetId.slice(1));
-                    }
-                    
-                    if (targetElement) {
-                        setTimeout(() => smartScrollTo(targetElement), 30);
-                    }
-                }
-            });
         });
-        
-        // 2. Все якоря
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                const href = anchor.getAttribute('href');
-                if (href === '#' || !href) return;
-                
-                const targetElement = document.querySelector(href);
-                if (targetElement) {
-                    e.preventDefault();
-                    setTimeout(() => smartScrollTo(targetElement), 30);
-                }
-            });
-        });
-        
-        // 3. Кнопка "Записаться"
-        const bookingBtn = document.querySelector('.hero .btn');
-        if (bookingBtn) {
-            bookingBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const contactsSection = document.querySelector('.contacts');
-                if (contactsSection) {
-                    setTimeout(() => smartScrollTo(contactsSection), 30);
-                }
-            });
-        }
-        
-        // 4. Логотип (наверх)
-        const logo = document.querySelector('.logo-wrapper');
-        if (logo) {
-            logo.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                setTimeout(() => {
-                    document.querySelector('.header')?.classList.remove('scroll-50', 'scroll-100', 'scroll-150', 'scroll-200');
-                }, 100);
-            });
-        }
-    }
-    
-    // ========== АККОРДЕОН ==========
+    });
+
+    // ========== ПРЕМИАЛЬНЫЙ АККОРДЕОН ==========
     const toggleButtons = document.querySelectorAll('.service-toggle');
     
     document.querySelectorAll('.service-card').forEach(card => {
@@ -166,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const description = button.nextElementSibling;
             const arrow = button.querySelector('.arrow');
             const currentCard = button.closest('.service-card');
+            
             const isActive = button.classList.contains('active');
             
             toggleButtons.forEach((btn) => {
@@ -189,11 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 setTimeout(() => {
                     const rect = currentCard.getBoundingClientRect();
-                    const headerHeight = document.querySelector('.header')?.offsetHeight || 100;
-                    const isVisible = rect.top >= headerHeight && rect.bottom <= window.innerHeight;
+                    const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
                     
                     if (!isVisible) {
-                        setTimeout(() => smartScrollTo(currentCard), 50);
+                        currentCard.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center'
+                        });
                     }
                 }, 100);
             }
@@ -221,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ========== ШАПКА ==========
     const header = document.querySelector('.header');
+    const logo = document.querySelector('.logo-wrapper');
     let ticking = false;
     
     function updateHeaderClasses() {
@@ -229,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         header.classList.remove('scroll-50', 'scroll-100', 'scroll-150', 'scroll-200');
         
         if (scrollTop < 80) {
-            // полная
+            // полная шапка
         } else if (scrollTop < 200) {
             header.classList.add('scroll-50');
         } else if (scrollTop < 350) {
@@ -245,14 +148,30 @@ document.addEventListener('DOMContentLoaded', () => {
     
     window.addEventListener('scroll', () => {
         if (!ticking) {
-            window.requestAnimationFrame(updateHeaderClasses);
+            window.requestAnimationFrame(() => {
+                updateHeaderClasses();
+            });
             ticking = true;
         }
     });
     
     updateHeaderClasses();
+    
+    // ========== ЛОГО НАВЕРХ ==========
+    if (logo) {
+        logo.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            setTimeout(() => {
+                header.classList.remove('scroll-50', 'scroll-100', 'scroll-150', 'scroll-200');
+            }, 100);
+        });
+    }
 
-    // ========== АНИМАЦИИ ПОЯВЛЕНИЯ ==========
+    // ========== АНИМАЦИЯ КАРТОЧЕК ==========
     const cardObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -267,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cardObserver.observe(card);
     });
 
+    // ========== АНИМАЦИЯ ПРЕИМУЩЕСТВ ==========
     const featuresObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -281,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
         featuresObserver.observe(item);
     });
 
-    // ========== ПЕРЕКЛЮЧЕНИЕ ГОРОДОВ ==========
+    // ========== ПЕРЕКЛЮЧЕНИЕ КАРТ ==========
     const cityRadios = document.querySelectorAll('input[name="city"]');
     const mapArtem = document.getElementById('map-artem');
     const mapUssuriysk = document.getElementById('map-ussuriysk');
@@ -310,10 +230,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // ========== ЗАПУСК ==========
-    if (document.readyState === 'complete') {
-        setupNavigation();
-    } else {
-        window.addEventListener('load', setupNavigation);
+    // ========== КНОПКА "ЗАПИСАТЬСЯ" ==========
+    const bookingBtn = document.querySelector('.hero .btn');
+    if (bookingBtn) {
+        bookingBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const contactsSection = document.querySelector('.contacts');
+            if (contactsSection) {
+                contactsSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
     }
 });
