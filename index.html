@@ -309,8 +309,40 @@
                     </div>
                 </div>
                 
-                <div class="contacts-map">
-                    <iframe id="map-frame" src="https://maps.2gis.com/embed/ru?m=132.18083%2C43.354723%2F16&r=43.354723%2C132.18083" width="100%" height="100%" frameborder="0" allowfullscreen="true"></iframe>
+                <div class="contacts-map" id="contacts-map">
+                    <!-- Контейнер для карты Артёма (активен по умолчанию) -->
+                    <div id="map-artem" class="map-container active">
+                        <a class="dg-widget-link" href="http://2gis.ru/vladivostok/firm/70000001103831096/center/132.18083,43.354723/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">Посмотреть на карте Владивостока</a>
+                        <div class="dg-widget-link"><a href="http://2gis.ru/vladivostok/firm/70000001103831096/photos/70000001103831096/center/132.18083,43.354723/zoom/17?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=photos">Фотографии компании</a></div>
+                        <div class="dg-widget-link"><a href="http://2gis.ru/vladivostok/center/132.18083,43.354723/zoom/16/routeTab/rsType/bus/to/132.18083,43.354723╎Юркад, юридическая компания?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">Найти проезд до Юркад, юридическая компания</a></div>
+                        <script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js"></script>
+                        <script charset="utf-8">
+                            new DGWidgetLoader({
+                                "width": "100%",
+                                "height": 450,
+                                "borderColor": "#a3a3a3",
+                                "pos": {"lat": 43.354723, "lon": 132.18083, "zoom": 16},
+                                "opt": {"city": "vladivostok"},
+                                "org": [{"id": "70000001103831096"}]
+                            });
+                        </script>
+                    </div>
+                    <!-- Контейнер для карты Уссурийска (скрыт) -->
+                    <div id="map-ussuriysk" class="map-container" style="display: none;">
+                        <a class="dg-widget-link" href="http://2gis.ru/ussuriysk/firm/70000001111455540/center/131.953719,43.802527/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">Посмотреть на карте Уссурийска</a>
+                        <div class="dg-widget-link"><a href="http://2gis.ru/ussuriysk/center/131.953719,43.802527/zoom/16/routeTab/rsType/bus/to/131.953719,43.802527╎Юркад, юридическая компания?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">Найти проезд до Юркад, юридическая компания</a></div>
+                        <script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js"></script>
+                        <script charset="utf-8">
+                            new DGWidgetLoader({
+                                "width": "100%",
+                                "height": 450,
+                                "borderColor": "#a3a3a3",
+                                "pos": {"lat": 43.802527, "lon": 131.953719, "zoom": 16},
+                                "opt": {"city": "ussuriysk"},
+                                "org": [{"id": "70000001111455540"}]
+                            });
+                        </script>
+                    </div>
                 </div>
                 
             </div>
