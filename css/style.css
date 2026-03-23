@@ -1412,3 +1412,8 @@ html {
 .contacts {
     scroll-margin-top: 60px;
 }
+
+/* ========== УМЕНЬШАЕМ РАССТОЯНИЕ МЕЖДУ ЗАГОЛОВКОМ И ТУМБЛЕРОМ В КОНТАКТАХ ========== */
+.contacts .section-title {
+    margin-bottom: 25px;
+}
