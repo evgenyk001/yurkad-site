@@ -11,13 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
         function changeWord() {
             index = (index + 1) % words.length;
             
-            // Плавное исчезновение
             wordElement.style.opacity = '0';
             wordElement.style.transform = 'translateY(-6px)';
             
             setTimeout(() => {
                 wordElement.textContent = words[index];
-                // Плавное появление
                 wordElement.style.opacity = '1';
                 wordElement.style.transform = 'translateY(6px)';
                 
@@ -38,70 +36,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // ========== ФУНКЦИЯ ПЛАВНОЙ ПРОКРУТКИ С УЧЁТОМ АКТУАЛЬНОЙ ШАПКИ ==========
-    function smoothScrollToElement(targetElement, offset = 0) {
+    // ========== РУЧНАЯ НАСТРОЙКА ОТСТУПОВ ДЛЯ ЯКОРЕЙ ==========
+    // ОФСЕТЫ (подбери идеальные значения для своего сайта)
+    const OFFSETS = {
+        '.hero': 0,           // хедер уже сам учитываем
+        '.cards': 100,        // услуги
+        '.features': 100,     // преимущества
+        '.contacts': 100      // контакты
+    };
+    
+    // Функция прокрутки с ручной корректировкой
+    function scrollToElement(targetElement, customOffset = null) {
         if (!targetElement) return;
         
-        // Получаем актуальную высоту шапки в момент прокрутки
+        // Получаем высоту хедера
         const header = document.querySelector('.header');
         const headerHeight = header?.offsetHeight || 100;
         
-        // Получаем позицию элемента и вычитаем высоту шапки
-        const elementRect = targetElement.getBoundingClientRect();
-        const absoluteElementTop = elementRect.top + window.scrollY;
-        const targetPosition = absoluteElementTop - headerHeight - offset;
+        // Получаем базовый офсет из настроек
+        let offset = customOffset !== null ? customOffset : OFFSETS[targetElement.className] || 80;
         
+        // Вычисляем позицию
+        const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - headerHeight - offset;
+        
+        // Прокручиваем
         window.scrollTo({
-            top: targetPosition,
+            top: offsetPosition,
             behavior: 'smooth'
         });
+        
+        // Дополнительная корректировка через 200ms (на случай анимаций)
+        setTimeout(() => {
+            const currentScroll = window.scrollY;
+            const targetScroll = elementPosition - headerHeight - offset;
+            
+            if (Math.abs(currentScroll - targetScroll) > 10) {
+                window.scrollTo({
+                    top: targetScroll,
+                    behavior: 'smooth'
+                });
+            }
+        }, 200);
     }
     
-    // ========== ОБРАБОТЧИК НАВИГАЦИИ С ДВУМЯ ЭТАПАМИ ==========
-    function setupNavigation() {
-        // Получаем все навигационные элементы
+    // ========== НАСТРОЙКА ВСЕХ ЯКОРЕЙ ==========
+    function setupAnchors() {
+        // Секции для навигации
+        const sections = {
+            'hero': '.hero',
+            'cards': '.cards', 
+            'features': '.features',
+            'contacts': '.contacts'
+        };
+        
+        // Навигационные иконки
         const navItems = document.querySelectorAll('.nav-icon-item');
-        const allLinks = document.querySelectorAll('a[href^="#"]');
-        const bookingBtn = document.querySelector('.hero .btn');
-        
-        // Функция для обработки клика
-        function handleNavigationClick(targetElement, e) {
-            if (e) e.preventDefault();
-            if (!targetElement) return;
-            
-            // Получаем актуальную высоту шапки ПЕРЕД прокруткой
-            const header = document.querySelector('.header');
-            let headerHeight = header?.offsetHeight || 100;
-            
-            // Делаем два прохода для точности
-            const elementRect = targetElement.getBoundingClientRect();
-            const absoluteElementTop = elementRect.top + window.scrollY;
-            let targetPosition = absoluteElementTop - headerHeight;
-            
-            // Первая прокрутка
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-            
-            // Через 100ms пересчитываем (на случай если шапка изменилась во время прокрутки)
-            setTimeout(() => {
-                const newHeaderHeight = document.querySelector('.header')?.offsetHeight || 100;
-                const newElementRect = targetElement.getBoundingClientRect();
-                const newAbsoluteTop = newElementRect.top + window.scrollY;
-                const correctedPosition = newAbsoluteTop - newHeaderHeight;
-                
-                // Если позиция отличается больше чем на 5px - корректируем
-                if (Math.abs(window.scrollY - correctedPosition) > 5) {
-                    window.scrollTo({
-                        top: correctedPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }, 100);
-        }
-        
-        // Обработка навигационных иконок
         navItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -109,20 +99,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (targetId && targetId !== '#') {
                     let targetElement = document.querySelector(targetId);
-                    
                     if (!targetElement && targetId.startsWith('#')) {
                         targetElement = document.getElementById(targetId.slice(1));
                     }
                     
                     if (targetElement) {
-                        handleNavigationClick(targetElement);
+                        // Задержка для стабилизации
+                        setTimeout(() => {
+                            scrollToElement(targetElement);
+                        }, 50);
                     }
                 }
             });
         });
         
-        // Обработка всех якорей
-        allLinks.forEach(anchor => {
+        // Все якоря
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
                 const targetId = anchor.getAttribute('href');
                 if (targetId === '#' || !targetId) return;
@@ -130,24 +122,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     e.preventDefault();
-                    handleNavigationClick(targetElement);
+                    setTimeout(() => {
+                        scrollToElement(targetElement);
+                    }, 50);
                 }
             });
         });
         
         // Кнопка "Записаться"
+        const bookingBtn = document.querySelector('.hero .btn');
         if (bookingBtn) {
             bookingBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const contactsSection = document.querySelector('.contacts');
                 if (contactsSection) {
-                    handleNavigationClick(contactsSection);
+                    setTimeout(() => {
+                        scrollToElement(contactsSection);
+                    }, 50);
                 }
+            });
+        }
+        
+        // Логотип (наверх)
+        const logo = document.querySelector('.logo-wrapper');
+        if (logo) {
+            logo.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                setTimeout(() => {
+                    document.querySelector('.header')?.classList.remove('scroll-50', 'scroll-100', 'scroll-150', 'scroll-200');
+                }, 100);
             });
         }
     }
     
-    // ========== ПРЕМИАЛЬНЫЙ АККОРДЕОН ==========
+    // ========== АККОРДЕОН ==========
     const toggleButtons = document.querySelectorAll('.service-toggle');
     
     document.querySelectorAll('.service-card').forEach(card => {
@@ -162,7 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const isActive = button.classList.contains('active');
             
-            // Закрываем все карточки
             toggleButtons.forEach((btn) => {
                 const btnCard = btn.closest('.service-card');
                 const btnDesc = btn.nextElementSibling;
@@ -176,7 +186,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             
-            // Если текущая карточка была закрыта — открываем её
             if (!isActive) {
                 button.classList.add('active');
                 description.classList.add('active');
@@ -185,23 +194,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 setTimeout(() => {
                     const rect = currentCard.getBoundingClientRect();
-                    const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+                    const headerHeight = document.querySelector('.header')?.offsetHeight || 100;
+                    const isVisible = rect.top >= headerHeight && rect.bottom <= window.innerHeight;
                     
                     if (!isVisible) {
-                        const headerHeight = document.querySelector('.header')?.offsetHeight || 100;
-                        const targetPosition = currentCard.getBoundingClientRect().top + window.scrollY - headerHeight - 30;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
+                        setTimeout(() => {
+                            scrollToElement(currentCard, 30);
+                        }, 50);
                     }
                 }, 100);
             }
         });
     });
 
-    // ========== ЗАКРЫТИЕ АКТИВНОЙ КАРТОЧКИ ПРИ КЛИКЕ ВНЕ ЕЁ ==========
+    // ========== ЗАКРЫТИЕ КАРТОЧКИ ПРИ КЛИКЕ ВНЕ ==========
     document.addEventListener('click', (e) => {
         const activeButton = document.querySelector('.service-toggle.active');
         
@@ -220,9 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ========== ПОШАГОВАЯ АДАПТАЦИЯ ШАПКИ ==========
+    // ========== ШАПКА ==========
     const header = document.querySelector('.header');
-    const logo = document.querySelector('.logo-wrapper');
     let ticking = false;
     
     function updateHeaderClasses() {
@@ -231,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
         header.classList.remove('scroll-50', 'scroll-100', 'scroll-150', 'scroll-200');
         
         if (scrollTop < 80) {
-            // полная шапка
+            // полная
         } else if (scrollTop < 200) {
             header.classList.add('scroll-50');
         } else if (scrollTop < 350) {
@@ -247,35 +252,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     window.addEventListener('scroll', () => {
         if (!ticking) {
-            window.requestAnimationFrame(() => {
-                updateHeaderClasses();
-            });
+            window.requestAnimationFrame(updateHeaderClasses);
             ticking = true;
         }
     });
     
     updateHeaderClasses();
-    
-    // ========== ВОЗВРАТ НАВЕРХ ПРИ КЛИКЕ НА ЛОГО ==========
-    if (logo) {
-        logo.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-            
-            setTimeout(() => {
-                header.classList.remove('scroll-50', 'scroll-100', 'scroll-150', 'scroll-200');
-            }, 100);
-        });
-    }
 
-    // ========== АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК ==========
-    const cardObserverOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -30px 0px'
-    };
-    
+    // ========== АНИМАЦИИ ПОЯВЛЕНИЯ ==========
     const cardObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -283,14 +267,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardObserver.unobserve(entry.target);
             }
         });
-    }, cardObserverOptions);
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
     
     document.querySelectorAll('.service-card').forEach((card, index) => {
         card.style.transitionDelay = `${index * 0.08}s`;
         cardObserver.observe(card);
     });
 
-    // ========== АНИМАЦИЯ ПОЯВЛЕНИЯ ПРЕИМУЩЕСТВ ==========
     const featuresObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -305,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
         featuresObserver.observe(item);
     });
 
-    // ========== ПЕРЕКЛЮЧЕНИЕ КАРТЫ И АДРЕСА ==========
+    // ========== ПЕРЕКЛЮЧЕНИЕ ГОРОДОВ ==========
     const cityRadios = document.querySelectorAll('input[name="city"]');
     const mapArtem = document.getElementById('map-artem');
     const mapUssuriysk = document.getElementById('map-ussuriysk');
@@ -334,11 +317,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // ========== ИНИЦИАЛИЗАЦИЯ НАВИГАЦИИ ПОСЛЕ ПОЛНОЙ ЗАГРУЗКИ ==========
-    // Ждём полной загрузки всех ресурсов
+    // ========== ЗАПУСК ==========
     if (document.readyState === 'complete') {
-        setupNavigation();
+        setupAnchors();
     } else {
-        window.addEventListener('load', setupNavigation);
+        window.addEventListener('load', setupAnchors);
     }
 });
