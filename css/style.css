@@ -114,25 +114,29 @@ html {
     transition: gap 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
+/* УЛУЧШЕННАЯ АНИМАЦИЯ НАВИГАЦИИ - МАКСИМАЛЬНО ПЛАВНАЯ И ШУСТРАЯ */
 .nav-icon-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.05);
+    will-change: transform;
 }
 
 .nav-icon-item:hover {
-    transform: translateY(-6px) scale(1.03);
+    transform: translateY(-7px) scale(1.04);
 }
 
 .nav-icon-item:hover .nav-icon svg {
-    filter: drop-shadow(0 6px 12px rgba(158, 147, 126, 0.4));
+    filter: drop-shadow(0 6px 12px rgba(158, 147, 126, 0.5));
+    transition: filter 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.05);
 }
 
 .nav-icon-item:hover .nav-label {
-    color: #c0b298;
+    color: #d4c5ae;
     letter-spacing: 0.8px;
+    transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.05);
 }
 
 .nav-icon {
@@ -143,7 +147,7 @@ html {
     align-items: center;
     justify-content: center;
     margin-bottom: 4px;
-    transition: margin-bottom 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition: margin-bottom 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.05);
 }
 
 .nav-icon svg {
@@ -151,7 +155,7 @@ html {
     height: 22px;
     stroke: #9E937E;
     fill: #9E937E;
-    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.05);
 }
 
 .nav-label {
@@ -159,7 +163,7 @@ html {
     color: #9E937E;
     letter-spacing: 0.3px;
     font-weight: 500;
-    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.05);
     opacity: 1;
     transform: translateY(0);
 }
@@ -231,7 +235,7 @@ html {
     justify-self: start;
 }
 
-/* СЛОВА ПРИЖАТЫ К ЛЕВОМУ КРАЮ */
+/* СЛОВА ПРИЖАТЫ К ЛЕВОМУ КРАЮ С ПЕРЕЛИВОМ */
 .hero-words-wrapper {
     min-height: 100px;
     display: flex;
@@ -245,7 +249,6 @@ html {
 .hero-word {
     font-size: 72px;
     font-weight: 800;
-    color: #9E937E;
     line-height: 1;
     display: inline-block;
     white-space: nowrap;
@@ -253,6 +256,25 @@ html {
     transform: translateY(0);
     transition: opacity 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1), 
                 transform 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    /* ПЕРЕЛИВ ТЕКСТА */
+    background: linear-gradient(125deg, 
+        #9E937E 0%, 
+        #c9bc9f 50%, 
+        #9E937E 100%);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: textShine 3s ease-in-out infinite;
+}
+
+@keyframes textShine {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 .hero-static {
@@ -1083,6 +1105,7 @@ html {
         word-break: break-word;
         line-height: 1.2;
         max-width: 100%;
+        background-size: 150% 100%;
     }
     
     .hero-right {
