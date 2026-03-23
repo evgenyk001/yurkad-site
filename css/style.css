@@ -1387,3 +1387,20 @@ html {
         padding: 0 !important;
     }
 }
+
+/* ========== РУЧНЫЕ ЯКОРЯ (ПОДГОНИ ЗНАЧЕНИЯ ПОД СЕБЯ) ========== */
+.hero {
+    scroll-margin-top: 80px;
+}
+
+.cards {
+    scroll-margin-top: 100px;
+}
+
+.features {
+    scroll-margin-top: 100px;
+}
+
+.contacts {
+    scroll-margin-top: 100px;
+}
