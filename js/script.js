@@ -38,13 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // ========== ФУНКЦИЯ ПЛАВНОЙ ПРОКРУТКИ С УЧЁТОМ ДИНАМИЧЕСКОЙ ШАПКИ ==========
+    // ========== ФУНКЦИЯ ПЛАВНОЙ ПРОКРУТКИ С УЧЁТОМ АКТУАЛЬНОЙ ШАПКИ ==========
     function smoothScrollToElement(targetElement, offset = 0) {
         if (!targetElement) return;
         
+        // Получаем актуальную высоту шапки в момент прокрутки
         const header = document.querySelector('.header');
         const headerHeight = header?.offsetHeight || 100;
-        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight - offset;
+        
+        // Получаем позицию элемента и вычитаем высоту шапки
+        const elementRect = targetElement.getBoundingClientRect();
+        const absoluteElementTop = elementRect.top + window.scrollY;
+        const targetPosition = absoluteElementTop - headerHeight - offset;
         
         window.scrollTo({
             top: targetPosition,
@@ -52,24 +57,97 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // ========== ПЛАВНЫЙ СКРОЛЛ К ЯКОРЯМ (ИСПРАВЛЕННЫЙ) ==========
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-            const targetId = anchor.getAttribute('href');
-            if (targetId === '#' || !targetId) return;
+    // ========== ОБРАБОТЧИК НАВИГАЦИИ С ДВУМЯ ЭТАПАМИ ==========
+    function setupNavigation() {
+        // Получаем все навигационные элементы
+        const navItems = document.querySelectorAll('.nav-icon-item');
+        const allLinks = document.querySelectorAll('a[href^="#"]');
+        const bookingBtn = document.querySelector('.hero .btn');
+        
+        // Функция для обработки клика
+        function handleNavigationClick(targetElement, e) {
+            if (e) e.preventDefault();
+            if (!targetElement) return;
             
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
+            // Получаем актуальную высоту шапки ПЕРЕД прокруткой
+            const header = document.querySelector('.header');
+            let headerHeight = header?.offsetHeight || 100;
+            
+            // Делаем два прохода для точности
+            const elementRect = targetElement.getBoundingClientRect();
+            const absoluteElementTop = elementRect.top + window.scrollY;
+            let targetPosition = absoluteElementTop - headerHeight;
+            
+            // Первая прокрутка
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+            
+            // Через 100ms пересчитываем (на случай если шапка изменилась во время прокрутки)
+            setTimeout(() => {
+                const newHeaderHeight = document.querySelector('.header')?.offsetHeight || 100;
+                const newElementRect = targetElement.getBoundingClientRect();
+                const newAbsoluteTop = newElementRect.top + window.scrollY;
+                const correctedPosition = newAbsoluteTop - newHeaderHeight;
+                
+                // Если позиция отличается больше чем на 5px - корректируем
+                if (Math.abs(window.scrollY - correctedPosition) > 5) {
+                    window.scrollTo({
+                        top: correctedPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 100);
+        }
+        
+        // Обработка навигационных иконок
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
                 e.preventDefault();
-                // Небольшая задержка для стабилизации шапки
-                setTimeout(() => {
-                    smoothScrollToElement(targetElement);
-                }, 50);
-            }
+                const targetId = item.getAttribute('data-target') || item.getAttribute('href');
+                
+                if (targetId && targetId !== '#') {
+                    let targetElement = document.querySelector(targetId);
+                    
+                    if (!targetElement && targetId.startsWith('#')) {
+                        targetElement = document.getElementById(targetId.slice(1));
+                    }
+                    
+                    if (targetElement) {
+                        handleNavigationClick(targetElement);
+                    }
+                }
+            });
         });
-    });
-
-    // ========== ПРЕМИАЛЬНЫЙ АККОРДЕОН С МАКСИМАЛЬНО ПЛАВНЫМ ЗАКРЫТИЕМ ==========
+        
+        // Обработка всех якорей
+        allLinks.forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                const targetId = anchor.getAttribute('href');
+                if (targetId === '#' || !targetId) return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    handleNavigationClick(targetElement);
+                }
+            });
+        });
+        
+        // Кнопка "Записаться"
+        if (bookingBtn) {
+            bookingBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const contactsSection = document.querySelector('.contacts');
+                if (contactsSection) {
+                    handleNavigationClick(contactsSection);
+                }
+            });
+        }
+    }
+    
+    // ========== ПРЕМИАЛЬНЫЙ АККОРДЕОН ==========
     const toggleButtons = document.querySelectorAll('.service-toggle');
     
     document.querySelectorAll('.service-card').forEach(card => {
@@ -110,9 +188,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
                     
                     if (!isVisible) {
-                        setTimeout(() => {
-                            smoothScrollToElement(currentCard, 30);
-                        }, 50);
+                        const headerHeight = document.querySelector('.header')?.offsetHeight || 100;
+                        const targetPosition = currentCard.getBoundingClientRect().top + window.scrollY - headerHeight - 30;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
                     }
                 }, 100);
             }
@@ -188,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ========== ПРЕМИАЛЬНАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК ==========
+    // ========== АНИМАЦИЯ ПОЯВЛЕНИЯ КАРТОЧЕК ==========
     const cardObserverOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -30px 0px'
@@ -208,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cardObserver.observe(card);
     });
 
-    // ========== ПРЕМИАЛЬНАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ ПРЕИМУЩЕСТВ ==========
+    // ========== АНИМАЦИЯ ПОЯВЛЕНИЯ ПРЕИМУЩЕСТВ ==========
     const featuresObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -223,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
         featuresObserver.observe(item);
     });
 
-    // ========== ПЕРЕКЛЮЧЕНИЕ КАРТЫ И АДРЕСА (ДЛЯ ТУМБЛЕРА) ==========
+    // ========== ПЕРЕКЛЮЧЕНИЕ КАРТЫ И АДРЕСА ==========
     const cityRadios = document.querySelectorAll('input[name="city"]');
     const mapArtem = document.getElementById('map-artem');
     const mapUssuriysk = document.getElementById('map-ussuriysk');
@@ -236,7 +318,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (radio.checked) {
                     const city = radio.id === 'city-artem' ? 'artem' : 'ussuriysk';
                     
-                    // Переключаем карты
                     if (city === 'artem') {
                         if (mapArtem) mapArtem.style.display = 'block';
                         if (mapUssuriysk) mapUssuriysk.style.display = 'none';
@@ -252,43 +333,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
-    // ========== НАВИГАЦИЯ ПО МЕНЮ (ИСПРАВЛЕННАЯ) ==========
-    const navItems = document.querySelectorAll('.nav-icon-item');
     
-    navItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('data-target') || this.getAttribute('href');
-            
-            if (targetId && targetId !== '#') {
-                let targetElement = document.querySelector(targetId);
-                
-                // Если нет такого селектора, пробуем найти по id без #
-                if (!targetElement && targetId.startsWith('#')) {
-                    targetElement = document.getElementById(targetId.slice(1));
-                }
-                
-                if (targetElement) {
-                    setTimeout(() => {
-                        smoothScrollToElement(targetElement);
-                    }, 50);
-                }
-            }
-        });
-    });
-
-    // ========== КНОПКА "ЗАПИСАТЬСЯ" (ИСПРАВЛЕННАЯ) ==========
-    const bookingBtn = document.querySelector('.hero .btn');
-    if (bookingBtn) {
-        bookingBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const contactsSection = document.querySelector('.contacts');
-            if (contactsSection) {
-                setTimeout(() => {
-                    smoothScrollToElement(contactsSection);
-                }, 50);
-            }
-        });
+    // ========== ИНИЦИАЛИЗАЦИЯ НАВИГАЦИИ ПОСЛЕ ПОЛНОЙ ЗАГРУЗКИ ==========
+    // Ждём полной загрузки всех ресурсов
+    if (document.readyState === 'complete') {
+        setupNavigation();
+    } else {
+        window.addEventListener('load', setupNavigation);
     }
 });
